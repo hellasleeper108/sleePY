@@ -43,6 +43,8 @@ class User(Base):
     streak = relationship("DailyStreak", back_populates="user", uselist=False, cascade="all, delete-orphan")
     achievements = relationship("UserAchievement", back_populates="user", cascade="all, delete-orphan")
     learning_paths = relationship("UserPathProgress", back_populates="user", cascade="all, delete-orphan")
+    activities = relationship("UserActivity", back_populates="user", cascade="all, delete-orphan")
+    challenge_sessions = relationship("ChallengeSession", back_populates="user", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<User(username='{self.username}', level={self.level}, xp={self.xp})>"

@@ -71,6 +71,7 @@ class Challenge(Base):
     # Relationships
     progress = relationship("Progress", back_populates="challenge", cascade="all, delete-orphan")
     learning_path = relationship("LearningPath", back_populates="challenges")
+    sessions = relationship("ChallengeSession", back_populates="challenge", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Challenge(title='{self.title}', difficulty='{self.difficulty}', xp={self.xp_reward})>"
