@@ -29,7 +29,7 @@ class User(Base):
     is_superuser = Column(Boolean, default=False)
 
     # Gamification fields
-    xp = Column(Integer, default=0)  # Experience points
+    xp = Column(Integer, default=0, index=True)  # Experience points (indexed for leaderboards)
     level = Column(Integer, default=1)  # Current level
 
     # Timestamps

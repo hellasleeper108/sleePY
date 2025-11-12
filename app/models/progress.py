@@ -1,7 +1,7 @@
 """
 Progress model - tracks user completion of challenges
 """
-from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, Index
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.db.base import Base
@@ -38,6 +38,12 @@ class Progress(Base):
     # Relationships
     user = relationship("User", back_populates="progress")
     challenge = relationship("Challenge", back_populates="progress")
+
+    # Indexes for optimized queries
+    __table_args__ = (
+        Index('idx_progress_completed', 'is_completed', 'completed_at'),
+        Index('idx_progress_weekly', 'user_id', 'is_completed', 'completed_at'),
+    )
 
     def __repr__(self):
         status = "completed" if self.is_completed else "in progress"

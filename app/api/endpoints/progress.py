@@ -16,6 +16,7 @@ from app.schemas.progress import (
     SubmissionResult
 )
 from app.services.game_engine import GameEngine
+from app.services.leaderboard import LeaderboardService
 
 router = APIRouter()
 
@@ -227,6 +228,9 @@ def submit_challenge_code(
 
         # Award XP using game engine (handles leveling and rewards)
         xp_result = GameEngine.award_xp(current_user, xp_reward, db)
+
+        # Invalidate leaderboard cache (auto-updates leaderboards)
+        LeaderboardService.invalidate_cache()
 
         # Random loot chest drop
         loot_dropped = None
