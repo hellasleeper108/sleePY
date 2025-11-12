@@ -57,6 +57,9 @@ class Challenge(Base):
     xp_reward = Column(Integer, default=10)  # XP awarded on completion
     required_level = Column(Integer, default=1)  # Minimum level to access
 
+    # Learning path link (optional)
+    learning_path_id = Column(Integer, ForeignKey("learning_paths.id"), nullable=True, index=True)
+
     # Metadata
     order = Column(Integer, default=0)  # For ordering challenges in a sequence
     is_active = Column(Boolean, default=True)
@@ -67,6 +70,7 @@ class Challenge(Base):
 
     # Relationships
     progress = relationship("Progress", back_populates="challenge", cascade="all, delete-orphan")
+    learning_path = relationship("LearningPath", back_populates="challenges")
 
     def __repr__(self):
         return f"<Challenge(title='{self.title}', difficulty='{self.difficulty}', xp={self.xp_reward})>"

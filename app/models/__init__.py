@@ -9,9 +9,16 @@ from app.models.loot_chest import LootChest, ChestRarity
 from app.models.daily_streak import DailyStreak
 from app.models.achievement import Achievement, AchievementType
 from app.models.user_achievement import UserAchievement
+from app.models.learning_path import LearningPath, PathDifficulty, PathTopic
+from app.models.lesson import Lesson, LessonType
+from app.models.user_path_progress import UserPathProgress
+from app.models.user_lesson_progress import UserLessonProgress
 
 __all__ = [
     "User", "Challenge", "Progress", "Badge", "UserBadge",
     "LootChest", "ChestRarity", "DailyStreak",
-    "Achievement", "AchievementType", "UserAchievement"
+    "Achievement", "AchievementType", "UserAchievement",
+    "LearningPath", "PathDifficulty", "PathTopic",
+    "Lesson", "LessonType",
+    "UserPathProgress", "UserLessonProgress"
 ]

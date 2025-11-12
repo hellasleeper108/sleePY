@@ -8,7 +8,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.db.session import init_db
-from app.api.endpoints import auth, users, challenges, progress, badges, game
+from app.api.endpoints import auth, users, challenges, progress, badges, game, learning_paths
 
 
 @asynccontextmanager
@@ -102,6 +102,12 @@ app.include_router(
     game.router,
     prefix="/api/game",
     tags=["Game Mechanics"]
+)
+
+app.include_router(
+    learning_paths.router,
+    prefix="/api/paths",
+    tags=["Learning Paths"]
 )
 
 

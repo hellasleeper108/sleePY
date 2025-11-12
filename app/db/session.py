@@ -49,7 +49,8 @@ def init_db():
     from app.db.base import Base
     from app.models import (
         User, Challenge, Progress, Badge, UserBadge,
-        LootChest, DailyStreak, Achievement, UserAchievement
+        LootChest, DailyStreak, Achievement, UserAchievement,
+        LearningPath, Lesson, UserPathProgress, UserLessonProgress
     )
 
     # Import all models to ensure they're registered with Base

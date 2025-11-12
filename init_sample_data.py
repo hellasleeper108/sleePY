@@ -9,6 +9,8 @@ from app.models.user import User
 from app.models.challenge import Challenge, DifficultyLevel, ChallengeCategory
 from app.models.badge import Badge
 from app.models.achievement import Achievement, AchievementType
+from app.models.learning_path import LearningPath, PathDifficulty, PathTopic
+from app.models.lesson import Lesson, LessonType
 from app.core.security import get_password_hash
 
 
@@ -456,6 +458,788 @@ def create_sample_achievements():
     db.close()
 
 
+def create_sample_learning_paths():
+    """Create 5 sample learning paths with lessons"""
+    db = SessionLocal()
+
+    # Check if paths already exist
+    existing = db.query(LearningPath).first()
+    if existing:
+        print("Learning paths already exist")
+        return
+
+    print("\nCreating learning paths...")
+
+    # Path 1: Python Variables & Data Types
+    path1 = LearningPath(
+        title="Python Variables & Data Types",
+        description="Master the fundamentals of Python variables and basic data types",
+        topic=PathTopic.VARIABLES,
+        difficulty=PathDifficulty.BEGINNER,
+        estimated_hours=2,
+        xp_reward=150,
+        required_level=1,
+        order=1
+    )
+    db.add(path1)
+    db.flush()
+
+    lessons_path1 = [
+        Lesson(
+            path_id=path1.id,
+            title="Introduction to Variables",
+            content="""# Introduction to Variables
+
+Variables are containers for storing data values. In Python, you don't need to declare the type of a variable.
+
+## Creating Variables
+
+```python
+# String variable
+name = "PyQuest"
+
+# Integer variable
+level = 1
+
+# Float variable
+xp = 100.5
+
+# Boolean variable
+is_active = True
+```
+
+## Variable Naming Rules
+
+- Must start with a letter or underscore
+- Can only contain alphanumeric characters and underscores
+- Case-sensitive (`name` and `Name` are different)
+- Cannot be a Python keyword
+
+## Try it yourself!
+
+Create variables for your own game character.
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=1,
+            estimated_minutes=10,
+            xp_reward=15
+        ),
+        Lesson(
+            path_id=path1.id,
+            title="Numbers in Python",
+            content="""# Numbers in Python
+
+Python has three numeric types: `int`, `float`, and `complex`.
+
+## Integer (int)
+Whole numbers, positive or negative.
+
+```python
+level = 5
+score = -10
+big_number = 1000000
+```
+
+## Float
+Numbers with decimal points.
+
+```python
+pi = 3.14159
+temperature = 98.6
+xp_multiplier = 1.5
+```
+
+## Arithmetic Operations
+
+```python
+# Addition
+total = 10 + 5  # 15
+
+# Subtraction
+difference = 10 - 5  # 5
+
+# Multiplication
+product = 10 * 5  # 50
+
+# Division
+quotient = 10 / 5  # 2.0
+
+# Floor division
+floor_div = 10 // 3  # 3
+
+# Modulus (remainder)
+remainder = 10 % 3  # 1
+
+# Exponentiation
+power = 2 ** 3  # 8
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=2,
+            estimated_minutes=15,
+            xp_reward=20
+        ),
+        Lesson(
+            path_id=path1.id,
+            title="Strings and Text",
+            content="""# Strings in Python
+
+Strings are sequences of characters enclosed in quotes.
+
+## Creating Strings
+
+```python
+# Single quotes
+greeting = 'Hello'
+
+# Double quotes
+name = "PyQuest"
+
+# Multi-line strings
+description = '''This is a
+multi-line string
+in Python'''
+```
+
+## String Operations
+
+```python
+# Concatenation
+full_name = "John" + " " + "Doe"
+
+# Repetition
+repeated = "Ha" * 3  # "HaHaHa"
+
+# Length
+length = len("Hello")  # 5
+
+# Indexing
+first_char = "Python"[0]  # 'P'
+
+# Slicing
+substring = "Python"[0:3]  # 'Pyt'
+```
+
+## String Methods
+
+```python
+text = "hello world"
+
+# Uppercase
+text.upper()  # "HELLO WORLD"
+
+# Lowercase
+text.lower()  # "hello world"
+
+# Title case
+text.title()  # "Hello World"
+
+# Replace
+text.replace("world", "Python")  # "hello Python"
+
+# Split
+words = text.split()  # ['hello', 'world']
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=3,
+            estimated_minutes=15,
+            xp_reward=20
+        )
+    ]
+
+    for lesson in lessons_path1:
+        db.add(lesson)
+
+    # Path 2: Control Flow
+    path2 = LearningPath(
+        title="Control Flow: If, Elif, Else",
+        description="Learn to control program flow with conditional statements",
+        topic=PathTopic.CONTROL_FLOW,
+        difficulty=PathDifficulty.BEGINNER,
+        estimated_hours=3,
+        xp_reward=200,
+        required_level=1,
+        order=2
+    )
+    db.add(path2)
+    db.flush()
+
+    lessons_path2 = [
+        Lesson(
+            path_id=path2.id,
+            title="If Statements",
+            content="""# If Statements
+
+Control the flow of your program based on conditions.
+
+## Basic If Statement
+
+```python
+level = 5
+
+if level >= 5:
+    print("You can access advanced challenges!")
+```
+
+## Comparison Operators
+
+- `==` Equal to
+- `!=` Not equal to
+- `>` Greater than
+- `<` Less than
+- `>=` Greater than or equal to
+- `<=` Less than or equal to
+
+```python
+xp = 100
+
+if xp >= 100:
+    print("Level up!")
+
+if xp == 100:
+    print("Exactly 100 XP")
+
+if xp != 0:
+    print("You have some XP")
+```
+
+## Logical Operators
+
+```python
+level = 5
+xp = 150
+
+# AND - both conditions must be True
+if level >= 5 and xp >= 100:
+    print("Requirements met!")
+
+# OR - at least one condition must be True
+if level >= 10 or xp >= 500:
+    print("Advanced user!")
+
+# NOT - inverse the condition
+if not level == 1:
+    print("Not a beginner")
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=1,
+            estimated_minutes=15,
+            xp_reward=25
+        ),
+        Lesson(
+            path_id=path2.id,
+            title="Elif and Else",
+            content="""# Elif and Else
+
+Handle multiple conditions and default cases.
+
+## Elif (Else If)
+
+```python
+level = 5
+
+if level >= 10:
+    print("Expert")
+elif level >= 5:
+    print("Intermediate")
+elif level >= 1:
+    print("Beginner")
+```
+
+## Else (Default Case)
+
+```python
+score = 75
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+else:
+    grade = "F"
+
+print(f"Your grade is: {grade}")
+```
+
+## Nested If Statements
+
+```python
+has_key = True
+level = 5
+
+if has_key:
+    if level >= 5:
+        print("You can enter the boss room!")
+    else:
+        print("Level too low")
+else:
+    print("You need a key")
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=2,
+            estimated_minutes=15,
+            xp_reward=25
+        )
+    ]
+
+    for lesson in lessons_path2:
+        db.add(lesson)
+
+    # Path 3: Loops
+    path3 = LearningPath(
+        title="Loops: For and While",
+        description="Master iteration with for and while loops",
+        topic=PathTopic.CONTROL_FLOW,
+        difficulty=PathDifficulty.BEGINNER,
+        estimated_hours=3,
+        xp_reward=200,
+        required_level=2,
+        order=3
+    )
+    db.add(path3)
+    db.flush()
+
+    lessons_path3 = [
+        Lesson(
+            path_id=path3.id,
+            title="For Loops",
+            content="""# For Loops
+
+Iterate over sequences like lists, strings, and ranges.
+
+## Basic For Loop with Range
+
+```python
+# Print numbers 0 to 4
+for i in range(5):
+    print(i)
+
+# Range with start and end
+for i in range(1, 6):  # 1 to 5
+    print(i)
+
+# Range with step
+for i in range(0, 10, 2):  # 0, 2, 4, 6, 8
+    print(i)
+```
+
+## Looping Over Lists
+
+```python
+challenges = ["Variables", "Loops", "Functions"]
+
+for challenge in challenges:
+    print(f"Complete: {challenge}")
+```
+
+## Looping Over Strings
+
+```python
+word = "Python"
+
+for letter in word:
+    print(letter)
+```
+
+## Break and Continue
+
+```python
+# Break - exit loop early
+for i in range(10):
+    if i == 5:
+        break
+    print(i)  # Prints 0-4
+
+# Continue - skip current iteration
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)  # Prints 0, 1, 3, 4
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=1,
+            estimated_minutes=20,
+            xp_reward=30
+        ),
+        Lesson(
+            path_id=path3.id,
+            title="While Loops",
+            content="""# While Loops
+
+Repeat code while a condition is true.
+
+## Basic While Loop
+
+```python
+count = 0
+
+while count < 5:
+    print(count)
+    count += 1
+```
+
+## Game Example
+
+```python
+health = 100
+damage = 20
+
+while health > 0:
+    health -= damage
+    print(f"Health: {health}")
+
+print("Game Over!")
+```
+
+## While with Break
+
+```python
+while True:
+    user_input = input("Enter 'quit' to exit: ")
+    if user_input == "quit":
+        break
+    print(f"You entered: {user_input}")
+```
+
+## Infinite Loop Warning
+
+```python
+# Be careful! This loops forever
+# while True:
+#     print("This never stops!")
+
+# Always have an exit condition
+attempts = 0
+while attempts < 3:
+    print(f"Attempt {attempts + 1}")
+    attempts += 1
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=2,
+            estimated_minutes=20,
+            xp_reward=30
+        )
+    ]
+
+    for lesson in lessons_path3:
+        db.add(lesson)
+
+    # Path 4: Functions
+    path4 = LearningPath(
+        title="Functions in Python",
+        description="Create reusable code with functions",
+        topic=PathTopic.FUNCTIONS,
+        difficulty=PathDifficulty.INTERMEDIATE,
+        estimated_hours=4,
+        xp_reward=250,
+        required_level=3,
+        order=4
+    )
+    db.add(path4)
+    db.flush()
+
+    lessons_path4 = [
+        Lesson(
+            path_id=path4.id,
+            title="Defining Functions",
+            content="""# Defining Functions
+
+Functions are reusable blocks of code.
+
+## Basic Function
+
+```python
+def greet():
+    print("Hello, PyQuest!")
+
+# Call the function
+greet()
+```
+
+## Functions with Parameters
+
+```python
+def greet_user(name):
+    print(f"Hello, {name}!")
+
+greet_user("Alice")  # Hello, Alice!
+greet_user("Bob")    # Hello, Bob!
+```
+
+## Multiple Parameters
+
+```python
+def calculate_xp(challenges, difficulty):
+    base_xp = challenges * 10
+    if difficulty == "hard":
+        return base_xp * 2
+    return base_xp
+
+xp = calculate_xp(5, "hard")
+print(xp)  # 100
+```
+
+## Default Parameters
+
+```python
+def power_up(health, amount=10):
+    return health + amount
+
+print(power_up(50))      # 60
+print(power_up(50, 25))  # 75
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=1,
+            estimated_minutes=20,
+            xp_reward=35
+        ),
+        Lesson(
+            path_id=path4.id,
+            title="Return Values",
+            content="""# Return Values
+
+Functions can return values to be used elsewhere.
+
+## Basic Return
+
+```python
+def add_numbers(a, b):
+    return a + b
+
+result = add_numbers(5, 3)
+print(result)  # 8
+```
+
+## Multiple Return Values
+
+```python
+def get_user_stats(user):
+    level = 5
+    xp = 100
+    return level, xp
+
+lvl, experience = get_user_stats("Alice")
+print(f"Level: {lvl}, XP: {experience}")
+```
+
+## Conditional Returns
+
+```python
+def check_level(xp):
+    if xp >= 1000:
+        return "Expert"
+    elif xp >= 500:
+        return "Intermediate"
+    else:
+        return "Beginner"
+
+status = check_level(750)
+print(status)  # Intermediate
+```
+
+## Return vs Print
+
+```python
+# Print - displays output
+def show_message():
+    print("Hello")
+
+# Return - gives back a value
+def get_message():
+    return "Hello"
+
+# show_message() can't be stored
+# msg = show_message()  # msg is None
+
+# get_message() returns a value
+msg = get_message()
+print(msg)  # Hello
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=2,
+            estimated_minutes=20,
+            xp_reward=35
+        )
+    ]
+
+    for lesson in lessons_path4:
+        db.add(lesson)
+
+    # Path 5: Object-Oriented Programming
+    path5 = LearningPath(
+        title="Introduction to OOP",
+        description="Learn object-oriented programming with classes and objects",
+        topic=PathTopic.OOP,
+        difficulty=PathDifficulty.ADVANCED,
+        estimated_hours=5,
+        xp_reward=300,
+        required_level=5,
+        order=5
+    )
+    db.add(path5)
+    db.flush()
+
+    lessons_path5 = [
+        Lesson(
+            path_id=path5.id,
+            title="Classes and Objects",
+            content="""# Classes and Objects
+
+Object-Oriented Programming (OOP) organizes code into objects.
+
+## What are Classes?
+
+A class is a blueprint for creating objects.
+
+```python
+class Player:
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
+        self.xp = 0
+
+    def gain_xp(self, amount):
+        self.xp += amount
+        print(f"{self.name} gained {amount} XP!")
+
+# Create objects (instances)
+player1 = Player("Alice", 1)
+player2 = Player("Bob", 1)
+
+# Use methods
+player1.gain_xp(50)  # Alice gained 50 XP!
+print(player1.xp)    # 50
+```
+
+## The __init__ Method
+
+The `__init__` method is called when creating a new object.
+
+```python
+class Character:
+    def __init__(self, name, health=100):
+        self.name = name
+        self.health = health
+        print(f"{name} created with {health} health!")
+
+hero = Character("Hero")  # Hero created with 100 health!
+```
+
+## Instance vs Class Variables
+
+```python
+class Game:
+    # Class variable (shared by all instances)
+    total_players = 0
+
+    def __init__(self, player_name):
+        # Instance variable (unique to each object)
+        self.player = player_name
+        Game.total_players += 1
+
+game1 = Game("Alice")
+game2 = Game("Bob")
+print(Game.total_players)  # 2
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=1,
+            estimated_minutes=25,
+            xp_reward=40
+        ),
+        Lesson(
+            path_id=path5.id,
+            title="Methods and Properties",
+            content="""# Methods and Properties
+
+Methods are functions that belong to a class.
+
+## Instance Methods
+
+```python
+class Inventory:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
+        return f"Added {item}"
+
+    def show_items(self):
+        if not self.items:
+            return "Inventory is empty"
+        return f"Items: {', '.join(self.items)}"
+
+inv = Inventory()
+inv.add_item("Sword")
+inv.add_item("Shield")
+print(inv.show_items())  # Items: Sword, Shield
+```
+
+## Properties with @property
+
+```python
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self._xp = 0
+
+    @property
+    def level(self):
+        return self._xp // 100 + 1
+
+    def gain_xp(self, amount):
+        self._xp += amount
+
+player = Player("Alice")
+print(player.level)      # 1
+player.gain_xp(250)
+print(player.level)      # 3
+```
+
+## String Representation
+
+```python
+class Quest:
+    def __init__(self, title, xp_reward):
+        self.title = title
+        self.xp_reward = xp_reward
+
+    def __str__(self):
+        return f"Quest: {self.title} ({self.xp_reward} XP)"
+
+    def __repr__(self):
+        return f"Quest('{self.title}', {self.xp_reward})"
+
+quest = Quest("Dragon Slayer", 500)
+print(quest)       # Quest: Dragon Slayer (500 XP)
+print(repr(quest)) # Quest('Dragon Slayer', 500)
+```
+""",
+            lesson_type=LessonType.TUTORIAL,
+            order=2,
+            estimated_minutes=25,
+            xp_reward=40
+        )
+    ]
+
+    for lesson in lessons_path5:
+        db.add(lesson)
+
+    db.commit()
+    print(f"✓ Created 5 learning paths with {len(lessons_path1) + len(lessons_path2) + len(lessons_path3) + len(lessons_path4) + len(lessons_path5)} lessons")
+    db.close()
+
+
 def main():
     """Main function to initialize sample data"""
     print("Initializing PyQuest database with sample data...\n")
@@ -469,6 +1253,7 @@ def main():
     create_sample_challenges()
     create_sample_badges()
     create_sample_achievements()
+    create_sample_learning_paths()
 
     print("\n✓ Sample data initialization complete!")
     print("\nYou can now:")

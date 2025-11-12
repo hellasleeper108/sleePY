@@ -37,6 +37,20 @@ from app.schemas.game import (
     GameStatsResponse,
     XPAwardResult
 )
+from app.schemas.learning_path import (
+    LessonCreate,
+    LessonResponse,
+    LessonPreview,
+    LearningPathCreate,
+    LearningPathUpdate,
+    LearningPathResponse,
+    LearningPathWithLessons,
+    LearningPathDetail,
+    PathProgressResponse,
+    LessonProgressResponse,
+    CompleteLessonResult,
+    PathCompletionResult
+)
 
 __all__ = [
     "UserCreate", "UserLogin", "UserResponse", "UserUpdate", "Token", "TokenData",
@@ -45,5 +59,10 @@ __all__ = [
     "BadgeCreate", "BadgeResponse", "UserBadgeResponse",
     "LootChestResponse", "OpenChestResult", "StreakResponse", "CheckInResult",
     "AchievementResponse", "AchievementProgressResponse", "UserAchievementResponse",
-    "GameStatsResponse", "XPAwardResult"
+    "GameStatsResponse", "XPAwardResult",
+    "LessonCreate", "LessonResponse", "LessonPreview",
+    "LearningPathCreate", "LearningPathUpdate", "LearningPathResponse",
+    "LearningPathWithLessons", "LearningPathDetail",
+    "PathProgressResponse", "LessonProgressResponse",
+    "CompleteLessonResult", "PathCompletionResult"
 ]
