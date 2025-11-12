@@ -8,6 +8,7 @@ from app.db.session import SessionLocal, init_db
 from app.models.user import User
 from app.models.challenge import Challenge, DifficultyLevel, ChallengeCategory
 from app.models.badge import Badge
+from app.models.achievement import Achievement, AchievementType
 from app.core.security import get_password_hash
 
 
@@ -234,6 +235,227 @@ def create_sample_badges():
     db.close()
 
 
+def create_sample_achievements():
+    """Create sample achievements with auto-unlock criteria"""
+    db = SessionLocal()
+
+    # Check if achievements already exist
+    existing = db.query(Achievement).first()
+    if existing:
+        print("Achievements already exist")
+        return
+
+    achievements = [
+        # Challenge completion achievements
+        Achievement(
+            name="First Steps",
+            description="Complete your first challenge",
+            icon="🎯",
+            achievement_type=AchievementType.CHALLENGE_COUNT,
+            criteria_value=1,
+            xp_reward=50,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=1
+        ),
+        Achievement(
+            name="Getting Started",
+            description="Complete 5 challenges",
+            icon="⭐",
+            achievement_type=AchievementType.CHALLENGE_COUNT,
+            criteria_value=5,
+            xp_reward=100,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=2
+        ),
+        Achievement(
+            name="Dedicated Learner",
+            description="Complete 10 challenges",
+            icon="📚",
+            achievement_type=AchievementType.CHALLENGE_COUNT,
+            criteria_value=10,
+            xp_reward=200,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=3
+        ),
+        Achievement(
+            name="Challenge Master",
+            description="Complete 25 challenges",
+            icon="🏆",
+            achievement_type=AchievementType.CHALLENGE_COUNT,
+            criteria_value=25,
+            xp_reward=500,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=4
+        ),
+
+        # Level achievements
+        Achievement(
+            name="Level Up!",
+            description="Reach level 2",
+            icon="🌟",
+            achievement_type=AchievementType.LEVEL_REACHED,
+            criteria_value=2,
+            xp_reward=50,
+            grants_loot_chest=False,
+            is_secret=False,
+            order=10
+        ),
+        Achievement(
+            name="Rising Star",
+            description="Reach level 5",
+            icon="💫",
+            achievement_type=AchievementType.LEVEL_REACHED,
+            criteria_value=5,
+            xp_reward=100,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=11
+        ),
+        Achievement(
+            name="Python Pro",
+            description="Reach level 10",
+            icon="🐍",
+            achievement_type=AchievementType.LEVEL_REACHED,
+            criteria_value=10,
+            xp_reward=250,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=12
+        ),
+
+        # Streak achievements
+        Achievement(
+            name="Commitment",
+            description="Maintain a 3-day streak",
+            icon="🔥",
+            achievement_type=AchievementType.STREAK_COUNT,
+            criteria_value=3,
+            xp_reward=75,
+            grants_loot_chest=False,
+            is_secret=False,
+            order=20
+        ),
+        Achievement(
+            name="Week Warrior",
+            description="Maintain a 7-day streak",
+            icon="⚡",
+            achievement_type=AchievementType.STREAK_COUNT,
+            criteria_value=7,
+            xp_reward=150,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=21
+        ),
+        Achievement(
+            name="Unstoppable",
+            description="Maintain a 30-day streak",
+            icon="🌟",
+            achievement_type=AchievementType.STREAK_COUNT,
+            criteria_value=30,
+            xp_reward=500,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=22
+        ),
+
+        # Perfect score achievements
+        Achievement(
+            name="First Try!",
+            description="Complete a challenge on your first attempt",
+            icon="💯",
+            achievement_type=AchievementType.PERFECT_SCORE,
+            criteria_value=1,
+            xp_reward=100,
+            grants_loot_chest=False,
+            is_secret=False,
+            order=30
+        ),
+        Achievement(
+            name="Perfectionist",
+            description="Complete 5 challenges on first attempt",
+            icon="✨",
+            achievement_type=AchievementType.PERFECT_SCORE,
+            criteria_value=5,
+            xp_reward=250,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=31
+        ),
+
+        # Loot collector achievements
+        Achievement(
+            name="Treasure Hunter",
+            description="Open 10 loot chests",
+            icon="📦",
+            achievement_type=AchievementType.LOOT_COLLECTOR,
+            criteria_value=10,
+            xp_reward=100,
+            grants_loot_chest=False,
+            is_secret=False,
+            order=40
+        ),
+        Achievement(
+            name="Hoarder",
+            description="Open 50 loot chests",
+            icon="💎",
+            achievement_type=AchievementType.LOOT_COLLECTOR,
+            criteria_value=50,
+            xp_reward=300,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=41
+        ),
+
+        # XP achievements
+        Achievement(
+            name="XP Collector",
+            description="Earn 1000 total XP",
+            icon="💰",
+            achievement_type=AchievementType.XP_TOTAL,
+            criteria_value=1000,
+            xp_reward=100,
+            grants_loot_chest=False,
+            is_secret=False,
+            order=50
+        ),
+        Achievement(
+            name="XP Master",
+            description="Earn 5000 total XP",
+            icon="👑",
+            achievement_type=AchievementType.XP_TOTAL,
+            criteria_value=5000,
+            xp_reward=500,
+            grants_loot_chest=True,
+            is_secret=False,
+            order=51
+        ),
+
+        # Secret achievements
+        Achievement(
+            name="Secret Master",
+            description="You've discovered a secret!",
+            icon="🎁",
+            achievement_type=AchievementType.CHALLENGE_COUNT,
+            criteria_value=50,
+            xp_reward=1000,
+            grants_loot_chest=True,
+            is_secret=True,
+            order=100
+        ),
+    ]
+
+    for achievement in achievements:
+        db.add(achievement)
+
+    db.commit()
+    print(f"✓ Created {len(achievements)} sample achievements")
+    db.close()
+
+
 def main():
     """Main function to initialize sample data"""
     print("Initializing PyQuest database with sample data...\n")
@@ -246,6 +468,7 @@ def main():
     create_sample_admin()
     create_sample_challenges()
     create_sample_badges()
+    create_sample_achievements()
 
     print("\n✓ Sample data initialization complete!")
     print("\nYou can now:")

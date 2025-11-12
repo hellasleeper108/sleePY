@@ -26,10 +26,24 @@ from app.schemas.badge import (
     BadgeResponse,
     UserBadgeResponse
 )
+from app.schemas.game import (
+    LootChestResponse,
+    OpenChestResult,
+    StreakResponse,
+    CheckInResult,
+    AchievementResponse,
+    AchievementProgressResponse,
+    UserAchievementResponse,
+    GameStatsResponse,
+    XPAwardResult
+)
 
 __all__ = [
     "UserCreate", "UserLogin", "UserResponse", "UserUpdate", "Token", "TokenData",
     "ChallengeCreate", "ChallengeUpdate", "ChallengeResponse", "ChallengeListResponse",
     "ProgressCreate", "ProgressUpdate", "ProgressResponse", "SubmitCode",
-    "BadgeCreate", "BadgeResponse", "UserBadgeResponse"
+    "BadgeCreate", "BadgeResponse", "UserBadgeResponse",
+    "LootChestResponse", "OpenChestResult", "StreakResponse", "CheckInResult",
+    "AchievementResponse", "AchievementProgressResponse", "UserAchievementResponse",
+    "GameStatsResponse", "XPAwardResult"
 ]

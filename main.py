@@ -8,7 +8,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.db.session import init_db
-from app.api.endpoints import auth, users, challenges, progress, badges
+from app.api.endpoints import auth, users, challenges, progress, badges, game
 
 
 @asynccontextmanager
@@ -35,7 +35,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
-    description="A gamified Python learning platform with coding challenges, XP, levels, and badges",
+    description="A gamified Python learning platform with RPG mechanics: coding challenges, XP, levels, loot chests, daily streaks, and achievements",
     lifespan=lifespan
 )
 
@@ -96,6 +96,12 @@ app.include_router(
     badges.router,
     prefix="/api/badges",
     tags=["Badges"]
+)
+
+app.include_router(
+    game.router,
+    prefix="/api/game",
+    tags=["Game Mechanics"]
 )
 
 

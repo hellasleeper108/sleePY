@@ -39,6 +39,9 @@ class User(Base):
     # Relationships
     progress = relationship("Progress", back_populates="user", cascade="all, delete-orphan")
     badges = relationship("UserBadge", back_populates="user", cascade="all, delete-orphan")
+    loot_chests = relationship("LootChest", back_populates="user", cascade="all, delete-orphan")
+    streak = relationship("DailyStreak", back_populates="user", uselist=False, cascade="all, delete-orphan")
+    achievements = relationship("UserAchievement", back_populates="user", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<User(username='{self.username}', level={self.level}, xp={self.xp})>"

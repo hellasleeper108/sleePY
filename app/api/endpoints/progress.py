@@ -15,6 +15,7 @@ from app.schemas.progress import (
     SubmitCode,
     SubmissionResult
 )
+from app.services.game_engine import GameEngine
 
 router = APIRouter()
 
@@ -218,23 +219,60 @@ def submit_challenge_code(
     is_valid = len(submission.code.strip()) > 10
 
     if is_valid and not progress.is_completed:
-        # Mark as completed
-        progress.complete(challenge.xp_reward)
+        # Calculate XP reward using game engine
+        xp_reward = GameEngine.calculate_xp_for_challenge(challenge)
 
-        # Award XP to user
-        leveled_up = current_user.add_xp(challenge.xp_reward)
+        # Mark as completed
+        progress.complete(xp_reward)
+
+        # Award XP using game engine (handles leveling and rewards)
+        xp_result = GameEngine.award_xp(current_user, xp_reward, db)
+
+        # Random loot chest drop
+        loot_dropped = None
+        completed_count = db.query(Progress).filter(
+            Progress.user_id == current_user.id,
+            Progress.is_completed == True
+        ).count()
+
+        if GameEngine.roll_random_chest_drop(completed_count):
+            chest = GameEngine.generate_loot_chest(
+                current_user, db,
+                reason=f"Completed: {challenge.title}"
+            )
+            loot_dropped = {
+                "chest_id": chest.id,
+                "rarity": chest.rarity.value
+            }
+
+        # Check and award achievements
+        new_achievements = GameEngine.check_and_award_achievements(current_user, db)
 
         db.commit()
         db.refresh(current_user)
 
-        return SubmissionResult(
+        result = SubmissionResult(
             success=True,
             message="Challenge completed successfully!",
-            xp_earned=challenge.xp_reward,
-            leveled_up=leveled_up,
-            new_level=current_user.level if leveled_up else None,
+            xp_earned=xp_reward,
+            leveled_up=xp_result["leveled_up"],
+            new_level=xp_result["new_level"] if xp_result["leveled_up"] else None,
             attempts=progress.attempts
         )
+
+        # Add extra info (not in schema, but useful)
+        result_dict = result.model_dump()
+        if loot_dropped:
+            result_dict["loot_dropped"] = loot_dropped
+        if new_achievements:
+            result_dict["achievements_unlocked"] = [
+                {"name": a.name, "icon": a.icon} for a in new_achievements
+            ]
+        if xp_result.get("level_up_chest"):
+            result_dict["level_up_chest"] = xp_result["level_up_chest"]
+
+        return result_dict
+
     elif is_valid:
         db.commit()
         return SubmissionResult(

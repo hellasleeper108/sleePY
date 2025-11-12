@@ -47,7 +47,10 @@ def init_db():
     Call this on application startup
     """
     from app.db.base import Base
-    from app.models import User, Challenge, Progress, Badge, UserBadge
+    from app.models import (
+        User, Challenge, Progress, Badge, UserBadge,
+        LootChest, DailyStreak, Achievement, UserAchievement
+    )
 
     # Import all models to ensure they're registered with Base
     # Create all tables
