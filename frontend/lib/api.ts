@@ -339,4 +339,48 @@ export const mentorAPI = {
   },
 };
 
+// Analytics API (Admin only for most endpoints)
+export const analyticsAPI = {
+  getDashboard: async () => {
+    const response = await api.get('/api/analytics/dashboard');
+    return response.data;
+  },
+  getEngagement: async () => {
+    const response = await api.get('/api/analytics/engagement');
+    return response.data;
+  },
+  getTimePerChallenge: async (limit: number = 50) => {
+    const response = await api.get(`/api/analytics/time-per-challenge?limit=${limit}`);
+    return response.data;
+  },
+  getCompletionByTopic: async () => {
+    const response = await api.get('/api/analytics/completion-by-topic');
+    return response.data;
+  },
+  getWeeklyActiveUsers: async (weeks: number = 8) => {
+    const response = await api.get(`/api/analytics/weekly-active-users?weeks=${weeks}`);
+    return response.data;
+  },
+  getXPDistribution: async () => {
+    const response = await api.get('/api/analytics/xp-distribution');
+    return response.data;
+  },
+  // User endpoints for session tracking
+  startSession: async (challengeId: number) => {
+    const response = await api.post('/api/analytics/session/start', {
+      challenge_id: challengeId,
+    });
+    return response.data;
+  },
+  endSession: async (sessionId: number, completed: boolean, code?: string, hintsUsed: number = 0) => {
+    const response = await api.post('/api/analytics/session/end', {
+      session_id: sessionId,
+      completed,
+      code,
+      hints_used: hintsUsed,
+    });
+    return response.data;
+  },
+};
+
 export default api;
