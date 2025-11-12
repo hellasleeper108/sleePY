@@ -1,340 +1,349 @@
-# PyQuest - Gamified Python Learning Platform
+# 🐍 PyQuest - Gamified Python Learning Platform
 
-A gamified learning platform where users complete coding challenges, earn XP, level up, and unlock new quests as they master core Python concepts.
+A comprehensive, gamified learning platform where users complete coding challenges, earn XP, level up, unlock achievements, and compete with friends while mastering Python programming.
 
-## Features
+[![CI/CD](https://github.com/yourusername/sleePY/actions/workflows/deploy.yml/badge.svg)](https://github.com/yourusername/sleePY/actions/workflows/deploy.yml)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-- **User System**: Sign up/login with JWT authentication, XP tracking, levels, and badges
-- **Challenge System**: Full CRUD operations for coding challenges with difficulty levels
-- **Progress Tracking**: Track completed lessons and challenges per user
-- **Gamification**: Experience points, levels, badges, and leaderboards
-- **REST API**: Complete RESTful API with automatic documentation
-- **Database**: SQLite for local dev, easily scalable to PostgreSQL
+## ✨ Features
 
-## Tech Stack
+### 🎮 Core Gamification
+- **XP & Leveling System** - Earn experience points and level up
+- **Dynamic Level Calculation** - Progressive XP requirements
+- **Loot Chests** - Random rewards (Common → Legendary)
+- **Daily Streaks** - Consecutive login rewards
+- **Achievements** - 50+ unlockable achievements
+- **Badges** - Collectible badges for milestones
 
-- **FastAPI**: Modern, fast web framework
-- **SQLAlchemy**: SQL toolkit and ORM
-- **Pydantic**: Data validation using Python type hints
-- **JWT**: Secure authentication with JSON Web Tokens
-- **Uvicorn**: ASGI server for running the application
-- **SQLite/PostgreSQL**: Database (SQLite default, PostgreSQL for production)
+### 💻 Learning Features
+- **Coding Challenges** - 100+ Python challenges across difficulty levels
+- **Learning Paths** - Structured courses (Basics, Data Structures, OOP, Algorithms, Web Dev)
+- **Browser-Based Code Arena** - Pyodide-powered Python execution
+- **Mentor AI** - Progressive hint system with bonus XP rewards
+  - Ollama, OpenAI, and Claude support
+  - Context-aware hints based on user code and errors
+  - Bonus XP for solving with fewer hints (0 hints: +20%, 1 hint: +10%, 2 hints: +5%)
 
-## Project Structure
+### 🏆 Community & Competition
+- **Leaderboards** - Global, weekly, and topic-based rankings
+- **Friend System** - Follow users and track their progress
+- **Challenge Duels** - 1v1 coding competitions with XP stakes
+- **Real-time Rankings** - Auto-updating leaderboards with 5-minute cache
+
+### 📊 Analytics & Insights (Admin)
+- **Performance Tracking** - Time spent per challenge
+- **Completion Rates** - Topic-wise success rates
+- **User Engagement** - DAU, WAU, MAU metrics
+- **XP Distribution** - User progression analysis
+- **Interactive Charts** - Chart.js visualizations
+
+### 🔐 User Management
+- **JWT Authentication** - Secure token-based auth
+- **Role-Based Access** - User and admin roles
+- **Profile Management** - User stats and achievements
+- **Session Tracking** - Challenge attempt timing
+
+## 🚀 Tech Stack
+
+### Backend
+- **FastAPI** - Modern Python web framework
+- **SQLAlchemy** - SQL ORM with PostgreSQL
+- **Pydantic** - Data validation
+- **JWT** - Authentication
+- **Uvicorn** - ASGI server
+- **httpx** - Async HTTP client for AI providers
+
+### Frontend
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Chart.js** - Data visualization
+- **Pyodide** - Browser-based Python execution
+
+### Infrastructure
+- **Docker** - Containerization
+- **PostgreSQL 15** - Production database
+- **Nginx** - Reverse proxy
+- **GitHub Actions** - CI/CD pipeline
+
+### AI Integration
+- **Ollama** - Local LLM support
+- **OpenAI GPT** - GPT-3.5/GPT-4
+- **Anthropic Claude** - Claude API
+
+## 📦 Quick Start
+
+### Using Docker (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/sleePY.git
+cd sleePY
+
+# Copy environment configuration
+cp .env.example .env
+
+# Edit .env with your configuration
+nano .env
+
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+**Access the application:**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
+- Admin Dashboard: http://localhost:3000/admin
+
+### Local Development
+
+#### Backend
+
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run server
+python main.py
+```
+
+#### Frontend
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+## 🌐 Deployment
+
+### Deploy to Render (Backend + Database)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+1. Click "Deploy to Render" button above
+2. Connect your GitHub repository
+3. Configure environment variables
+4. Deploy!
+
+Detailed instructions: See [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### Deploy to Vercel (Frontend)
+
+```bash
+cd frontend
+npm install -g vercel
+vercel --prod
+```
+
+Set `NEXT_PUBLIC_API_URL` to your Render backend URL.
+
+### Full Deployment Guide
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for comprehensive deployment instructions including:
+- Docker deployment
+- Cloud deployment (Render, Vercel)
+- CI/CD setup with GitHub Actions
+- Environment configuration
+- Monitoring and troubleshooting
+
+## 📚 Documentation
+
+### API Documentation
+
+Interactive API documentation available at:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+### Project Structure
 
 ```
 sleePY/
 ├── app/
-│   ├── __init__.py
-│   ├── api/
-│   │   ├── __init__.py
-│   │   └── endpoints/
-│   │       ├── __init__.py
-│   │       ├── auth.py          # Authentication endpoints
-│   │       ├── users.py         # User management endpoints
-│   │       ├── challenges.py    # Challenge CRUD endpoints
-│   │       ├── progress.py      # Progress tracking endpoints
-│   │       └── badges.py        # Badge system endpoints
-│   ├── core/
-│   │   ├── __init__.py
-│   │   ├── config.py            # Application configuration
-│   │   └── security.py          # Auth & security utilities
-│   ├── db/
-│   │   ├── __init__.py
-│   │   ├── base.py              # Database base class
-│   │   └── session.py           # Database session management
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── user.py              # User model
-│   │   ├── challenge.py         # Challenge model
-│   │   ├── progress.py          # Progress model
-│   │   └── badge.py             # Badge models
-│   └── schemas/
-│       ├── __init__.py
-│       ├── user.py              # User schemas
-│       ├── challenge.py         # Challenge schemas
-│       ├── progress.py          # Progress schemas
-│       └── badge.py             # Badge schemas
-├── main.py                      # Application entry point
-├── requirements.txt             # Python dependencies
-├── .env.example                 # Example environment variables
-└── README.md                    # This file
+│   ├── api/endpoints/       # API route handlers
+│   │   ├── auth.py          # Authentication
+│   │   ├── users.py         # User management
+│   │   ├── challenges.py    # Coding challenges
+│   │   ├── progress.py      # Progress tracking
+│   │   ├── game.py          # Gamification (XP, streaks, chests)
+│   │   ├── badges.py        # Badge system
+│   │   ├── learning_paths.py # Learning courses
+│   │   ├── code_arena.py    # Code execution
+│   │   ├── friends.py       # Social features
+│   │   ├── duels.py         # Challenge competitions
+│   │   ├── leaderboard.py   # Rankings
+│   │   ├── mentor.py        # AI mentor hints
+│   │   └── analytics.py     # Performance metrics
+│   ├── models/              # Database models
+│   ├── schemas/             # Pydantic schemas
+│   ├── services/            # Business logic
+│   │   ├── game_engine.py   # Gamification engine
+│   │   ├── code_execution.py # Code runner
+│   │   ├── leaderboard.py   # Leaderboard service
+│   │   ├── mentor.py        # AI mentor service
+│   │   ├── ai_providers.py  # AI provider abstraction
+│   │   └── analytics.py     # Analytics service
+│   ├── core/                # Core utilities
+│   └── db/                  # Database configuration
+├── frontend/
+│   ├── app/                 # Next.js pages
+│   │   ├── page.tsx         # Dashboard
+│   │   ├── quests/          # Challenge board
+│   │   ├── arena/[id]/      # Code arena
+│   │   ├── paths/           # Learning paths
+│   │   ├── achievements/    # Achievements page
+│   │   ├── leaderboard/     # Rankings
+│   │   ├── social/          # Friends & duels
+│   │   ├── profile/         # User profile
+│   │   └── admin/           # Analytics dashboard
+│   ├── components/          # React components
+│   └── lib/                 # Utilities & API client
+├── nginx/                   # Nginx configuration
+├── .github/workflows/       # CI/CD pipelines
+├── Dockerfile               # Backend container
+├── docker-compose.yml       # Multi-container setup
+├── render.yaml              # Render deployment config
+└── DEPLOYMENT.md            # Deployment guide
 ```
 
-## Getting Started
+## 🔧 Configuration
 
-### Prerequisites
+### Environment Variables
 
-- Python 3.9 or higher
-- pip (Python package manager)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   cd sleePY
-   ```
-
-2. **Create a virtual environment**
-   ```bash
-   python -m venv venv
-   ```
-
-3. **Activate the virtual environment**
-
-   On Linux/Mac:
-   ```bash
-   source venv/bin/activate
-   ```
-
-   On Windows:
-   ```bash
-   venv\Scripts\activate
-   ```
-
-4. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-
-   Edit `.env` and update the values (especially `SECRET_KEY` for production)
-
-6. **Run the application**
-   ```bash
-   uvicorn main:app --reload
-   ```
-
-   Or:
-   ```bash
-   python main.py
-   ```
-
-7. **Access the application**
-   - API: http://localhost:8000
-   - Interactive API docs (Swagger UI): http://localhost:8000/docs
-   - Alternative API docs (ReDoc): http://localhost:8000/redoc
-
-## API Endpoints
-
-### Authentication
-
-- `POST /api/auth/signup` - Create a new user account
-- `POST /api/auth/login` - Login with username and password
-
-### Users
-
-- `GET /api/users/me` - Get current user profile
-- `PUT /api/users/me` - Update current user profile
-- `GET /api/users/me/stats` - Get current user statistics
-- `GET /api/users/leaderboard` - Get top users leaderboard
-- `GET /api/users/{user_id}` - Get user profile by ID
-
-### Challenges
-
-- `GET /api/challenges/` - Get list of challenges (paginated, filterable)
-- `GET /api/challenges/{challenge_id}` - Get specific challenge
-- `POST /api/challenges/` - Create new challenge (admin only)
-- `PUT /api/challenges/{challenge_id}` - Update challenge (admin only)
-- `DELETE /api/challenges/{challenge_id}` - Delete challenge (admin only)
-
-### Progress
-
-- `GET /api/progress/` - Get all progress records for current user
-- `GET /api/progress/{challenge_id}` - Get progress for specific challenge
-- `POST /api/progress/start/{challenge_id}` - Start a challenge
-- `POST /api/progress/submit` - Submit code for a challenge
-- `GET /api/progress/completed` - Get all completed challenges
-
-### Badges
-
-- `GET /api/badges/` - Get all available badges
-- `GET /api/badges/my-badges` - Get current user's earned badges
-- `GET /api/badges/{badge_id}` - Get specific badge
-- `POST /api/badges/` - Create new badge (admin only)
-- `POST /api/badges/award/{user_id}/{badge_id}` - Award badge to user (admin only)
-- `DELETE /api/badges/{badge_id}` - Delete badge (admin only)
-
-## Usage Examples
-
-### 1. Sign Up
-```bash
-curl -X POST "http://localhost:8000/api/auth/signup" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "pythonmaster",
-    "email": "master@python.com",
-    "password": "securepass123",
-    "full_name": "Python Master"
-  }'
-```
-
-### 2. Login
-```bash
-curl -X POST "http://localhost:8000/api/auth/login" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "username=pythonmaster&password=securepass123"
-```
-
-### 3. Get Challenges (with auth token)
-```bash
-curl -X GET "http://localhost:8000/api/challenges/" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
-```
-
-### 4. Submit Challenge Code
-```bash
-curl -X POST "http://localhost:8000/api/progress/submit" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "challenge_id": 1,
-    "code": "def hello():\n    return \"Hello World\""
-  }'
-```
-
-## Database
-
-### SQLite (Default - Local Development)
-
-The application uses SQLite by default. The database file `pyquest.db` will be created automatically in the project root when you first run the application.
-
-### PostgreSQL (Production)
-
-To use PostgreSQL:
-
-1. Install PostgreSQL
-2. Create a database:
-   ```sql
-   CREATE DATABASE pyquest_db;
-   ```
-3. Update `.env`:
-   ```
-   DATABASE_URL=postgresql://username:password@localhost:5432/pyquest_db
-   ```
-4. Restart the application
-
-## Gamification System
-
-### Experience Points (XP)
-
-- Users earn XP by completing challenges
-- XP amount varies by challenge difficulty:
-  - Beginner: 10 XP
-  - Intermediate: 15 XP
-  - Advanced: 20 XP
-  - Expert: 30 XP
-
-### Levels
-
-Users level up automatically based on XP:
-- Level 1: 0-99 XP
-- Level 2: 100-399 XP
-- Level 3: 400-899 XP
-- Level 4: 900-1599 XP
-- And so on...
-
-Formula: `level = floor(sqrt(xp / 100)) + 1`
-
-### Badges
-
-Badges are achievements that can be awarded to users for:
-- Completing their first challenge
-- Reaching certain levels
-- Completing all challenges in a category
-- Maintaining learning streaks
-- And more (customizable by admins)
-
-## Development
-
-### Creating an Admin User
-
-Currently, users are created as regular users by default. To create an admin user, you'll need to manually update the database:
-
-```python
-# In a Python shell with your app context
-from app.db.session import SessionLocal
-from app.models.user import User
-
-db = SessionLocal()
-user = db.query(User).filter(User.username == "yourusername").first()
-user.is_superuser = True
-db.commit()
-```
-
-### Adding Sample Challenges
-
-Use the API or create a script to populate challenges:
-
-```python
-# sample_data.py
-from app.db.session import SessionLocal
-from app.models.challenge import Challenge, DifficultyLevel, ChallengeCategory
-
-db = SessionLocal()
-
-challenge = Challenge(
-    title="Hello World",
-    description="Create your first Python function",
-    instructions="Write a function that returns 'Hello World'",
-    difficulty=DifficultyLevel.BEGINNER,
-    category=ChallengeCategory.BASICS,
-    starter_code="def hello_world():\n    # Your code here\n    pass",
-    solution="def hello_world():\n    return 'Hello World'",
-    xp_reward=10,
-    required_level=1,
-    order=1
-)
-
-db.add(challenge)
-db.commit()
-```
-
-## Testing
-
-The project includes pytest configuration. To run tests:
+Key environment variables (see `.env.example` for full list):
 
 ```bash
-pytest
+# Database
+DATABASE_URL=postgresql://user:password@host:5432/pyquest
+
+# Security
+SECRET_KEY=your-secret-key-min-32-chars
+ALGORITHM=HS256
+
+# CORS
+BACKEND_CORS_ORIGINS=["http://localhost:3000"]
+
+# AI Providers (Optional)
+OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=sk-ant-...
+OLLAMA_BASE_URL=http://localhost:11434
 ```
 
-## Security Notes
+### Generate Secure Secret Key
 
-- Change `SECRET_KEY` in production (generate with `openssl rand -hex 32`)
-- Use HTTPS in production
-- Set `DEBUG=False` in production
-- Use environment variables for sensitive data
-- Regularly update dependencies
+```bash
+openssl rand -hex 32
+```
 
-## Future Enhancements
+## 🎯 Key Features Breakdown
 
-- [ ] Code execution sandbox for running user submissions
-- [ ] Real test case validation
-- [ ] Learning paths and course structures
-- [ ] Social features (friends, challenges)
-- [ ] Daily/weekly challenges
-- [ ] Achievement system expansion
-- [ ] Email verification
-- [ ] Password reset functionality
-- [ ] Rate limiting
-- [ ] Caching layer
+### Mentor AI System
+- Progressive 3-level hint system
+- Context-aware based on user code and errors
+- Bonus XP rewards for self-sufficiency
+- Support for multiple AI providers (Ollama, OpenAI, Claude)
+- Fallback to mock provider for offline development
 
-## License
+### Leaderboard System
+- In-memory caching with 5-minute TTL
+- Auto-invalidation on XP changes
+- Optimized PostgreSQL queries with indexes
+- Global, weekly, and topic-based rankings
+- Friend leaderboards for social comparison
 
-MIT License - feel free to use this project for learning or commercial purposes.
+### Analytics Dashboard
+- Real-time engagement metrics (DAU, WAU, MAU)
+- Challenge time tracking with avg/min/max
+- Topic completion rates
+- XP distribution across user base
+- Interactive Chart.js visualizations
+- Admin-only access with role verification
 
-## Contributing
+### Duel System
+- 1v1 challenge competitions
+- Configurable XP stakes (10-500 XP)
+- Winner determination based on completion time
+- Bonus XP for both participants
+- 24-hour acceptance window
+- Expiration and cancellation handling
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## 🧪 Testing
 
-## Support
+```bash
+# Backend tests
+pytest --cov=app
 
-For issues, questions, or suggestions, please open an issue on GitHub.
+# Frontend tests
+cd frontend
+npm test
+
+# E2E tests
+npm run test:e2e
+```
+
+## 📈 CI/CD
+
+GitHub Actions pipeline automatically:
+- ✅ Runs tests on push/PR
+- ✅ Builds Docker images
+- ✅ Pushes to GitHub Container Registry
+- ✅ Deploys to Render (backend)
+- ✅ Deploys to Vercel (frontend)
+
+See `.github/workflows/deploy.yml` for configuration.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **FastAPI** - For the amazing web framework
+- **Next.js** - For the powerful React framework
+- **Pyodide** - For browser-based Python execution
+- **Chart.js** - For beautiful data visualizations
+- **Ollama** - For local LLM support
+
+## 📧 Support
+
+- 📫 Email: support@pyquest.com
+- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/sleePY/issues)
+- 📖 Docs: [Deployment Guide](DEPLOYMENT.md)
+
+## 🗺️ Roadmap
+
+- [ ] Real-time multiplayer duels with WebSockets
+- [ ] Team challenges and tournaments
+- [ ] Video tutorials and explanations
+- [ ] Mobile app (React Native)
+- [ ] Code review system with AI feedback
+- [ ] Certification system
+- [ ] Integration with GitHub for portfolio
+- [ ] Discord bot for notifications
 
 ---
 
-Built with FastAPI and Python
+**Built with ❤️ by the PyQuest Team**
+
+⭐ Star us on GitHub if you find this project useful!
