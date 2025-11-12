@@ -2,5 +2,6 @@
 Services package - Business logic and game engine
 """
 from app.services.game_engine import GameEngine, GameSimulator
+from app.services.code_execution import CodeExecutionService, TestCase
 
-__all__ = ["GameEngine", "GameSimulator"]
+__all__ = ["GameEngine", "GameSimulator", "CodeExecutionService", "TestCase"]

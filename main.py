@@ -4,11 +4,12 @@ Main application entry point
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.db.session import init_db
-from app.api.endpoints import auth, users, challenges, progress, badges, game, learning_paths
+from app.api.endpoints import auth, users, challenges, progress, badges, game, learning_paths, code_arena
 
 
 @asynccontextmanager
@@ -109,6 +110,15 @@ app.include_router(
     prefix="/api/paths",
     tags=["Learning Paths"]
 )
+
+app.include_router(
+    code_arena.router,
+    prefix="/api/arena",
+    tags=["Code Arena"]
+)
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 # Health check endpoint

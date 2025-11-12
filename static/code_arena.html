@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyQuest Code Arena</title>
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .left-panel, .right-panel {
+            padding: 30px;
+        }
+
+        .left-panel {
+            border-right: 2px solid #e0e0e0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .challenge-info {
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .challenge-info h3 {
+            font-size: 16px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .challenge-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .CodeMirror {
+            height: 400px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f5f7fa;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #e8ecf1;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .output-section {
+            margin-top: 30px;
+        }
+
+        .test-cases {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .test-case {
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ccc;
+        }
+
+        .test-case.passed {
+            border-left-color: #4caf50;
+            background: #f1f8f4;
+        }
+
+        .test-case.failed {
+            border-left-color: #f44336;
+            background: #fef3f2;
+        }
+
+        .test-case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .test-case-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .test-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .test-status.passed {
+            background: #4caf50;
+            color: white;
+        }
+
+        .test-status.failed {
+            background: #f44336;
+            color: white;
+        }
+
+        .test-status.pending {
+            background: #ff9800;
+            color: white;
+        }
+
+        .test-details {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .test-details div {
+            margin: 4px 0;
+        }
+
+        .console-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            min-height: 150px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .console-output.error {
+            color: #f48771;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .success-message h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .xp-reward {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #f5f7fa;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .status-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        #pyodide-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #ff9800;
+            color: white;
+        }
+
+        #pyodide-status.ready {
+            background: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 PyQuest Code Arena</h1>
+            <div class="header-info">
+                <span class="badge" id="challenge-title">Loading Challenge...</span>
+                <span class="badge" id="challenge-difficulty">-</span>
+                <span class="badge" id="challenge-xp">0 XP</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="section-title">📝 Challenge</div>
+                <div class="challenge-info" id="challenge-info">
+                    <p>Loading challenge information...</p>
+                </div>
+
+                <div class="section-title">💻 Your Code</div>
+                <textarea id="code-editor"></textarea>
+
+                <div class="button-group">
+                    <button class="btn-primary" id="run-button" onclick="runCode()">
+                        ▶️ Run Tests
+                    </button>
+                    <button class="btn-primary" id="submit-button" onclick="submitCode()" disabled>
+                        ✅ Submit Solution
+                    </button>
+                    <button class="btn-secondary" onclick="resetCode()">
+                        🔄 Reset
+                    </button>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="section-title">🧪 Test Cases</div>
+                <div class="test-cases" id="test-cases">
+                    <div class="test-case">
+                        <div class="test-case-header">
+                            <span class="test-case-title">Loading...</span>
+                            <span class="test-status pending">Pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <div class="section-title">📊 Console Output</div>
+                    <div class="console-output" id="console-output">
+                        Ready to run your code...
+                    </div>
+                </div>
+
+                <div id="success-container"></div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-info">
+                Python Runtime: <span id="pyodide-status">Loading...</span>
+            </div>
+            <div class="status-info" id="test-summary">
+                Tests: 0/0 passed
+            </div>
+        </div>
+    </div>
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
+    <script>
+        let editor;
+        let pyodide;
+        let challengeData = null;
+        let testResults = [];
+        let starterCode = '';
+
+        // Initialize CodeMirror
+        document.addEventListener('DOMContentLoaded', function() {
+            editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
+                mode: 'python',
+                theme: 'monokai',
+                lineNumbers: true,
+                indentUnit: 4,
+                tabSize: 4,
+                indentWithTabs: false,
+                lineWrapping: true
+            });
+
+            // Load Pyodide
+            loadPyodide();
+
+            // Load challenge from URL parameter or default
+            const urlParams = new URLSearchParams(window.location.search);
+            const challengeId = urlParams.get('challenge') || '1';
+            loadChallenge(challengeId);
+        });
+
+        async function loadPyodide() {
+            const statusEl = document.getElementById('pyodide-status');
+            statusEl.textContent = 'Loading Python...';
+
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'
+                });
+                statusEl.textContent = 'Ready';
+                statusEl.classList.add('ready');
+                console.log('Pyodide loaded successfully');
+            } catch (error) {
+                statusEl.textContent = 'Failed to load';
+                console.error('Failed to load Pyodide:', error);
+                logToConsole('Error loading Python runtime: ' + error.message, true);
+            }
+        }
+
+        async function loadChallenge(challengeId) {
+            try {
+                // Get auth token from localStorage (you'd implement this based on your auth system)
+                const token = localStorage.getItem('auth_token') || 'demo-token';
+
+                const response = await fetch(`/api/arena/challenge/${challengeId}/test-cases`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load challenge');
+                }
+
+                challengeData = await response.json();
+                displayChallenge();
+            } catch (error) {
+                console.error('Error loading challenge:', error);
+                document.getElementById('challenge-info').innerHTML = `
+                    <p style="color: #f44336;">Error loading challenge. Please check your authentication.</p>
+                    <p style="font-size: 12px; margin-top: 10px;">For demo purposes, you can test with the default code.</p>
+                `;
+
+                // Set demo data
+                challengeData = {
+                    challenge_id: 1,
+                    title: 'Demo Challenge',
+                    description: 'Create a function that returns "Hello World"',
+                    instructions: 'Write a function called hello_world that returns the string "Hello World"',
+                    starter_code: 'def hello_world():\n    # Your code here\n    pass',
+                    function_name: 'hello_world',
+                    test_cases: [
+                        { inputs: [], expected_output: 'Hello World', description: 'Returns Hello World' }
+                    ],
+                    xp_reward: 10,
+                    difficulty: 'beginner'
+                };
+                displayChallenge();
+            }
+        }
+
+        function displayChallenge() {
+            // Update header
+            document.getElementById('challenge-title').textContent = challengeData.title;
+            document.getElementById('challenge-difficulty').textContent =
+                challengeData.difficulty.toUpperCase();
+            document.getElementById('challenge-xp').textContent =
+                `${challengeData.xp_reward} XP`;
+
+            // Update challenge info
+            document.getElementById('challenge-info').innerHTML = `
+                <h3>Description</h3>
+                <p>${challengeData.description}</p>
+                <h3>Instructions</h3>
+                <p>${challengeData.instructions}</p>
+            `;
+
+            // Set starter code
+            starterCode = challengeData.starter_code || '';
+            editor.setValue(starterCode);
+
+            // Display test cases
+            displayTestCases();
+        }
+
+        function displayTestCases() {
+            const container = document.getElementById('test-cases');
+            container.innerHTML = '';
+
+            challengeData.test_cases.forEach((tc, index) => {
+                const testDiv = document.createElement('div');
+                testDiv.className = 'test-case';
+                testDiv.id = `test-${index}`;
+
+                const inputsStr = tc.inputs.length > 0
+                    ? tc.inputs.map(i => JSON.stringify(i)).join(', ')
+                    : '(no inputs)';
+
+                testDiv.innerHTML = `
+                    <div class="test-case-header">
+                        <span class="test-case-title">Test Case ${index + 1}</span>
+                        <span class="test-status pending" id="status-${index}">Pending</span>
+                    </div>
+                    <div class="test-details">
+                        <div><strong>Input:</strong> ${inputsStr}</div>
+                        <div><strong>Expected:</strong> ${JSON.stringify(tc.expected_output)}</div>
+                        <div id="actual-${index}" style="display: none;"><strong>Your Output:</strong> <span></span></div>
+                    </div>
+                `;
+
+                container.appendChild(testDiv);
+            });
+
+            updateTestSummary();
+        }
+
+        async function runCode() {
+            if (!pyodide) {
+                alert('Python runtime not ready yet. Please wait...');
+                return;
+            }
+
+            const runButton = document.getElementById('run-button');
+            const submitButton = document.getElementById('submit-button');
+
+            runButton.disabled = true;
+            runButton.innerHTML = '⏳ Running... <span class="loading"></span>';
+            submitButton.disabled = true;
+
+            logToConsole('Running your code...\n');
+
+            testResults = [];
+            const userCode = editor.getValue();
+
+            try {
+                // Clear previous results
+                challengeData.test_cases.forEach((tc, index) => {
+                    document.getElementById(`test-${index}`).className = 'test-case';
+                    document.getElementById(`status-${index}`).textContent = 'Running...';
+                    document.getElementById(`status-${index}`).className = 'test-status pending';
+                });
+
+                // Load user code into Pyodide
+                await pyodide.runPythonAsync(userCode);
+
+                // Run each test case
+                for (let i = 0; i < challengeData.test_cases.length; i++) {
+                    const tc = challengeData.test_cases[i];
+                    const statusEl = document.getElementById(`status-${i}`);
+                    const testEl = document.getElementById(`test-${i}`);
+                    const actualEl = document.getElementById(`actual-${i}`);
+
+                    try {
+                        // Build function call
+                        const argsStr = tc.inputs.map(arg => JSON.stringify(arg)).join(', ');
+                        const code = `${challengeData.function_name}(${argsStr})`;
+
+                        // Execute
+                        const result = await pyodide.runPythonAsync(code);
+
+                        // Store result
+                        testResults.push({ output: result, error: null });
+
+                        // Compare with expected
+                        const passed = JSON.stringify(result) === JSON.stringify(tc.expected_output);
+
+                        if (passed) {
+                            testEl.classList.add('passed');
+                            statusEl.textContent = '✓ Passed';
+                            statusEl.className = 'test-status passed';
+                        } else {
+                            testEl.classList.add('failed');
+                            statusEl.textContent = '✗ Failed';
+                            statusEl.className = 'test-status failed';
+                            actualEl.style.display = 'block';
+                            actualEl.querySelector('span').textContent = JSON.stringify(result);
+                        }
+
+                        logToConsole(`Test ${i + 1}: ${passed ? 'PASSED ✓' : 'FAILED ✗'}\n`);
+                    } catch (error) {
+                        testResults.push({ output: null, error: error.message });
+                        testEl.classList.add('failed');
+                        statusEl.textContent = '✗ Error';
+                        statusEl.className = 'test-status failed';
+                        actualEl.style.display = 'block';
+                        actualEl.querySelector('span').textContent = `Error: ${error.message}`;
+                        logToConsole(`Test ${i + 1}: ERROR - ${error.message}\n`, true);
+                    }
+                }
+
+                // Check if all passed
+                const allPassed = testResults.every(r => !r.error && r.output !== null);
+                const passedCount = testResults.filter(r => {
+                    if (r.error) return false;
+                    const tc = challengeData.test_cases[testResults.indexOf(r)];
+                    return JSON.stringify(r.output) === JSON.stringify(tc.expected_output);
+                }).length;
+
+                updateTestSummary();
+
+                if (allPassed && passedCount === challengeData.test_cases.length) {
+                    logToConsole('\n🎉 All tests passed! Click Submit to earn XP.\n');
+                    submitButton.disabled = false;
+                } else {
+                    logToConsole(`\n${passedCount}/${challengeData.test_cases.length} tests passed. Keep trying!\n`);
+                }
+
+            } catch (error) {
+                logToConsole(`Error: ${error.message}\n`, true);
+                testResults = challengeData.test_cases.map(() => ({
+                    output: null,
+                    error: error.message
+                }));
+            }
+
+            runButton.disabled = false;
+            runButton.innerHTML = '▶️ Run Tests';
+        }
+
+        async function submitCode() {
+            const submitButton = document.getElementById('submit-button');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '⏳ Submitting...';
+
+            try {
+                const token = localStorage.getItem('auth_token') || 'demo-token';
+
+                const response = await fetch('/api/arena/validate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        challenge_id: challengeData.challenge_id,
+                        code: editor.getValue(),
+                        execution_results: testResults
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
+
+                const result = await response.json();
+
+                if (result.success && result.challenge_completed) {
+                    displaySuccess(result);
+                } else {
+                    alert(result.message);
+                }
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Submission failed. For demo mode, this is expected. In production, ensure you\'re authenticated.');
+            }
+
+            submitButton.innerHTML = '✅ Submit Solution';
+        }
+
+        function displaySuccess(result) {
+            const container = document.getElementById('success-container');
+            container.innerHTML = `
+                <div class="success-message">
+                    <h3>🎉 Challenge Completed!</h3>
+                    <div class="xp-reward">+${result.xp_earned} XP</div>
+                    <p>${result.message}</p>
+                    ${result.leveled_up ? `<p><strong>⭐ LEVEL UP! You're now level ${result.new_level}!</strong></p>` : ''}
+                    <button class="btn-primary" onclick="location.reload()" style="margin-top: 15px;">
+                        Next Challenge
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('submit-button').disabled = true;
+        }
+
+        function resetCode() {
+            if (confirm('Reset code to starter template?')) {
+                editor.setValue(starterCode);
+                document.getElementById('console-output').textContent = 'Code reset. Ready to run...';
+                testResults = [];
+                displayTestCases();
+                document.getElementById('submit-button').disabled = true;
+                document.getElementById('success-container').innerHTML = '';
+            }
+        }
+
+        function logToConsole(message, isError = false) {
+            const console = document.getElementById('console-output');
+            console.textContent += message;
+            if (isError) {
+                console.classList.add('error');
+            }
+            console.scrollTop = console.scrollHeight;
+        }
+
+        function updateTestSummary() {
+            const passedCount = testResults.filter((r, i) => {
+                if (r.error) return false;
+                const tc = challengeData.test_cases[i];
+                return JSON.stringify(r.output) === JSON.stringify(tc.expected_output);
+            }).length;
+
+            document.getElementById('test-summary').textContent =
+                `Tests: ${passedCount}/${challengeData.test_cases.length} passed`;
+        }
+    </script>
+</body>
+</html>
