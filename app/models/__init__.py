@@ -15,6 +15,7 @@ from app.models.user_path_progress import UserPathProgress
 from app.models.user_lesson_progress import UserLessonProgress
 from app.models.friendship import Friendship
 from app.models.duel import Duel, DuelStatus
+from app.models.hint import Hint
 
 __all__ = [
     "User", "Challenge", "Progress", "Badge", "UserBadge",
@@ -23,5 +24,6 @@ __all__ = [
     "LearningPath", "PathDifficulty", "PathTopic",
     "Lesson", "LessonType",
     "UserPathProgress", "UserLessonProgress",
-    "Friendship", "Duel", "DuelStatus"
+    "Friendship", "Duel", "DuelStatus",
+    "Hint"
 ]

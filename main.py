@@ -9,7 +9,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.db.session import init_db
-from app.api.endpoints import auth, users, challenges, progress, badges, game, learning_paths, code_arena, friends, duels, leaderboard
+from app.api.endpoints import auth, users, challenges, progress, badges, game, learning_paths, code_arena, friends, duels, leaderboard, mentor
 
 
 @asynccontextmanager
@@ -133,6 +133,12 @@ app.include_router(
     leaderboard.router,
     prefix="/api/leaderboard",
     tags=["Leaderboard"]
+)
+
+app.include_router(
+    mentor.router,
+    prefix="/api/mentor",
+    tags=["Mentor AI"]
 )
 
 # Mount static files

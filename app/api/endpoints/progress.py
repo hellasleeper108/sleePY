@@ -9,6 +9,7 @@ from app.db.session import get_db
 from app.models.user import User
 from app.models.challenge import Challenge
 from app.models.progress import Progress
+from app.models.hint import Hint
 from app.schemas.progress import (
     ProgressResponse,
     ProgressWithChallenge,
@@ -220,8 +221,18 @@ def submit_challenge_code(
     is_valid = len(submission.code.strip()) > 10
 
     if is_valid and not progress.is_completed:
-        # Calculate XP reward using game engine
-        xp_reward = GameEngine.calculate_xp_for_challenge(challenge)
+        # Calculate base XP reward using game engine
+        base_xp_reward = GameEngine.calculate_xp_for_challenge(challenge)
+
+        # Check how many hints the user used for this challenge
+        hint_count = db.query(Hint).filter(
+            Hint.user_id == current_user.id,
+            Hint.challenge_id == submission.challenge_id
+        ).count()
+
+        # Apply bonus XP multiplier based on self-sufficiency
+        bonus_multiplier = Hint.calculate_bonus_xp_multiplier(hint_count)
+        xp_reward = int(base_xp_reward * bonus_multiplier)
 
         # Mark as completed
         progress.complete(xp_reward)
@@ -274,6 +285,18 @@ def submit_challenge_code(
             ]
         if xp_result.get("level_up_chest"):
             result_dict["level_up_chest"] = xp_result["level_up_chest"]
+
+        # Add bonus XP information
+        if bonus_multiplier > 1.0:
+            bonus_percentage = int((bonus_multiplier - 1.0) * 100)
+            result_dict["bonus_xp"] = {
+                "multiplier": bonus_multiplier,
+                "bonus_percentage": bonus_percentage,
+                "base_xp": base_xp_reward,
+                "total_xp": xp_reward,
+                "hints_used": hint_count,
+                "message": f"🎉 +{bonus_percentage}% XP bonus for solving with {hint_count} hint{'s' if hint_count != 1 else ''}!"
+            }
 
         return result_dict
 
