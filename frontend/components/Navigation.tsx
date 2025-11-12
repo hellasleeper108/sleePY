@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Target, BookOpen, Trophy, User, LogOut } from 'lucide-react';
+import { Home, Target, BookOpen, Trophy, User, LogOut, TrendingUp, Users } from 'lucide-react';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -11,6 +11,8 @@ export default function Navigation() {
     { href: '/', icon: Home, label: 'Dashboard' },
     { href: '/quests', icon: Target, label: 'Quest Board' },
     { href: '/paths', icon: BookOpen, label: 'Learning Paths' },
+    { href: '/leaderboard', icon: TrendingUp, label: 'Leaderboard' },
+    { href: '/social', icon: Users, label: 'Social' },
     { href: '/achievements', icon: Trophy, label: 'Achievements' },
     { href: '/profile', icon: User, label: 'Profile' },
   ];
