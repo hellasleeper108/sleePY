@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-cyber-gray-light;
+  }
+
+  body {
+    @apply bg-cyber-dark text-gray-100 antialiased;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(13, 148, 136, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(107, 70, 193, 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-cyber-gray-dark border border-cyber-gray-medium rounded-lg shadow-lg backdrop-blur-sm;
+  }
+
+  .cyber-card-hover {
+    @apply cyber-card hover:border-cyber-teal hover:shadow-cyber transition-all duration-300;
+  }
+
+  .cyber-button {
+    @apply px-6 py-3 bg-teal-gradient text-white font-semibold rounded-lg shadow-cyber hover:shadow-cyber-lg transition-all duration-300 hover:scale-105;
+  }
+
+  .cyber-button-secondary {
+    @apply px-6 py-3 bg-purple-gradient text-white font-semibold rounded-lg shadow-purple hover:scale-105 transition-all duration-300;
+  }
+
+  .cyber-input {
+    @apply bg-cyber-gray-dark border border-cyber-gray-medium rounded-lg px-4 py-2 text-gray-100 focus:border-cyber-teal focus:outline-none focus:ring-2 focus:ring-cyber-teal/50 transition-all;
+  }
+
+  .xp-bar {
+    @apply h-3 bg-cyber-gray-medium rounded-full overflow-hidden;
+  }
+
+  .xp-fill {
+    @apply h-full bg-teal-gradient animate-glow transition-all duration-500;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold text-cyber-teal-light;
+  }
+
+  .badge-icon {
+    @apply w-12 h-12 rounded-full bg-purple-gradient flex items-center justify-center shadow-purple;
+  }
+
+  .notification-success {
+    @apply bg-cyber-teal/20 border-l-4 border-cyber-teal text-gray-100 p-4 rounded-r-lg shadow-cyber animate-slide-down;
+  }
+
+  .notification-level-up {
+    @apply bg-cyber-purple/20 border-l-4 border-cyber-purple text-gray-100 p-4 rounded-r-lg shadow-purple animate-slide-down;
+  }
+
+  .glow-text {
+    @apply text-transparent bg-clip-text bg-teal-gradient font-bold;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cyber-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyber-gray-medium rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyber-teal;
+}
