@@ -1,0 +1,28 @@
+# PyQuest Challenge CSV Template
+#
+# Instructions: Fill in this CSV file with your challenge data
+# Each row represents one challenge
+#
+# Column Definitions:
+# - title: Challenge title (required)
+# - description: Short description shown in challenge list (required)
+# - instructions: Detailed instructions for solving the challenge (required)
+# - difficulty: beginner, intermediate, advanced, or expert (required)
+# - category: basics, data_structures, algorithms, oop, functional, web, data_science, other (required)
+# - xp_reward: XP points awarded on completion (default: auto-calculated based on difficulty)
+# - required_level: Minimum level to access (default: 1)
+# - starter_code: Initial code provided to user (optional, use \n for newlines)
+# - solution: Sample solution (optional, for testing)
+# - test_cases: JSON array of test cases (see format below)
+# - learning_path: Associated learning path name (optional)
+#
+# Test Cases Format (JSON):
+# [
+#   {"input": "test_input", "expected_output": "expected_result", "description": "Test description"},
+#   {"input": "test_input2", "expected_output": "expected_result2", "description": "Another test"}
+# ]
+#
+# Example Row:
+# "Hello World","Write a function that returns Hello World","Create a function called greet() that returns the string 'Hello, World!'","beginner","basics",10,1,"def greet():\n    pass","def greet():\n    return 'Hello, World!'","[{\"input\": \"\", \"expected_output\": \"Hello, World!\", \"description\": \"Should return Hello, World!\"}]",""
+
+title,description,instructions,difficulty,category,xp_reward,required_level,starter_code,solution,test_cases,learning_path

@@ -1,0 +1,25 @@
+# PyQuest Lesson CSV Template
+#
+# Instructions: Fill in this CSV file with your lesson data
+# Each row represents one lesson
+#
+# Column Definitions:
+# - learning_path: The learning path this lesson belongs to (required)
+# - title: Lesson title (required)
+# - lesson_type: theory, example, exercise, quiz (required)
+# - order: Display order within the path (required, starts at 1)
+# - content: Lesson content in Markdown format (required, use \n for newlines)
+# - xp_reward: XP points awarded on completion (default: 5)
+# - estimated_minutes: Estimated time to complete (optional)
+#
+# Markdown Content Tips:
+# - Use # for headers, ## for subheaders
+# - Use ``` for code blocks
+# - Use **bold** and *italic* for emphasis
+# - Use - or * for bullet points
+# - Use 1. 2. 3. for numbered lists
+#
+# Example Row:
+# "Python Basics","Variables and Types","theory",1,"# Variables in Python\n\nVariables are containers for storing data values.\n\n## Creating Variables\n\nPython has no command for declaring a variable. A variable is created when you assign a value to it.\n\n```python\nx = 5\nname = 'John'\n```",5,10
+
+learning_path,title,lesson_type,order,content,xp_reward,estimated_minutes
