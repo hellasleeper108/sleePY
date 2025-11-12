@@ -311,4 +311,32 @@ export const leaderboardAPI = {
   },
 };
 
+// Mentor AI API
+export const mentorAPI = {
+  getHint: async (challengeId: number, userCode?: string, errorMessage?: string) => {
+    const response = await api.post('/api/mentor/hint', {
+      challenge_id: challengeId,
+      user_code: userCode,
+      error_message: errorMessage,
+    });
+    return response.data;
+  },
+  getStatistics: async (challengeId: number) => {
+    const response = await api.get(`/api/mentor/statistics/${challengeId}`);
+    return response.data;
+  },
+  getConfig: async () => {
+    const response = await api.get('/api/mentor/config');
+    return response.data;
+  },
+  checkAvailable: async () => {
+    const response = await api.get('/api/mentor/available');
+    return response.data;
+  },
+  getHistory: async () => {
+    const response = await api.get('/api/mentor/hints/history');
+    return response.data;
+  },
+};
+
 export default api;
