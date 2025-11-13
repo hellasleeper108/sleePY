@@ -282,15 +282,17 @@ openssl rand -hex 32
 ## 🧪 Testing
 
 ```bash
-# Backend tests
+# Backend tests (when pytest is set up)
 pytest --cov=app
 
 # Frontend tests
 cd frontend
-npm test
+npm test              # Run all tests
+npm run test:watch    # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
 
-# E2E tests
-npm run test:e2e
+# Linting
+npm run lint
 ```
 
 ## 📈 CI/CD
