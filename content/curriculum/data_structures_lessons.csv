@@ -1,0 +1,561 @@
+learning_path,title,lesson_type,order,content,xp_reward,estimated_minutes
+data_structures,Introduction to Data Structures,theory,1,"# Introduction to Data Structures
+
+Data structures are specialized formats for organizing, processing, and storing data. Choosing the right data structure can dramatically improve your program's efficiency and performance.
+
+## What are Data Structures?
+
+A data structure is a way of organizing data so that it can be used effectively. Different data structures excel at different tasks:
+
+- **Arrays/Lists**: Fast access by index, slow insertions/deletions
+- **Linked Lists**: Fast insertions/deletions, slower access
+- **Stacks**: Last-In-First-Out (LIFO) access
+- **Queues**: First-In-First-Out (FIFO) access
+- **Trees**: Hierarchical data, fast search/insert/delete
+- **Graphs**: Network relationships, connections
+- **Hash Tables**: Fast lookup by key
+
+## Why Data Structures Matter
+
+### Performance
+```python
+# Finding an element in unsorted list: O(n)
+def find_in_list(items, target):
+    for item in items:
+        if item == target:
+            return True
+    return False  # Checks every element
+
+# Finding in hash set: O(1)
+def find_in_set(items_set, target):
+    return target in items_set  # Instant lookup
+```
+
+### Memory Efficiency
+Different structures use memory differently. Choosing wisely saves resources.
+
+### Code Clarity
+The right structure makes code more readable and maintainable.
+
+## Big O Notation Primer
+
+Big O describes how algorithm performance scales:
+
+- **O(1)** - Constant: Always same time, regardless of input size
+- **O(log n)** - Logarithmic: Doubles input, adds one operation (binary search)
+- **O(n)** - Linear: Time grows directly with input size
+- **O(n log n)** - Linearithmic: Efficient sorting algorithms
+- **O(n²)** - Quadratic: Nested loops over data
+- **O(2ⁿ)** - Exponential: Doubles time when input grows by 1
+
+### Visual Examples
+```python
+# O(1) - Constant time
+def get_first(items):
+    return items[0]  # Always one operation
+
+# O(n) - Linear time
+def print_all(items):
+    for item in items:  # n operations for n items
+        print(item)
+
+# O(n²) - Quadratic time
+def print_pairs(items):
+    for i in items:          # n times
+        for j in items:      # n times each
+            print(i, j)      # n × n = n² operations
+```
+
+## Common Operations
+
+Every data structure supports some subset of:
+
+1. **Access**: Get element at position
+2. **Search**: Find element by value
+3. **Insert**: Add new element
+4. **Delete**: Remove element
+5. **Update**: Modify existing element
+
+## Time Complexity Comparison
+
+| Structure    | Access | Search | Insert | Delete |
+|-------------|--------|--------|--------|--------|
+| Array       | O(1)   | O(n)   | O(n)   | O(n)   |
+| Linked List | O(n)   | O(n)   | O(1)   | O(1)   |
+| Stack       | O(n)   | O(n)   | O(1)   | O(1)   |
+| Queue       | O(n)   | O(n)   | O(1)   | O(1)   |
+| Hash Table  | O(1)   | O(1)   | O(1)   | O(1)   |
+| Binary Tree | O(log n) | O(log n) | O(log n) | O(log n) |
+
+## Python's Built-in Data Structures
+
+Python provides several built-in structures:
+
+```python
+# List - Dynamic array
+numbers = [1, 2, 3, 4, 5]
+
+# Tuple - Immutable array
+coordinates = (10, 20)
+
+# Set - Unique elements, fast lookup
+unique_ids = {1, 2, 3, 4, 5}
+
+# Dictionary - Key-value pairs
+user = {""name"": ""Alice"", ""age"": 25}
+
+# String - Immutable character array
+text = ""Hello""
+```
+
+## Choosing the Right Structure
+
+Ask yourself:
+
+1. **What operations are most common?**
+   - Lots of lookups? → Hash table/dictionary
+   - Sequential processing? → List/array
+   - LIFO access? → Stack
+   - FIFO access? → Queue
+
+2. **How large is the data?**
+   - Small datasets: Simple structures are fine
+   - Large datasets: Efficiency matters more
+
+3. **Does order matter?**
+   - Order important: List, linked list
+   - Order doesn't matter: Set, hash table
+
+4. **Is data unique?**
+   - Must be unique: Set
+   - Duplicates allowed: List
+
+## This Learning Path
+
+In this Data Structures learning path, you'll master:
+
+1. **Arrays and Lists**: Dynamic arrays, operations, algorithms
+2. **Linked Lists**: Singly and doubly linked lists
+3. **Stacks**: LIFO operations, applications
+4. **Queues**: FIFO operations, variations
+5. **Trees**: Binary trees, BST, traversals
+6. **Heaps**: Priority queues, heap sort
+7. **Graphs**: Representations, traversals, algorithms
+8. **Hash Tables**: Hash functions, collision handling
+9. **Advanced Topics**: Tries, balanced trees, complex structures
+
+Each lesson combines theory with practical implementation. By the end, you'll be able to choose and implement the optimal data structure for any problem!
+
+Let's begin your journey into data structures!",75,15
+data_structures,Arrays and Dynamic Arrays,theory,2,"# Arrays and Dynamic Arrays
+
+Arrays are the most fundamental data structure - a contiguous block of memory storing elements of the same type. Python's list is actually a dynamic array.
+
+## Array Basics
+
+### Fixed-Size Arrays
+```python
+import array
+
+# Create typed array (more memory efficient)
+numbers = array.array('i', [1, 2, 3, 4, 5])  # 'i' = signed int
+print(numbers[0])  # 1
+
+# But Python lists are more common
+my_list = [1, 2, 3, 4, 5]
+```
+
+### Dynamic Arrays (Python Lists)
+Python lists automatically resize:
+```python
+items = []  # Start empty
+items.append(1)  # Auto-grows
+items.append(2)
+items.append(3)
+# Internal array doubles in size when needed
+```
+
+## Array Operations
+
+### Access - O(1)
+```python
+arr = [10, 20, 30, 40, 50]
+print(arr[2])  # 30 - Instant access by index
+```
+
+### Search - O(n)
+```python
+def linear_search(arr, target):
+    for i, val in enumerate(arr):
+        if val == target:
+            return i
+    return -1
+
+arr = [10, 20, 30, 40, 50]
+index = linear_search(arr, 30)  # Returns 2
+```
+
+### Insert - O(n)
+```python
+arr = [1, 2, 4, 5]
+# Insert 3 at index 2
+arr.insert(2, 3)  # [1, 2, 3, 4, 5]
+# Must shift all elements after index 2
+```
+
+### Delete - O(n)
+```python
+arr = [1, 2, 3, 4, 5]
+arr.pop(2)  # Remove index 2: [1, 2, 4, 5]
+# Must shift all elements after index 2
+```
+
+## Array Algorithms
+
+### Reversal
+```python
+def reverse_array(arr):
+    left, right = 0, len(arr) - 1
+    while left < right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+    return arr
+
+arr = [1, 2, 3, 4, 5]
+reverse_array(arr)  # [5, 4, 3, 2, 1]
+```
+
+### Rotation
+```python
+def rotate_left(arr, k):
+    \"\"\"Rotate array left by k positions\"\"\"
+    k = k % len(arr)  # Handle k > len(arr)
+    return arr[k:] + arr[:k]
+
+arr = [1, 2, 3, 4, 5]
+rotated = rotate_left(arr, 2)  # [3, 4, 5, 1, 2]
+```
+
+### Find Maximum
+```python
+def find_max(arr):
+    if not arr:
+        return None
+    max_val = arr[0]
+    for val in arr[1:]:
+        if val > max_val:
+            max_val = val
+    return max_val
+
+# Or use built-in
+max_val = max(arr)
+```
+
+## Two-Pointer Technique
+
+Powerful pattern for array problems:
+
+### Remove Duplicates (Sorted Array)
+```python
+def remove_duplicates(arr):
+    if not arr:
+        return 0
+    
+    write = 1
+    for read in range(1, len(arr)):
+        if arr[read] != arr[read - 1]:
+            arr[write] = arr[read]
+            write += 1
+    return write  # New length
+
+arr = [1, 1, 2, 2, 3, 4, 4]
+length = remove_duplicates(arr)
+print(arr[:length])  # [1, 2, 3, 4]
+```
+
+### Two Sum Problem
+```python
+def two_sum_sorted(arr, target):
+    \"\"\"Find two numbers that sum to target (sorted array)\"\"\"
+    left, right = 0, len(arr) - 1
+    
+    while left < right:
+        current_sum = arr[left] + arr[right]
+        if current_sum == target:
+            return [left, right]
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+    return None
+
+arr = [1, 2, 3, 4, 6]
+indices = two_sum_sorted(arr, 7)  # [1, 4] -> 2 + 6 = 7
+```
+
+## Sliding Window
+
+For subarray problems:
+
+### Maximum Sum Subarray (Fixed Size)
+```python
+def max_sum_subarray(arr, k):
+    \"\"\"Maximum sum of any subarray of size k\"\"\"
+    if len(arr) < k:
+        return None
+    
+    # Initial window
+    window_sum = sum(arr[:k])
+    max_sum = window_sum
+    
+    # Slide window
+    for i in range(k, len(arr)):
+        window_sum = window_sum - arr[i - k] + arr[i]
+        max_sum = max(max_sum, window_sum)
+    
+    return max_sum
+
+arr = [1, 4, 2, 10, 23, 3, 1, 0, 20]
+result = max_sum_subarray(arr, 4)  # 39 (10+23+3+1)
+```
+
+## Matrix Operations
+
+2D arrays (arrays of arrays):
+
+```python
+# Create 3x3 matrix
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Access element
+print(matrix[1][2])  # 6
+
+# Traverse matrix
+for row in matrix:
+    for val in row:
+        print(val, end=' ')
+    print()
+
+# Transpose matrix
+def transpose(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+    result = [[0] * rows for _ in range(cols)]
+    
+    for i in range(rows):
+        for j in range(cols):
+            result[j][i] = matrix[i][j]
+    return result
+```
+
+Arrays are fundamental - master them to excel at algorithm interviews and real-world problems!",100,25
+data_structures,Linked Lists,theory,3,"# Linked Lists
+
+A linked list is a linear data structure where elements (nodes) are not stored contiguously. Each node contains data and a reference to the next node.
+
+## Why Linked Lists?
+
+**Advantages over arrays:**
+- Dynamic size (no reallocation needed)
+- Efficient insertions/deletions at beginning: O(1)
+- No wasted memory from over-allocation
+
+**Disadvantages:**
+- No random access (must traverse from head)
+- Extra memory for storing references
+- Cache-unfriendly (nodes scattered in memory)
+
+## Singly Linked List
+
+Each node points to the next node.
+
+### Implementation
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def insert_at_beginning(self, data):
+        \"\"\"O(1) insertion\"\"\"
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+    
+    def insert_at_end(self, data):
+        \"\"\"O(n) insertion - must traverse to end\"\"\"
+        new_node = Node(data)
+        
+        if not self.head:
+            self.head = new_node
+            return
+        
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+    
+    def delete(self, key):
+        \"\"\"Delete first occurrence of key\"\"\"
+        current = self.head
+        
+        # Delete head
+        if current and current.data == key:
+            self.head = current.next
+            return
+        
+        # Find node before target
+        prev = None
+        while current and current.data != key:
+            prev = current
+            current = current.next
+        
+        # Key not found
+        if not current:
+            return
+        
+        # Unlink node
+        prev.next = current.next
+    
+    def search(self, key):
+        \"\"\"O(n) search\"\"\"
+        current = self.head
+        while current:
+            if current.data == key:
+                return True
+            current = current.next
+        return False
+    
+    def display(self):
+        elements = []
+        current = self.head
+        while current:
+            elements.append(str(current.data))
+            current = current.next
+        print("" -> "".join(elements))
+
+# Usage
+ll = LinkedList()
+ll.insert_at_end(1)
+ll.insert_at_end(2)
+ll.insert_at_end(3)
+ll.display()  # 1 -> 2 -> 3
+```
+
+## Doubly Linked List
+
+Each node has references to both next AND previous nodes.
+
+```python
+class DNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def insert_at_beginning(self, data):
+        new_node = DNode(data)
+        new_node.next = self.head
+        
+        if self.head:
+            self.head.prev = new_node
+        
+        self.head = new_node
+    
+    def delete(self, key):
+        current = self.head
+        
+        while current:
+            if current.data == key:
+                # Update previous node
+                if current.prev:
+                    current.prev.next = current.next
+                else:  # Deleting head
+                    self.head = current.next
+                
+                # Update next node
+                if current.next:
+                    current.next.prev = current.prev
+                return
+            current = current.next
+```
+
+## Common Algorithms
+
+### Reverse Linked List
+```python
+def reverse(head):
+    prev = None
+    current = head
+    
+    while current:
+        next_node = current.next  # Save next
+        current.next = prev       # Reverse link
+        prev = current           # Move prev forward
+        current = next_node      # Move current forward
+    
+    return prev  # New head
+```
+
+### Detect Cycle (Floyd's Algorithm)
+```python
+def has_cycle(head):
+    \"\"\"Detect if linked list has a cycle\"\"\"
+    slow = fast = head
+    
+    while fast and fast.next:
+        slow = slow.next          # Move 1 step
+        fast = fast.next.next     # Move 2 steps
+        
+        if slow == fast:          # Cycle detected
+            return True
+    return False
+```
+
+### Find Middle Element
+```python
+def find_middle(head):
+    \"\"\"Find middle element using slow/fast pointers\"\"\"
+    slow = fast = head
+    
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    
+    return slow.data  # Slow is at middle
+```
+
+### Merge Two Sorted Lists
+```python
+def merge_sorted(l1, l2):
+    dummy = Node(0)
+    tail = dummy
+    
+    while l1 and l2:
+        if l1.data <= l2.data:
+            tail.next = l1
+            l1 = l1.next
+        else:
+            tail.next = l2
+            l2 = l2.next
+        tail = tail.next
+    
+    # Attach remaining
+    tail.next = l1 if l1 else l2
+    return dummy.next
+```
+
+Linked lists are excellent for implementing stacks, queues, and when you need frequent insertions/deletions!",125,30

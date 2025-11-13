@@ -1,0 +1,567 @@
+learning_path,title,lesson_type,order,content,xp_reward,estimated_minutes
+algorithms,Introduction to Algorithms,theory,1,"# Introduction to Algorithms
+
+An algorithm is a step-by-step procedure for solving a problem or performing a task. Understanding algorithms is essential for writing efficient code.
+
+## What Makes a Good Algorithm?
+
+1. **Correctness**: Produces correct output for all valid inputs
+2. **Efficiency**: Runs quickly and uses minimal resources
+3. **Clarity**: Easy to understand and maintain
+4. **Generality**: Solves a broad class of problems
+
+## Algorithm Analysis
+
+### Time Complexity
+How runtime scales with input size:
+
+- **O(1)**: Constant - array access
+- **O(log n)**: Logarithmic - binary search
+- **O(n)**: Linear - linear search
+- **O(n log n)**: Linearithmic - merge sort
+- **O(n²)**: Quadratic - bubble sort
+- **O(2ⁿ)**: Exponential - recursive fibonacci
+
+### Space Complexity
+How memory usage scales with input size.
+
+```python
+# O(1) space - constant memory
+def sum_array(arr):
+    total = 0
+    for num in arr:
+        total += num
+    return total
+
+# O(n) space - creates new array
+def double_array(arr):
+    return [x * 2 for x in arr]
+```
+
+## This Learning Path
+
+You'll master:
+1. Searching algorithms (linear, binary)
+2. Sorting algorithms (bubble, merge, quick, heap)
+3. Recursion and backtracking
+4. Dynamic programming
+5. Greedy algorithms
+6. Graph algorithms (DFS, BFS, Dijkstra)
+7. String algorithms
+8. Divide and conquer
+9. Algorithm design techniques
+
+Let's build your algorithmic thinking!",75,15
+algorithms,Searching Algorithms,theory,2,"# Searching Algorithms
+
+Searching is finding a specific element in a collection. Different algorithms excel in different scenarios.
+
+## Linear Search
+
+Check each element sequentially - O(n):
+
+```python
+def linear_search(arr, target):
+    for i, val in enumerate(arr):
+        if val == target:
+            return i
+    return -1
+
+arr = [5, 3, 7, 1, 9]
+print(linear_search(arr, 7))  # 2
+```
+
+## Binary Search
+
+For sorted arrays - O(log n):
+
+```python
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+arr = [1, 3, 5, 7, 9, 11]
+print(binary_search(arr, 7))  # 3
+```
+
+## Binary Search Variations
+
+### Find First Occurrence
+```python
+def find_first(arr, target):
+    left, right = 0, len(arr) - 1
+    result = -1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if arr[mid] == target:
+            result = mid
+            right = mid - 1  # Continue left
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+```
+
+## Jump Search
+
+For sorted arrays - O(√n):
+
+```python
+import math
+
+def jump_search(arr, target):
+    n = len(arr)
+    step = int(math.sqrt(n))
+    prev = 0
+
+    # Jump ahead
+    while arr[min(step, n) - 1] < target:
+        prev = step
+        step += int(math.sqrt(n))
+        if prev >= n:
+            return -1
+
+    # Linear search in block
+    for i in range(prev, min(step, n)):
+        if arr[i] == target:
+            return i
+    return -1
+```
+
+Master searching to efficiently find data!",100,20
+algorithms,Sorting Algorithms,theory,3,"# Sorting Algorithms
+
+Sorting arranges elements in a specific order. Different algorithms have different trade-offs.
+
+## Bubble Sort - O(n²)
+
+Simple but slow - repeatedly swap adjacent elements:
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break
+    return arr
+```
+
+## Selection Sort - O(n²)
+
+Find minimum and place it at beginning:
+
+```python
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+```
+
+## Insertion Sort - O(n²)
+
+Build sorted array one element at a time:
+
+```python
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+```
+
+## Merge Sort - O(n log n)
+
+Divide and conquer - always O(n log n):
+
+```python
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+```
+
+## Quick Sort - O(n log n) average
+
+Divide and conquer with pivot:
+
+```python
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+
+    return quick_sort(left) + middle + quick_sort(right)
+```
+
+## Heap Sort - O(n log n)
+
+Uses heap data structure:
+
+```python
+def heapify(arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[largest] < arr[right]:
+        largest = right
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+
+    # Build max heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Extract elements
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, i, 0)
+
+    return arr
+```
+
+Choose the right sorting algorithm based on your data and constraints!",125,30
+algorithms,Recursion and Dynamic Programming,theory,4,"# Recursion and Dynamic Programming
+
+Recursion solves problems by breaking them into smaller subproblems. Dynamic programming optimizes recursion by storing results.
+
+## Recursion Basics
+
+A function that calls itself:
+
+```python
+def factorial(n):
+    # Base case
+    if n <= 1:
+        return 1
+    # Recursive case
+    return n * factorial(n - 1)
+
+print(factorial(5))  # 120
+```
+
+## Classic Recursive Problems
+
+### Fibonacci
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Problem: Extremely slow for large n!
+```
+
+### Binary Search (Recursive)
+```python
+def binary_search_recursive(arr, target, left, right):
+    if left > right:
+        return -1
+
+    mid = (left + right) // 2
+
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        return binary_search_recursive(arr, target, mid + 1, right)
+    else:
+        return binary_search_recursive(arr, target, left, mid - 1)
+```
+
+## Dynamic Programming
+
+Optimize recursion by caching results:
+
+### Fibonacci with Memoization
+```python
+def fibonacci_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+
+    memo[n] = fibonacci_memo(n - 1, memo) + fibonacci_memo(n - 2, memo)
+    return memo[n]
+
+print(fibonacci_memo(50))  # Fast!
+```
+
+### Fibonacci with Tabulation
+```python
+def fibonacci_tab(n):
+    if n <= 1:
+        return n
+
+    dp = [0] * (n + 1)
+    dp[1] = 1
+
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+
+    return dp[n]
+```
+
+## Classic DP Problems
+
+### Coin Change
+```python
+def coin_change(coins, amount):
+    dp = [float('inf')] * (amount + 1)
+    dp[0] = 0
+
+    for i in range(1, amount + 1):
+        for coin in coins:
+            if coin <= i:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+
+    return dp[amount] if dp[amount] != float('inf') else -1
+
+print(coin_change([1, 2, 5], 11))  # 3 (5+5+1)
+```
+
+### Longest Common Subsequence
+```python
+def lcs(s1, s2):
+    m, n = len(s1), len(s2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i - 1] == s2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    return dp[m][n]
+
+print(lcs(""ABCDGH"", ""AEDFHR""))  # 3 (ADH)
+```
+
+### Knapsack Problem
+```python
+def knapsack(weights, values, capacity):
+    n = len(weights)
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for w in range(1, capacity + 1):
+            if weights[i - 1] <= w:
+                dp[i][w] = max(
+                    values[i - 1] + dp[i - 1][w - weights[i - 1]],
+                    dp[i - 1][w]
+                )
+            else:
+                dp[i][w] = dp[i - 1][w]
+
+    return dp[n][capacity]
+```
+
+DP transforms exponential algorithms into polynomial ones!",150,35
+algorithms,Graph Algorithms,theory,5,"# Graph Algorithms
+
+Graphs model networks and relationships. Mastering graph algorithms is crucial for many real-world problems.
+
+## Graph Representations
+
+### Adjacency List
+```python
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+```
+
+### Adjacency Matrix
+```python
+# For graph with nodes 0,1,2,3
+graph = [
+    [0, 1, 1, 0],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0]
+]
+```
+
+## Depth-First Search (DFS)
+
+Explore as far as possible before backtracking:
+
+```python
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+
+    visited.add(start)
+    print(start, end=' ')
+
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+    return visited
+
+dfs(graph, 'A')  # A B D E F C
+```
+
+## Breadth-First Search (BFS)
+
+Explore level by level:
+
+```python
+from collections import deque
+
+def bfs(graph, start):
+    visited = set([start])
+    queue = deque([start])
+
+    while queue:
+        node = queue.popleft()
+        print(node, end=' ')
+
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+bfs(graph, 'A')  # A B C D E F
+```
+
+## Dijkstra's Shortest Path
+
+Find shortest path in weighted graph:
+
+```python
+import heapq
+
+def dijkstra(graph, start):
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+    pq = [(0, start)]
+
+    while pq:
+        current_dist, current = heapq.heappop(pq)
+
+        if current_dist > distances[current]:
+            continue
+
+        for neighbor, weight in graph[current].items():
+            distance = current_dist + weight
+
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(pq, (distance, neighbor))
+
+    return distances
+
+weighted_graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'D': 2, 'E': 5},
+    'C': {'A': 4, 'F': 3},
+    'D': {'B': 2},
+    'E': {'B': 5, 'F': 1},
+    'F': {'C': 3, 'E': 1}
+}
+
+print(dijkstra(weighted_graph, 'A'))
+```
+
+## Topological Sort
+
+Order nodes in directed acyclic graph:
+
+```python
+def topological_sort(graph):
+    visited = set()
+    stack = []
+
+    def dfs(node):
+        visited.add(node)
+        for neighbor in graph.get(node, []):
+            if neighbor not in visited:
+                dfs(neighbor)
+        stack.append(node)
+
+    for node in graph:
+        if node not in visited:
+            dfs(node)
+
+    return stack[::-1]
+
+dag = {
+    'A': ['C'],
+    'B': ['C', 'D'],
+    'C': ['E'],
+    'D': ['F'],
+    'E': ['F'],
+    'F': []
+}
+
+print(topological_sort(dag))
+```
+
+Graph algorithms solve real-world network problems efficiently!",150,35

@@ -1,0 +1,116 @@
+title,description,instructions,difficulty,category,xp_reward,required_level,starter_code,solution,test_cases,learning_path
+Hello Python,"Your first Python program! Display a message to the screen.","Write a function that returns the string 'Hello, PyQuest!'",beginner,basics,,1,"def hello():
+    # Your code here
+    pass","def hello():
+    return 'Hello, PyQuest!'","[{""input"": """", ""expected"": ""Hello, PyQuest!""}]",python_basics
+Sum Two Numbers,Calculate the sum of two numbers,"Write a function that takes two numbers and returns their sum",beginner,basics,,1,"def add_numbers(a, b):
+    # Your code here
+    pass","def add_numbers(a, b):
+    return a + b","[{""input"": ""5, 3"", ""expected"": ""8""}, {""input"": ""10, 20"", ""expected"": ""30""}, {""input"": ""-5, 5"", ""expected"": ""0""}]",python_basics
+Even or Odd,Determine if a number is even or odd,"Write a function that returns 'even' if the number is even, 'odd' otherwise",beginner,basics,,1,"def even_or_odd(n):
+    # Your code here
+    pass","def even_or_odd(n):
+    return 'even' if n % 2 == 0 else 'odd'","[{""input"": ""4"", ""expected"": ""even""}, {""input"": ""7"", ""expected"": ""odd""}, {""input"": ""0"", ""expected"": ""even""}]",python_basics
+Find Maximum,Find the largest number in a list,"Write a function that finds and returns the maximum value in a list of numbers",beginner,basics,,2,"def find_max(numbers):
+    # Your code here
+    pass","def find_max(numbers):
+    return max(numbers)","[{""input"": ""[1, 5, 3, 9, 2]"", ""expected"": ""9""}, {""input"": ""[-1, -5, -2]"", ""expected"": ""-1""}, {""input"": ""[42]"", ""expected"": ""42""}]",python_basics
+Reverse a String,Reverse the characters in a string,"Write a function that takes a string and returns it reversed",beginner,basics,,2,"def reverse_string(s):
+    # Your code here
+    pass","def reverse_string(s):
+    return s[::-1]","[{""input"": ""'hello'"", ""expected"": ""'olleh'""}, {""input"": ""'Python'"", ""expected"": ""'nohtyP'""}, {""input"": ""''"", ""expected"": ""''""}, {""input"": ""'a'"", ""expected"": ""'a'""}]",python_basics
+Count Vowels,Count the number of vowels in a string,"Write a function that counts how many vowels (a, e, i, o, u) are in a string",beginner,basics,,2,"def count_vowels(s):
+    # Your code here
+    pass","def count_vowels(s):
+    vowels = 'aeiouAEIOU'
+    return sum(1 for char in s if char in vowels)","[{""input"": ""'hello'"", ""expected"": ""2""}, {""input"": ""'Python'"", ""expected"": ""1""}, {""input"": ""'aeiou'"", ""expected"": ""5""}, {""input"": ""'xyz'"", ""expected"": ""0""}]",python_basics
+FizzBuzz,Classic FizzBuzz problem,"Write a function that returns 'Fizz' if n is divisible by 3, 'Buzz' if divisible by 5, 'FizzBuzz' if divisible by both, otherwise returns the number as a string",beginner,basics,,3,"def fizzbuzz(n):
+    # Your code here
+    pass","def fizzbuzz(n):
+    if n % 15 == 0:
+        return 'FizzBuzz'
+    if n % 3 == 0:
+        return 'Fizz'
+    if n % 5 == 0:
+        return 'Buzz'
+    return str(n)","[{""input"": ""15"", ""expected"": ""'FizzBuzz'""}, {""input"": ""9"", ""expected"": ""'Fizz'""}, {""input"": ""10"", ""expected"": ""'Buzz'""}, {""input"": ""7"", ""expected"": ""'7'""}]",python_basics
+Is Palindrome,Check if a string is a palindrome,"Write a function that returns True if the string reads the same forwards and backwards",intermediate,basics,,3,"def is_palindrome(s):
+    # Your code here
+    pass","def is_palindrome(s):
+    s = s.lower().replace(' ', '')
+    return s == s[::-1]","[{""input"": ""'racecar'"", ""expected"": ""True""}, {""input"": ""'hello'"", ""expected"": ""False""}, {""input"": ""'A man a plan a canal Panama'"", ""expected"": ""True""}, {""input"": ""''"", ""expected"": ""True""}]",python_basics
+Factorial,Calculate the factorial of a number,"Write a function that calculates n! (factorial). For example, 5! = 5 × 4 × 3 × 2 × 1 = 120",intermediate,basics,,3,"def factorial(n):
+    # Your code here
+    pass","def factorial(n):
+    if n <= 1:
+        return 1
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result","[{""input"": ""5"", ""expected"": ""120""}, {""input"": ""0"", ""expected"": ""1""}, {""input"": ""1"", ""expected"": ""1""}, {""input"": ""6"", ""expected"": ""720""}]",python_basics
+List Sum,Sum all numbers in a list,"Write a function that calculates the sum of all numbers in a list",beginner,basics,,2,"def list_sum(numbers):
+    # Your code here
+    pass","def list_sum(numbers):
+    return sum(numbers)","[{""input"": ""[1, 2, 3, 4, 5]"", ""expected"": ""15""}, {""input"": ""[10, 20, 30]"", ""expected"": ""60""}, {""input"": ""[]"", ""expected"": ""0""}, {""input"": ""[-1, 1]"", ""expected"": ""0""}]",python_basics
+Remove Duplicates,Remove duplicate values from a list,"Write a function that returns a new list with duplicates removed, preserving order",intermediate,basics,,4,"def remove_duplicates(lst):
+    # Your code here
+    pass","def remove_duplicates(lst):
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result","[{""input"": ""[1, 2, 2, 3, 4, 4, 5]"", ""expected"": ""[1, 2, 3, 4, 5]""}, {""input"": ""[1, 1, 1]"", ""expected"": ""[1]""}, {""input"": ""[]"", ""expected"": ""[]""}]",python_basics
+Title Case,Convert a string to title case,"Write a function that converts a string to title case (first letter of each word capitalized)",beginner,basics,,2,"def title_case(s):
+    # Your code here
+    pass","def title_case(s):
+    return s.title()","[{""input"": ""'hello world'"", ""expected"": ""'Hello World'""}, {""input"": ""'python programming'"", ""expected"": ""'Python Programming'""}, {""input"": ""''"", ""expected"": ""''""}, {""input"": ""'a'"", ""expected"": ""'A'""}]",python_basics
+Calculate Average,Calculate the average of numbers in a list,"Write a function that returns the average (mean) of all numbers in a list",beginner,basics,,2,"def calculate_average(numbers):
+    # Your code here
+    pass","def calculate_average(numbers):
+    if not numbers:
+        return 0
+    return sum(numbers) / len(numbers)","[{""input"": ""[1, 2, 3, 4, 5]"", ""expected"": ""3.0""}, {""input"": ""[10, 20, 30]"", ""expected"": ""20.0""}, {""input"": ""[5]"", ""expected"": ""5.0""}]",python_basics
+Find Minimum,Find the smallest number in a list,"Write a function that finds and returns the minimum value in a list of numbers",beginner,basics,,2,"def find_min(numbers):
+    # Your code here
+    pass","def find_min(numbers):
+    return min(numbers)","[{""input"": ""[1, 5, 3, 9, 2]"", ""expected"": ""1""}, {""input"": ""[-1, -5, -2]"", ""expected"": ""-5""}, {""input"": ""[42]"", ""expected"": ""42""}]",python_basics
+Word Count,Count words in a string,"Write a function that counts the number of words in a string",beginner,basics,,2,"def word_count(s):
+    # Your code here
+    pass","def word_count(s):
+    return len(s.split())","[{""input"": ""'Hello world'"", ""expected"": ""2""}, {""input"": ""'Python is awesome'"", ""expected"": ""3""}, {""input"": ""''"", ""expected"": ""0""}, {""input"": ""'   spaces   '"", ""expected"": ""1""}]",python_basics
+Is Prime,Check if a number is prime,"Write a function that returns True if the number is prime, False otherwise",intermediate,basics,,4,"def is_prime(n):
+    # Your code here
+    pass","def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True","[{""input"": ""7"", ""expected"": ""True""}, {""input"": ""10"", ""expected"": ""False""}, {""input"": ""2"", ""expected"": ""True""}, {""input"": ""1"", ""expected"": ""False""}, {""input"": ""17"", ""expected"": ""True""}]",python_basics
+Fibonacci Sequence,Generate Fibonacci sequence,"Write a function that returns a list of the first n Fibonacci numbers",intermediate,basics,,4,"def fibonacci(n):
+    # Your code here
+    pass","def fibonacci(n):
+    if n <= 0:
+        return []
+    if n == 1:
+        return [0]
+    fib = [0, 1]
+    for i in range(2, n):
+        fib.append(fib[i-1] + fib[i-2])
+    return fib","[{""input"": ""5"", ""expected"": ""[0, 1, 1, 2, 3]""}, {""input"": ""1"", ""expected"": ""[0]""}, {""input"": ""7"", ""expected"": ""[0, 1, 1, 2, 3, 5, 8]""}]",python_basics
+Merge Dictionaries,Merge two dictionaries,"Write a function that merges two dictionaries, with values from the second dictionary overwriting the first",intermediate,basics,,4,"def merge_dicts(dict1, dict2):
+    # Your code here
+    pass","def merge_dicts(dict1, dict2):
+    result = dict1.copy()
+    result.update(dict2)
+    return result","[{""input"": ""{'a': 1}, {'b': 2}"", ""expected"": ""{'a': 1, 'b': 2}""}, {""input"": ""{'a': 1}, {'a': 2}"", ""expected"": ""{'a': 2}""}, {""input"": ""{}, {'x': 1}"", ""expected"": ""{'x': 1}""}]",python_basics
+Celsius to Fahrenheit,Convert temperature from Celsius to Fahrenheit,"Write a function that converts a temperature from Celsius to Fahrenheit using the formula F = C × 9/5 + 32",beginner,basics,,2,"def celsius_to_fahrenheit(celsius):
+    # Your code here
+    pass","def celsius_to_fahrenheit(celsius):
+    return celsius * 9/5 + 32","[{""input"": ""0"", ""expected"": ""32.0""}, {""input"": ""100"", ""expected"": ""212.0""}, {""input"": ""25"", ""expected"": ""77.0""}, {""input"": ""-40"", ""expected"": ""-40.0""}]",python_basics
+List Intersection,Find common elements in two lists,"Write a function that returns a list of elements that appear in both input lists",intermediate,basics,,4,"def list_intersection(list1, list2):
+    # Your code here
+    pass","def list_intersection(list1, list2):
+    return list(set(list1) & set(list2))","[{""input"": ""[1, 2, 3], [2, 3, 4]"", ""expected"": ""[2, 3]""}, {""input"": ""[1, 2], [3, 4]"", ""expected"": ""[]""}, {""input"": ""[1, 1, 2], [1, 3]"", ""expected"": ""[1]""}]",python_basics

@@ -1,0 +1,740 @@
+learning_path,title,lesson_type,order,content,xp_reward,estimated_minutes
+oop,Introduction to Object-Oriented Programming,theory,1,"# Introduction to Object-Oriented Programming
+
+Object-Oriented Programming (OOP) is a programming paradigm based on the concept of objects, which contain data (attributes) and code (methods).
+
+## Why OOP?
+
+**Benefits:**
+- **Modularity**: Code organized into self-contained objects
+- **Reusability**: Inheritance allows code reuse
+- **Maintainability**: Changes isolated to specific classes
+- **Abstraction**: Hide complex details, expose simple interfaces
+
+## Core OOP Concepts
+
+### 1. Classes and Objects
+
+**Class**: Blueprint for creating objects
+**Object**: Instance of a class
+
+```python
+# Define a class
+class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def bark(self):
+        return f""{self.name} says Woof!""
+
+# Create objects
+buddy = Dog(""Buddy"", 3)
+max_dog = Dog(""Max"", 5)
+
+print(buddy.bark())  # Buddy says Woof!
+```
+
+### 2. Encapsulation
+
+Bundling data and methods that operate on that data:
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # Private attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount(1000)
+account.deposit(500)
+print(account.get_balance())  # 1500
+```
+
+### 3. Inheritance
+
+Create new classes based on existing ones:
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return f""{self.name} barks""
+
+class Cat(Animal):
+    def speak(self):
+        return f""{self.name} meows""
+
+dog = Dog(""Buddy"")
+cat = Cat(""Whiskers"")
+print(dog.speak())  # Buddy barks
+print(cat.speak())  # Whiskers meows
+```
+
+### 4. Polymorphism
+
+Same interface, different implementations:
+
+```python
+animals = [Dog(""Buddy""), Cat(""Whiskers""), Dog(""Max"")]
+
+for animal in animals:
+    print(animal.speak())  # Each calls their own speak()
+```
+
+## This Learning Path
+
+You'll master:
+1. Classes and objects
+2. Attributes and methods
+3. Constructors and destructors
+4. Inheritance and super()
+5. Encapsulation and access control
+6. Polymorphism and duck typing
+7. Abstract classes and interfaces
+8. Magic methods and operator overloading
+9. Class vs instance attributes
+10. Design patterns
+
+Let's build robust, maintainable applications with OOP!",75,15
+oop,Classes and Objects,theory,2,"# Classes and Objects
+
+Classes are blueprints for creating objects. Objects are instances of classes containing data and behavior.
+
+## Defining Classes
+
+```python
+class Person:
+    # Class attribute (shared by all instances)
+    species = ""Homo sapiens""
+
+    # Constructor
+    def __init__(self, name, age):
+        # Instance attributes (unique to each instance)
+        self.name = name
+        self.age = age
+
+    # Instance method
+    def introduce(self):
+        return f""Hi, I'm {self.name} and I'm {self.age} years old""
+
+    # Class method
+    @classmethod
+    def from_birth_year(cls, name, birth_year):
+        age = 2024 - birth_year
+        return cls(name, age)
+
+    # Static method
+    @staticmethod
+    def is_adult(age):
+        return age >= 18
+
+# Create objects
+alice = Person(""Alice"", 25)
+bob = Person.from_birth_year(""Bob"", 1990)
+
+print(alice.introduce())
+print(Person.is_adult(alice.age))  # True
+```
+
+## Instance vs Class Attributes
+
+```python
+class Counter:
+    count = 0  # Class attribute
+
+    def __init__(self, name):
+        self.name = name  # Instance attribute
+        Counter.count += 1
+
+c1 = Counter(""First"")
+c2 = Counter(""Second"")
+print(Counter.count)  # 2
+```
+
+## Methods
+
+```python
+class Calculator:
+    def __init__(self):
+        self.result = 0
+
+    # Instance method - operates on instance
+    def add(self, x, y):
+        self.result = x + y
+        return self.result
+
+    # Class method - operates on class
+    @classmethod
+    def create_with_value(cls, value):
+        calc = cls()
+        calc.result = value
+        return calc
+
+    # Static method - doesn't access instance or class
+    @staticmethod
+    def multiply(x, y):
+        return x * y
+
+calc = Calculator()
+calc.add(5, 3)  # Instance method
+print(Calculator.multiply(4, 5))  # Static method
+```
+
+## Private and Public Members
+
+```python
+class MyClass:
+    def __init__(self):
+        self.public = ""Everyone can access""
+        self._protected = ""Convention: internal use""
+        self.__private = ""Name mangled, hard to access""
+
+    def get_private(self):
+        return self.__private
+
+obj = MyClass()
+print(obj.public)           # Works
+print(obj._protected)       # Works but discouraged
+# print(obj.__private)      # AttributeError
+print(obj.get_private())    # Works
+```
+
+## Properties
+
+```python
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+
+    @property
+    def celsius(self):
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        if value < -273.15:
+            raise ValueError(""Below absolute zero!"")
+        self._celsius = value
+
+    @property
+    def fahrenheit(self):
+        return self._celsius * 9/5 + 32
+
+temp = Temperature(25)
+print(temp.fahrenheit)  # 77.0
+temp.celsius = 30
+print(temp.fahrenheit)  # 86.0
+```
+
+Classes and objects are the foundation of OOP - master them to build powerful abstractions!",100,25
+oop,Inheritance and Polymorphism,theory,3,"# Inheritance and Polymorphism
+
+Inheritance allows classes to inherit attributes and methods from parent classes. Polymorphism enables different classes to be used interchangeably through a common interface.
+
+## Single Inheritance
+
+```python
+class Vehicle:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def info(self):
+        return f""{self.brand} {self.model}""
+
+class Car(Vehicle):
+    def __init__(self, brand, model, doors):
+        super().__init__(brand, model)  # Call parent constructor
+        self.doors = doors
+
+    def info(self):
+        return f""{super().info()}, {self.doors} doors""
+
+car = Car(""Toyota"", ""Camry"", 4)
+print(car.info())  # Toyota Camry, 4 doors
+```
+
+## Multiple Inheritance
+
+```python
+class Flyer:
+    def fly(self):
+        return ""Flying!""
+
+class Swimmer:
+    def swim(self):
+        return ""Swimming!""
+
+class Duck(Flyer, Swimmer):
+    def quack(self):
+        return ""Quack!""
+
+duck = Duck()
+print(duck.fly())    # Flying!
+print(duck.swim())   # Swimming!
+print(duck.quack())  # Quack!
+```
+
+## Method Overriding
+
+```python
+class Animal:
+    def speak(self):
+        return ""Some sound""
+
+class Dog(Animal):
+    def speak(self):  # Override
+        return ""Woof!""
+
+class Cat(Animal):
+    def speak(self):  # Override
+        return ""Meow!""
+
+# Polymorphism in action
+animals = [Dog(), Cat(), Animal()]
+for animal in animals:
+    print(animal.speak())
+```
+
+## Abstract Base Classes
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+# shape = Shape()  # Error: Can't instantiate abstract class
+rect = Rectangle(5, 3)
+print(rect.area())  # 15
+```
+
+## Duck Typing
+
+```python
+class Duck:
+    def speak(self):
+        return ""Quack!""
+
+class Person:
+    def speak(self):
+        return ""Hello!""
+
+def make_it_speak(entity):
+    print(entity.speak())
+
+# Works with any object that has speak()
+make_it_speak(Duck())    # Quack!
+make_it_speak(Person())  # Hello!
+```
+
+Inheritance promotes code reuse, while polymorphism enables flexible, extensible designs!",125,30
+oop,Encapsulation and Data Hiding,theory,4,"# Encapsulation and Data Hiding
+
+Encapsulation bundles data and methods together while controlling access to prevent unwanted interference and misuse.
+
+## Access Modifiers
+
+```python
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner           # Public
+        self._account_number = 12345 # Protected (convention)
+        self.__balance = balance     # Private (name mangling)
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            return True
+        return False
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        return False
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount(""Alice"", 1000)
+account.deposit(500)
+print(account.get_balance())  # 1500
+# print(account.__balance)    # AttributeError
+```
+
+## Property Decorators
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+
+    @property
+    def radius(self):
+        return self._radius
+
+    @radius.setter
+    def radius(self, value):
+        if value < 0:
+            raise ValueError(""Radius must be positive"")
+        self._radius = value
+
+    @property
+    def area(self):
+        return 3.14159 * self._radius ** 2
+
+    @property
+    def diameter(self):
+        return 2 * self._radius
+
+circle = Circle(5)
+print(circle.area)      # 78.53975
+circle.radius = 10
+print(circle.diameter)  # 20
+```
+
+## Getters and Setters
+
+```python
+class Person:
+    def __init__(self, age):
+        self.set_age(age)
+
+    def get_age(self):
+        return self.__age
+
+    def set_age(self, age):
+        if age < 0 or age > 150:
+            raise ValueError(""Invalid age"")
+        self.__age = age
+
+person = Person(25)
+person.set_age(30)
+print(person.get_age())  # 30
+```
+
+## Information Hiding Benefits
+
+```python
+class PasswordManager:
+    def __init__(self):
+        self.__passwords = {}
+
+    def add_password(self, service, password):
+        # Could add encryption here
+        self.__passwords[service] = password
+
+    def get_password(self, service):
+        # Could add authentication here
+        return self.__passwords.get(service)
+
+    def change_password(self, service, old, new):
+        if self.__passwords.get(service) == old:
+            self.__passwords[service] = new
+            return True
+        return False
+
+pm = PasswordManager()
+pm.add_password(""email"", ""secret123"")
+print(pm.get_password(""email""))
+```
+
+Encapsulation protects data integrity and provides clear interfaces for interacting with objects!",100,25
+oop,Magic Methods and Operator Overloading,theory,5,"# Magic Methods and Operator Overloading
+
+Magic methods (dunder methods) allow you to define how objects behave with built-in Python operations.
+
+## Common Magic Methods
+
+```python
+class Book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+
+    def __str__(self):
+        # Informal string representation
+        return f""{self.title} by {self.author}""
+
+    def __repr__(self):
+        # Official string representation
+        return f""Book('{self.title}', '{self.author}', {self.pages})""
+
+    def __len__(self):
+        return self.pages
+
+    def __eq__(self, other):
+        return self.title == other.title and self.author == other.author
+
+book = Book(""1984"", ""Orwell"", 328)
+print(str(book))    # 1984 by Orwell
+print(len(book))    # 328
+print(repr(book))   # Book('1984', 'Orwell', 328)
+```
+
+## Arithmetic Operators
+
+```python
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, scalar):
+        return Vector(self.x * scalar, self.y * scalar)
+
+    def __str__(self):
+        return f""Vector({self.x}, {self.y})""
+
+v1 = Vector(2, 3)
+v2 = Vector(1, 1)
+print(v1 + v2)  # Vector(3, 4)
+print(v1 * 3)   # Vector(6, 9)
+```
+
+## Comparison Operators
+
+```python
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+    def __lt__(self, other):
+        return self.grade < other.grade
+
+    def __le__(self, other):
+        return self.grade <= other.grade
+
+    def __gt__(self, other):
+        return self.grade > other.grade
+
+    def __ge__(self, other):
+        return self.grade >= other.grade
+
+    def __eq__(self, other):
+        return self.grade == other.grade
+
+alice = Student(""Alice"", 95)
+bob = Student(""Bob"", 87)
+print(alice > bob)  # True
+print(sorted([alice, bob], reverse=True))
+```
+
+## Container Methods
+
+```python
+class Playlist:
+    def __init__(self):
+        self.songs = []
+
+    def __len__(self):
+        return len(self.songs)
+
+    def __getitem__(self, index):
+        return self.songs[index]
+
+    def __setitem__(self, index, song):
+        self.songs[index] = song
+
+    def __contains__(self, song):
+        return song in self.songs
+
+    def __iter__(self):
+        return iter(self.songs)
+
+playlist = Playlist()
+playlist.songs = [""Song1"", ""Song2"", ""Song3""]
+print(len(playlist))        # 3
+print(playlist[0])          # Song1
+print(""Song2"" in playlist) # True
+for song in playlist:
+    print(song)
+```
+
+Magic methods make your custom classes behave like built-in Python types!",125,30
+oop,Design Patterns,theory,6,"# Design Patterns
+
+Design patterns are reusable solutions to common programming problems. They represent best practices for object-oriented design.
+
+## Singleton Pattern
+
+Ensure a class has only one instance:
+
+```python
+class Database:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance.connection = ""Connected""
+        return cls._instance
+
+db1 = Database()
+db2 = Database()
+print(db1 is db2)  # True - same instance
+```
+
+## Factory Pattern
+
+Create objects without specifying exact class:
+
+```python
+class Dog:
+    def speak(self):
+        return ""Woof!""
+
+class Cat:
+    def speak(self):
+        return ""Meow!""
+
+class AnimalFactory:
+    @staticmethod
+    def create_animal(animal_type):
+        if animal_type == ""dog"":
+            return Dog()
+        elif animal_type == ""cat"":
+            return Cat()
+        raise ValueError(""Unknown animal type"")
+
+animal = AnimalFactory.create_animal(""dog"")
+print(animal.speak())  # Woof!
+```
+
+## Observer Pattern
+
+Objects notify observers of state changes:
+
+```python
+class Subject:
+    def __init__(self):
+        self._observers = []
+        self._state = None
+
+    def attach(self, observer):
+        self._observers.append(observer)
+
+    def detach(self, observer):
+        self._observers.remove(observer)
+
+    def notify(self):
+        for observer in self._observers:
+            observer.update(self._state)
+
+    def set_state(self, state):
+        self._state = state
+        self.notify()
+
+class Observer:
+    def __init__(self, name):
+        self.name = name
+
+    def update(self, state):
+        print(f""{self.name} notified: {state}"")
+
+subject = Subject()
+obs1 = Observer(""Observer1"")
+obs2 = Observer(""Observer2"")
+subject.attach(obs1)
+subject.attach(obs2)
+subject.set_state(""New State"")
+```
+
+## Strategy Pattern
+
+Encapsulate algorithms and make them interchangeable:
+
+```python
+class PaymentStrategy:
+    def pay(self, amount):
+        pass
+
+class CreditCard(PaymentStrategy):
+    def pay(self, amount):
+        return f""Paid ${amount} with Credit Card""
+
+class PayPal(PaymentStrategy):
+    def pay(self, amount):
+        return f""Paid ${amount} with PayPal""
+
+class ShoppingCart:
+    def __init__(self, payment_strategy):
+        self.payment_strategy = payment_strategy
+
+    def checkout(self, amount):
+        return self.payment_strategy.pay(amount)
+
+cart = ShoppingCart(CreditCard())
+print(cart.checkout(100))
+
+cart.payment_strategy = PayPal()
+print(cart.checkout(50))
+```
+
+## Decorator Pattern
+
+Add functionality to objects dynamically:
+
+```python
+class Coffee:
+    def cost(self):
+        return 5
+
+    def description(self):
+        return ""Coffee""
+
+class MilkDecorator:
+    def __init__(self, coffee):
+        self.coffee = coffee
+
+    def cost(self):
+        return self.coffee.cost() + 1
+
+    def description(self):
+        return self.coffee.description() + "", Milk""
+
+coffee = Coffee()
+coffee = MilkDecorator(coffee)
+print(coffee.description())  # Coffee, Milk
+print(coffee.cost())         # 6
+```
+
+Design patterns help you write maintainable, scalable, and elegant code!",150,35

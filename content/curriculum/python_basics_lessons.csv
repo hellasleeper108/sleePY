@@ -1,0 +1,3142 @@
+learning_path,title,lesson_type,order,content,xp_reward,estimated_minutes
+python_basics,Welcome to Python Programming,theory,1,"# Welcome to Python Programming
+
+Python is a powerful, beginner-friendly programming language used by millions of developers worldwide. From web development to data science, Python's versatility makes it an excellent first language to learn.
+
+## What You'll Learn
+
+In this Python Basics learning path, you'll master:
+- Variables and data types
+- Operators and expressions
+- Control flow (if/else, loops)
+- Functions and code organization
+- Data structures (lists, tuples, dictionaries, sets)
+- String manipulation techniques
+- File input/output operations
+- Error handling and debugging
+- Working with modules and packages
+
+## Why Python?
+
+**Easy to Learn**: Python's syntax is clean and readable, similar to plain English
+**Powerful**: Despite being beginner-friendly, Python powers major companies like Google, Netflix, and NASA
+**Versatile**: Build websites, analyze data, create games, automate tasks, develop AI models
+**Strong Community**: Millions of developers worldwide, extensive documentation, countless learning resources
+
+## Your Learning Journey
+
+Each lesson combines theory with hands-on practice. You'll:
+1. Read explanations with real-world examples
+2. Complete coding challenges to reinforce concepts
+3. Earn XP and level up as you progress
+4. Build a strong foundation for advanced topics
+
+Let's begin your Python journey!",50,10
+python_basics,Installing Python and Your First Program,theory,2,"# Installing Python and Your First Program
+
+Before we dive into coding, let's set up your Python environment and write your first program!
+
+## Installing Python
+
+### Windows
+1. Visit [python.org](https://www.python.org/downloads/)
+2. Download Python 3.11 or later
+3. **Important**: Check ""Add Python to PATH"" during installation
+4. Click ""Install Now""
+
+### macOS
+1. Visit [python.org](https://www.python.org/downloads/)
+2. Download the macOS installer
+3. Run the installer and follow the prompts
+
+### Linux
+Python usually comes pre-installed. Open terminal and type:
+```bash
+python3 --version
+```
+
+## Your First Python Program
+
+The traditional first program in any language is ""Hello, World!"" - a simple program that displays text on the screen.
+
+```python
+print(""Hello, World!"")
+```
+
+**What's happening here?**
+- `print()` is a built-in function that displays output
+- The text inside quotes is called a **string**
+- When you run this, it displays: `Hello, World!`
+
+## Running Python Programs
+
+### Interactive Mode (Python Shell)
+Open terminal/command prompt and type:
+```bash
+python3
+```
+You'll see `>>>` - this is the Python prompt. Type commands directly:
+```python
+>>> print(""Hello, World!"")
+Hello, World!
+>>> 2 + 2
+4
+```
+
+### Script Mode (Recommended)
+1. Create a file called `hello.py`
+2. Add your code: `print(""Hello, World!"")`
+3. Run it: `python3 hello.py`
+
+## Try It Yourself!
+
+Experiment with the `print()` function:
+```python
+print(""Welcome to PyQuest!"")
+print(""Python"", ""is"", ""awesome"")  # Multiple values
+print(10 + 5)  # Math operations
+```
+
+**Pro Tip**: Use `#` for comments - Python ignores everything after `#` on that line.
+
+## Next Steps
+
+Now that you have Python installed and running, let's learn about variables and data types!",50,15
+python_basics,Variables and Data Types,theory,3,"# Variables and Data Types
+
+Variables are containers that store data. Think of them as labeled boxes where you can put information and retrieve it later.
+
+## Creating Variables
+
+In Python, creating a variable is simple - just assign a value with `=`:
+
+```python
+name = ""Alice""
+age = 25
+height = 5.6
+is_student = True
+```
+
+**Variable naming rules:**
+- Start with a letter or underscore: `_count`, `user_name`
+- Can contain letters, numbers, underscores: `player1`, `total_score`
+- Case-sensitive: `Name` and `name` are different
+- Can't use Python keywords: `if`, `for`, `while`, etc.
+
+**Naming conventions:**
+- Use lowercase with underscores: `user_score` (snake_case)
+- Be descriptive: `total_price` is better than `tp`
+
+## Data Types
+
+Python has several built-in data types:
+
+### 1. Numbers
+
+**Integers** (whole numbers):
+```python
+score = 100
+temperature = -5
+population = 7900000000
+```
+
+**Floats** (decimal numbers):
+```python
+price = 19.99
+pi = 3.14159
+temperature = 98.6
+```
+
+**Operations:**
+```python
+result = 10 + 5    # Addition: 15
+result = 10 - 5    # Subtraction: 5
+result = 10 * 5    # Multiplication: 50
+result = 10 / 5    # Division: 2.0
+result = 10 // 3   # Integer division: 3
+result = 10 % 3    # Modulus (remainder): 1
+result = 2 ** 3    # Exponentiation: 8
+```
+
+### 2. Strings
+
+Text data enclosed in quotes:
+```python
+message = ""Hello, World!""
+name = 'Alice'
+multi_line = """"""This is a
+multi-line
+string""""""
+```
+
+**String operations:**
+```python
+greeting = ""Hello"" + "" "" + ""World""  # Concatenation
+repeated = ""Ha"" * 3                     # ""HaHaHa""
+length = len(""Python"")                  # 6
+```
+
+### 3. Booleans
+
+True or False values:
+```python
+is_raining = True
+has_permission = False
+is_greater = 10 > 5  # True
+is_equal = 5 == 3    # False
+```
+
+### 4. Type Checking and Conversion
+
+Check a variable's type:
+```python
+age = 25
+print(type(age))  # <class 'int'>
+```
+
+Convert between types:
+```python
+num_str = ""42""
+num_int = int(num_str)      # 42
+num_float = float(num_str)  # 42.0
+
+num = 100
+text = str(num)  # ""100""
+```
+
+## Dynamic Typing
+
+Python is dynamically typed - variables can change type:
+```python
+value = 42        # int
+value = ""hello""  # now it's a string
+value = True      # now it's a boolean
+```
+
+## Practice Challenge
+
+Try this in your Python environment:
+```python
+# Create variables
+username = ""PyMaster""
+level = 5
+xp = 1250.5
+is_premium = True
+
+# Use them
+print(""Player:"", username)
+print(""Level:"", level)
+print(""XP:"", xp)
+print(""Premium:"", is_premium)
+```
+
+Understanding variables and data types is fundamental to programming. You'll use them in every program you write!",75,20
+python_basics,Operators and Expressions,theory,4,"# Operators and Expressions
+
+Operators are symbols that perform operations on values and variables. Expressions are combinations of values, variables, and operators that Python evaluates to produce a result.
+
+## Arithmetic Operators
+
+Perform mathematical calculations:
+
+```python
+a = 10
+b = 3
+
+print(a + b)   # Addition: 13
+print(a - b)   # Subtraction: 7
+print(a * b)   # Multiplication: 30
+print(a / b)   # Division: 3.333...
+print(a // b)  # Floor division: 3
+print(a % b)   # Modulus (remainder): 1
+print(a ** b)  # Exponentiation: 1000
+```
+
+**Common use cases:**
+```python
+# Calculate average
+total = 85 + 92 + 78
+average = total / 3
+
+# Check even/odd
+number = 17
+is_even = number % 2 == 0  # False
+
+# Calculate area
+radius = 5
+area = 3.14159 * radius ** 2
+```
+
+## Comparison Operators
+
+Compare values and return True or False:
+
+```python
+x = 10
+y = 5
+
+print(x == y)  # Equal to: False
+print(x != y)  # Not equal to: True
+print(x > y)   # Greater than: True
+print(x < y)   # Less than: False
+print(x >= y)  # Greater than or equal: True
+print(x <= y)  # Less than or equal: False
+```
+
+**String comparisons:**
+```python
+name1 = ""Alice""
+name2 = ""Bob""
+print(name1 == name2)  # False
+print(name1 < name2)   # True (alphabetical)
+```
+
+## Logical Operators
+
+Combine boolean expressions:
+
+```python
+age = 25
+has_license = True
+has_car = False
+
+# AND - both must be True
+can_drive = age >= 18 and has_license  # True
+
+# OR - at least one must be True
+needs_ride = not has_car or not has_license  # True
+
+# NOT - inverts the boolean
+is_minor = not (age >= 18)  # False
+```
+
+**Truth tables:**
+```
+AND:  True and True = True
+      True and False = False
+      False and False = False
+
+OR:   True or True = True
+      True or False = True
+      False or False = False
+
+NOT:  not True = False
+      not False = True
+```
+
+## Assignment Operators
+
+Assign and update variables:
+
+```python
+score = 0
+score += 10   # score = score + 10  → 10
+score -= 3    # score = score - 3   → 7
+score *= 2    # score = score * 2   → 14
+score /= 2    # score = score / 2   → 7.0
+score //= 2   # score = score // 2  → 3.0
+score **= 2   # score = score ** 2  → 9.0
+```
+
+## Operator Precedence
+
+Python follows mathematical order of operations (PEMDAS):
+
+1. **P**arentheses: `()`
+2. **E**xponentiation: `**`
+3. **M**ultiplication, **D**ivision, Modulus: `*`, `/`, `//`, `%`
+4. **A**ddition, **S**ubtraction: `+`, `-`
+
+```python
+result = 2 + 3 * 4        # 14 (not 20!)
+result = (2 + 3) * 4      # 20
+result = 10 + 2 ** 3 * 2  # 26
+```
+
+**Comparison and logical operators:**
+```python
+result = 5 < 10 and 3 > 1  # True
+result = not False or True # True
+result = 5 < 3 < 7         # False (chained comparison)
+```
+
+## Membership Operators
+
+Check if a value exists in a sequence:
+
+```python
+text = ""Python""
+print(""P"" in text)      # True
+print(""z"" not in text)  # True
+
+numbers = [1, 2, 3, 4, 5]
+print(3 in numbers)      # True
+print(10 not in numbers) # True
+```
+
+## Identity Operators
+
+Check if two variables refer to the same object:
+
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)   # True (same values)
+print(a is b)   # False (different objects)
+print(a is c)   # True (same object)
+```
+
+## Practical Examples
+
+```python
+# Calculate discount
+price = 100
+discount_percent = 20
+discount_amount = price * (discount_percent / 100)
+final_price = price - discount_amount
+
+# Validate user input
+age = 17
+has_permission = False
+can_access = age >= 18 or has_permission
+
+# Calculate BMI
+weight_kg = 70
+height_m = 1.75
+bmi = weight_kg / (height_m ** 2)
+is_healthy = 18.5 <= bmi <= 24.9
+```
+
+Understanding operators and expressions is crucial for writing effective Python programs. Practice using different operators to build complex expressions!",75,25
+python_basics,Control Flow: If-Else Statements,theory,5,"# Control Flow: If-Else Statements
+
+Control flow determines the order in which your code executes. Conditional statements allow your program to make decisions and execute different code based on conditions.
+
+## The if Statement
+
+Execute code only when a condition is True:
+
+```python
+temperature = 30
+
+if temperature > 25:
+    print(""It's hot outside!"")
+    print(""Don't forget sunscreen!"")
+```
+
+**Indentation is crucial** - Python uses indentation (4 spaces) to define code blocks.
+
+## The if-else Statement
+
+Execute one block if True, another if False:
+
+```python
+age = 17
+
+if age >= 18:
+    print(""You can vote!"")
+else:
+    print(""You're too young to vote."")
+    print(f""Wait {18 - age} more year(s)."")
+```
+
+## The if-elif-else Statement
+
+Check multiple conditions:
+
+```python
+score = 85
+
+if score >= 90:
+    grade = ""A""
+elif score >= 80:
+    grade = ""B""
+elif score >= 70:
+    grade = ""C""
+elif score >= 60:
+    grade = ""D""
+else:
+    grade = ""F""
+
+print(f""Your grade is: {grade}"")
+```
+
+**How it works:**
+- Python checks conditions from top to bottom
+- Executes the first True condition's block
+- Skips remaining conditions
+- `else` is optional - runs if no condition is True
+
+## Nested Conditions
+
+Put if statements inside other if statements:
+
+```python
+age = 25
+has_license = True
+
+if age >= 18:
+    if has_license:
+        print(""You can drive!"")
+    else:
+        print(""You need a license first."")
+else:
+    print(""You're too young to drive."")
+```
+
+**Cleaner alternative using logical operators:**
+```python
+if age >= 18 and has_license:
+    print(""You can drive!"")
+elif age >= 18:
+    print(""You need a license first."")
+else:
+    print(""You're too young to drive."")
+```
+
+## Comparison Operators in Conditions
+
+```python
+username = ""admin""
+password = ""secret123""
+
+# String comparison
+if username == ""admin"" and password == ""secret123"":
+    print(""Login successful!"")
+else:
+    print(""Invalid credentials"")
+
+# Multiple comparisons
+score = 85
+if 80 <= score < 90:  # Chained comparison
+    print(""Grade: B"")
+```
+
+## Common Patterns
+
+### 1. Checking for Empty/None
+```python
+name = """"
+
+if name:  # Empty strings are ""falsy""
+    print(f""Hello, {name}!"")
+else:
+    print(""Please enter your name."")
+
+result = None
+if result is None:
+    print(""No result yet"")
+```
+
+### 2. Even/Odd Check
+```python
+number = 42
+
+if number % 2 == 0:
+    print(""Even"")
+else:
+    print(""Odd"")
+```
+
+### 3. Range Validation
+```python
+age = int(input(""Enter your age: ""))
+
+if 0 <= age <= 120:
+    print(""Valid age"")
+else:
+    print(""Invalid age"")
+```
+
+### 4. Multiple Conditions
+```python
+is_weekend = True
+is_raining = False
+have_plans = False
+
+if is_weekend and not is_raining and not have_plans:
+    print(""Perfect day for outdoor activities!"")
+elif is_weekend and is_raining:
+    print(""Good day for indoor activities."")
+else:
+    print(""Regular day."")
+```
+
+## Ternary Operator (One-Line If)
+
+Short syntax for simple if-else:
+
+```python
+# Traditional
+if age >= 18:
+    status = ""adult""
+else:
+    status = ""minor""
+
+# Ternary (compact)
+status = ""adult"" if age >= 18 else ""minor""
+
+# Use in expressions
+message = f""You are {'eligible' if score >= 60 else 'not eligible'}""
+```
+
+## Real-World Examples
+
+### Login System
+```python
+username = input(""Username: "")
+password = input(""Password: "")
+
+if username == ""admin"" and password == ""pass123"":
+    print(""✓ Login successful"")
+    print(""Welcome, Administrator!"")
+elif username == ""admin"":
+    print(""✗ Incorrect password"")
+else:
+    print(""✗ User not found"")
+```
+
+### Grade Calculator
+```python
+score = 78
+
+if score >= 90:
+    print(""Excellent! Grade: A"")
+elif score >= 80:
+    print(""Great job! Grade: B"")
+elif score >= 70:
+    print(""Good work! Grade: C"")
+elif score >= 60:
+    print(""Passed. Grade: D"")
+else:
+    print(""Failed. Grade: F"")
+    print(""Consider retaking the course."")
+```
+
+### Discount Calculator
+```python
+total = 250
+is_member = True
+
+if is_member:
+    if total >= 200:
+        discount = 0.20  # 20% for members spending $200+
+    else:
+        discount = 0.10  # 10% for other members
+else:
+    if total >= 200:
+        discount = 0.05  # 5% for non-members spending $200+
+    else:
+        discount = 0     # No discount
+
+final_price = total * (1 - discount)
+print(f""Discount: {discount*100}%"")
+print(f""Final price: ${final_price:.2f}"")
+```
+
+## Best Practices
+
+1. **Keep conditions simple and readable**
+2. **Use logical operators to combine conditions**
+3. **Order conditions from most to least specific**
+4. **Avoid deep nesting - use elif or functions**
+5. **Consider using dictionaries for multiple values:**
+
+```python
+# Instead of many elif statements:
+grades = {
+    range(90, 101): ""A"",
+    range(80, 90): ""B"",
+    range(70, 80): ""C"",
+    range(60, 70): ""D""
+}
+# Use loops to find the grade
+```
+
+Conditional statements are fundamental to making your programs intelligent and responsive. Master them, and you'll be able to write programs that make smart decisions!",100,30
+python_basics,Loops: For and While,theory,6,"# Loops: For and While
+
+Loops allow you to repeat code multiple times without writing it over and over. They're essential for processing collections, automating tasks, and controlling program flow.
+
+## The for Loop
+
+Iterate over a sequence (list, string, range, etc.):
+
+### Basic Syntax
+```python
+# Iterate over a list
+fruits = [""apple"", ""banana"", ""cherry""]
+for fruit in fruits:
+    print(fruit)
+
+# Output:
+# apple
+# banana
+# cherry
+```
+
+### Using range()
+```python
+# Print numbers 0 to 4
+for i in range(5):
+    print(i)
+
+# Range with start and stop
+for i in range(1, 6):  # 1, 2, 3, 4, 5
+    print(i)
+
+# Range with step
+for i in range(0, 10, 2):  # 0, 2, 4, 6, 8
+    print(i)
+
+# Countdown
+for i in range(10, 0, -1):
+    print(i)
+print(""Blast off!"")
+```
+
+### Iterating Strings
+```python
+word = ""Python""
+for letter in word:
+    print(letter)
+
+# P
+# y
+# t
+# h
+# o
+# n
+```
+
+### Enumerate for Index and Value
+```python
+players = [""Alice"", ""Bob"", ""Charlie""]
+
+for index, player in enumerate(players):
+    print(f""{index + 1}. {player}"")
+
+# 1. Alice
+# 2. Bob
+# 3. Charlie
+```
+
+## The while Loop
+
+Repeat code while a condition is True:
+
+### Basic Syntax
+```python
+count = 1
+while count <= 5:
+    print(f""Count: {count}"")
+    count += 1
+
+# Output:
+# Count: 1
+# Count: 2
+# Count: 3
+# Count: 4
+# Count: 5
+```
+
+### Input Validation
+```python
+password = """"
+while password != ""secret"":
+    password = input(""Enter password: "")
+print(""Access granted!"")
+```
+
+### Infinite Loops with Break
+```python
+while True:
+    command = input(""Enter command (or 'quit'): "")
+    if command == ""quit"":
+        break
+    print(f""You entered: {command}"")
+```
+
+**Warning**: Always ensure while loops have a way to end, or they'll run forever!
+
+## Loop Control Statements
+
+### break - Exit the loop immediately
+```python
+# Find first even number
+numbers = [1, 3, 5, 8, 9, 11]
+for num in numbers:
+    if num % 2 == 0:
+        print(f""Found first even number: {num}"")
+        break
+```
+
+### continue - Skip to next iteration
+```python
+# Print only positive numbers
+numbers = [1, -3, 5, -2, 8]
+for num in numbers:
+    if num < 0:
+        continue  # Skip negative numbers
+    print(num)
+
+# Output: 1, 5, 8
+```
+
+### else with Loops
+The else block executes if the loop completes normally (no break):
+
+```python
+# Search for a number
+numbers = [1, 2, 3, 4, 5]
+search = 10
+
+for num in numbers:
+    if num == search:
+        print(""Found!"")
+        break
+else:
+    print(""Not found"")  # Executes because break never happened
+```
+
+## Nested Loops
+
+Loops inside loops:
+
+```python
+# Multiplication table
+for i in range(1, 6):
+    for j in range(1, 6):
+        print(f""{i} × {j} = {i*j}"")
+    print()  # Blank line after each row
+```
+
+```python
+# Pattern printing
+for i in range(1, 6):
+    for j in range(i):
+        print(""*"", end="""")
+    print()
+
+# *
+# **
+# ***
+# ****
+# *****
+```
+
+## Common Loop Patterns
+
+### 1. Sum of Numbers
+```python
+numbers = [10, 20, 30, 40, 50]
+total = 0
+for num in numbers:
+    total += num
+print(f""Sum: {total}"")  # 150
+
+# Or use built-in sum()
+total = sum(numbers)
+```
+
+### 2. Find Maximum
+```python
+numbers = [45, 23, 67, 12, 89, 34]
+maximum = numbers[0]
+for num in numbers:
+    if num > maximum:
+        maximum = num
+print(f""Maximum: {maximum}"")  # 89
+
+# Or use built-in max()
+maximum = max(numbers)
+```
+
+### 3. Count Occurrences
+```python
+text = ""hello world""
+letter = ""l""
+count = 0
+for char in text:
+    if char == letter:
+        count += 1
+print(f""{letter} appears {count} times"")  # 3
+```
+
+### 4. Build a New List
+```python
+# Square all numbers
+numbers = [1, 2, 3, 4, 5]
+squared = []
+for num in numbers:
+    squared.append(num ** 2)
+print(squared)  # [1, 4, 9, 16, 25]
+
+# List comprehension (more Pythonic)
+squared = [num ** 2 for num in numbers]
+```
+
+### 5. User Input Loop
+```python
+numbers = []
+while True:
+    value = input(""Enter a number (or 'done'): "")
+    if value == ""done"":
+        break
+    numbers.append(int(value))
+
+print(f""You entered {len(numbers)} numbers"")
+print(f""Average: {sum(numbers) / len(numbers)}"")
+```
+
+## for vs while
+
+**Use for when:**
+- You know how many iterations you need
+- Iterating over a collection
+- Working with ranges
+
+**Use while when:**
+- You don't know how many iterations needed
+- Looping until a condition changes
+- Waiting for user input
+
+## Real-World Examples
+
+### Password Attempts
+```python
+max_attempts = 3
+attempts = 0
+correct_password = ""python123""
+
+while attempts < max_attempts:
+    password = input(""Enter password: "")
+    if password == correct_password:
+        print(""✓ Login successful!"")
+        break
+    else:
+        attempts += 1
+        remaining = max_attempts - attempts
+        if remaining > 0:
+            print(f""✗ Wrong password. {remaining} attempts remaining."")
+        else:
+            print(""✗ Account locked. Too many failed attempts."")
+```
+
+### Menu System
+```python
+while True:
+    print(""\n--- Main Menu ---"")
+    print(""1. Play Game"")
+    print(""2. View Stats"")
+    print(""3. Settings"")
+    print(""4. Exit"")
+
+    choice = input(""Select option: "")
+
+    if choice == ""1"":
+        print(""Starting game..."")
+    elif choice == ""2"":
+        print(""Displaying stats..."")
+    elif choice == ""3"":
+        print(""Opening settings..."")
+    elif choice == ""4"":
+        print(""Goodbye!"")
+        break
+    else:
+        print(""Invalid option. Try again."")
+```
+
+### Data Processing
+```python
+# Process list of student scores
+students = [
+    {""name"": ""Alice"", ""score"": 92},
+    {""name"": ""Bob"", ""score"": 78},
+    {""name"": ""Charlie"", ""score"": 85}
+]
+
+total_score = 0
+for student in students:
+    print(f""{student['name']}: {student['score']}"")
+    total_score += student['score']
+
+average = total_score / len(students)
+print(f""\nClass average: {average:.1f}"")
+```
+
+## Best Practices
+
+1. **Use descriptive variable names**: `for student in students` not `for s in s_list`
+2. **Avoid modifying the list you're iterating over**
+3. **Use break to exit loops early when appropriate**
+4. **Ensure while loops have a termination condition**
+5. **Consider list comprehensions for simple transformations**
+
+```python
+# Instead of:
+squares = []
+for num in range(10):
+    squares.append(num ** 2)
+
+# Use:
+squares = [num ** 2 for num in range(10)]
+```
+
+Mastering loops is essential for efficient programming. They allow you to automate repetitive tasks and process large amounts of data with minimal code!",125,35
+python_basics,Functions: Building Reusable Code,theory,7,"# Functions: Building Reusable Code
+
+Functions are reusable blocks of code that perform specific tasks. They help organize code, avoid repetition, and make programs easier to understand and maintain.
+
+## Defining Functions
+
+Use the `def` keyword to create a function:
+
+```python
+def greet():
+    print(""Hello, World!"")
+
+# Call the function
+greet()  # Output: Hello, World!
+```
+
+### Functions with Parameters
+
+Parameters allow functions to accept input:
+
+```python
+def greet(name):
+    print(f""Hello, {name}!"")
+
+greet(""Alice"")  # Hello, Alice!
+greet(""Bob"")    # Hello, Bob!
+```
+
+### Multiple Parameters
+
+```python
+def add(a, b):
+    result = a + b
+    print(f""{a} + {b} = {result}"")
+
+add(5, 3)   # 5 + 3 = 8
+add(10, 20) # 10 + 20 = 30
+```
+
+### Default Parameters
+
+Parameters can have default values:
+
+```python
+def greet(name=""Guest"", greeting=""Hello""):
+    print(f""{greeting}, {name}!"")
+
+greet()                      # Hello, Guest!
+greet(""Alice"")              # Hello, Alice!
+greet(""Bob"", ""Hi"")         # Hi, Bob!
+greet(greeting=""Hey"")       # Hey, Guest!
+```
+
+## Return Values
+
+Functions can return values using `return`:
+
+```python
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(result)  # 8
+
+# Use directly in expressions
+total = add(10, 20) + add(5, 3)  # 38
+```
+
+### Multiple Return Values
+
+```python
+def get_stats(numbers):
+    total = sum(numbers)
+    average = total / len(numbers)
+    maximum = max(numbers)
+    return total, average, maximum
+
+nums = [10, 20, 30, 40, 50]
+t, avg, mx = get_stats(nums)
+print(f""Total: {t}, Average: {avg}, Max: {mx}"")
+```
+
+### Early Return
+
+```python
+def is_even(number):
+    if number % 2 == 0:
+        return True
+    return False
+
+# Simpler version
+def is_even(number):
+    return number % 2 == 0
+```
+
+## Variable Scope
+
+Variables defined inside functions are **local** - they only exist within the function:
+
+```python
+def my_function():
+    local_var = ""I'm local""
+    print(local_var)  # Works
+
+my_function()
+print(local_var)  # Error! local_var doesn't exist here
+```
+
+**Global variables** are defined outside functions:
+
+```python
+global_var = ""I'm global""
+
+def my_function():
+    print(global_var)  # Can read global variables
+
+my_function()  # Works
+print(global_var)  # Also works
+```
+
+## Docstrings
+
+Document your functions with docstrings:
+
+```python
+def calculate_bmi(weight, height):
+    """"""
+    Calculate Body Mass Index (BMI).
+
+    Args:
+        weight (float): Weight in kilograms
+        height (float): Height in meters
+
+    Returns:
+        float: BMI value
+    """"""
+    return weight / (height ** 2)
+
+# Access docstring
+print(calculate_bmi.__doc__)
+```
+
+## Real-World Examples
+
+### Temperature Converter
+
+```python
+def celsius_to_fahrenheit(celsius):
+    """"""Convert Celsius to Fahrenheit""""""
+    return (celsius * 9/5) + 32
+
+def fahrenheit_to_celsius(fahrenheit):
+    """"""Convert Fahrenheit to Celsius""""""
+    return (fahrenheit - 32) * 5/9
+
+temp_c = 25
+temp_f = celsius_to_fahrenheit(temp_c)
+print(f""{temp_c}°C = {temp_f}°F"")  # 25°C = 77.0°F
+```
+
+### Validation Function
+
+```python
+def is_valid_email(email):
+    """"""Basic email validation""""""
+    if ""@"" not in email:
+        return False
+    if email.count(""@"") != 1:
+        return False
+    if ""."" not in email.split(""@"")[1]:
+        return False
+    return True
+
+print(is_valid_email(""user@example.com""))  # True
+print(is_valid_email(""invalid.email""))      # False
+```
+
+### Calculator Functions
+
+```python
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        return ""Error: Division by zero""
+    return a / b
+
+# Menu-driven calculator
+def calculator():
+    print(""Simple Calculator"")
+    num1 = float(input(""Enter first number: ""))
+    num2 = float(input(""Enter second number: ""))
+    op = input(""Enter operation (+, -, *, /): "")
+
+    if op == ""+"":
+        result = add(num1, num2)
+    elif op == ""-"":
+        result = subtract(num1, num2)
+    elif op == ""*"":
+        result = multiply(num1, num2)
+    elif op == ""/"":
+        result = divide(num1, num2)
+    else:
+        result = ""Invalid operation""
+
+    print(f""Result: {result}"")
+
+calculator()
+```
+
+## Lambda Functions
+
+Anonymous, one-line functions:
+
+```python
+# Regular function
+def square(x):
+    return x ** 2
+
+# Lambda equivalent
+square = lambda x: x ** 2
+
+# Use in expressions
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x ** 2, numbers))
+print(squared)  # [1, 4, 9, 16, 25]
+```
+
+## Best Practices
+
+1. **Function names should be descriptive verbs**: `calculate_total()`, `send_email()`
+2. **Keep functions focused on one task**
+3. **Use parameters instead of global variables**
+4. **Return values instead of printing** (more flexible)
+5. **Document with docstrings**
+6. **Use type hints** (Python 3.5+):
+
+```python
+def greet(name: str) -> str:
+    return f""Hello, {name}!""
+
+def add(a: int, b: int) -> int:
+    return a + b
+```
+
+Functions are the building blocks of larger programs. Master them to write clean, maintainable, and reusable code!",100,30
+python_basics,Lists: Working with Collections,theory,8,"# Lists: Working with Collections
+
+Lists are ordered, mutable collections that can store multiple items. They're one of Python's most versatile and commonly used data structures.
+
+## Creating Lists
+
+```python
+# Empty list
+empty_list = []
+
+# List of numbers
+numbers = [1, 2, 3, 4, 5]
+
+# List of strings
+fruits = [""apple"", ""banana"", ""cherry""]
+
+# Mixed types (possible but not recommended)
+mixed = [1, ""hello"", 3.14, True]
+
+# Using list() constructor
+letters = list(""Python"")  # ['P', 'y', 't', 'h', 'o', 'n']
+```
+
+## Accessing Elements
+
+Use index (starting from 0):
+
+```python
+fruits = [""apple"", ""banana"", ""cherry"", ""date""]
+
+print(fruits[0])   # apple (first)
+print(fruits[1])   # banana (second)
+print(fruits[-1])  # date (last)
+print(fruits[-2])  # cherry (second to last)
+```
+
+## List Slicing
+
+Extract portions of a list:
+
+```python
+numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+print(numbers[2:5])    # [2, 3, 4]
+print(numbers[:3])     # [0, 1, 2] (first 3)
+print(numbers[7:])     # [7, 8, 9] (from index 7 to end)
+print(numbers[-3:])    # [7, 8, 9] (last 3)
+print(numbers[::2])    # [0, 2, 4, 6, 8] (every 2nd element)
+print(numbers[::-1])   # [9, 8, 7, ...] (reversed)
+```
+
+## Modifying Lists
+
+### Change Elements
+
+```python
+fruits = [""apple"", ""banana"", ""cherry""]
+fruits[1] = ""blueberry""
+print(fruits)  # ['apple', 'blueberry', 'cherry']
+```
+
+### Add Elements
+
+```python
+fruits = [""apple"", ""banana""]
+
+# append() - add to end
+fruits.append(""cherry"")
+print(fruits)  # ['apple', 'banana', 'cherry']
+
+# insert() - add at specific position
+fruits.insert(1, ""blueberry"")
+print(fruits)  # ['apple', 'blueberry', 'banana', 'cherry']
+
+# extend() - add multiple items
+fruits.extend([""date"", ""elderberry""])
+print(fruits)  # ['apple', 'blueberry', 'banana', 'cherry', 'date', 'elderberry']
+```
+
+### Remove Elements
+
+```python
+fruits = [""apple"", ""banana"", ""cherry"", ""banana""]
+
+# remove() - remove first occurrence
+fruits.remove(""banana"")
+print(fruits)  # ['apple', 'cherry', 'banana']
+
+# pop() - remove and return last item
+last = fruits.pop()
+print(last)    # banana
+print(fruits)  # ['apple', 'cherry']
+
+# pop(index) - remove at specific position
+first = fruits.pop(0)
+print(first)   # apple
+
+# del - delete by index or slice
+del fruits[0]
+
+# clear() - remove all items
+fruits.clear()
+print(fruits)  # []
+```
+
+## List Methods
+
+```python
+numbers = [3, 1, 4, 1, 5, 9, 2]
+
+# sort() - sort in place
+numbers.sort()
+print(numbers)  # [1, 1, 2, 3, 4, 5, 9]
+
+# reverse() - reverse in place
+numbers.reverse()
+print(numbers)  # [9, 5, 4, 3, 2, 1, 1]
+
+# count() - count occurrences
+count = numbers.count(1)
+print(count)  # 2
+
+# index() - find first occurrence
+pos = numbers.index(5)
+print(pos)  # 1
+
+# copy() - create shallow copy
+new_list = numbers.copy()
+```
+
+## List Operations
+
+```python
+# Concatenation
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined = list1 + list2  # [1, 2, 3, 4, 5, 6]
+
+# Repetition
+repeated = [0] * 5  # [0, 0, 0, 0, 0]
+
+# Membership
+fruits = [""apple"", ""banana"", ""cherry""]
+print(""apple"" in fruits)      # True
+print(""orange"" not in fruits) # True
+
+# Length
+print(len(fruits))  # 3
+```
+
+## Iterating Over Lists
+
+```python
+fruits = [""apple"", ""banana"", ""cherry""]
+
+# Simple iteration
+for fruit in fruits:
+    print(fruit)
+
+# With index
+for i in range(len(fruits)):
+    print(f""{i}: {fruits[i]}"")
+
+# Using enumerate (better)
+for index, fruit in enumerate(fruits):
+    print(f""{index}: {fruit}"")
+
+# Starting from 1
+for index, fruit in enumerate(fruits, start=1):
+    print(f""{index}. {fruit}"")
+```
+
+## List Comprehensions
+
+Create new lists with concise syntax:
+
+```python
+# Square all numbers
+numbers = [1, 2, 3, 4, 5]
+squared = [x ** 2 for x in numbers]
+print(squared)  # [1, 4, 9, 16, 25]
+
+# Filter even numbers
+evens = [x for x in numbers if x % 2 == 0]
+print(evens)  # [2, 4]
+
+# Transform strings
+words = [""hello"", ""world""]
+upper = [word.upper() for word in words]
+print(upper)  # ['HELLO', 'WORLD']
+
+# Nested comprehension
+matrix = [[i*j for j in range(1, 4)] for i in range(1, 4)]
+# [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
+```
+
+## 2D Lists (Matrices)
+
+```python
+# Create 3x3 matrix
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Access elements
+print(matrix[0][0])  # 1 (first row, first column)
+print(matrix[1][2])  # 6 (second row, third column)
+
+# Iterate
+for row in matrix:
+    for value in row:
+        print(value, end="" "")
+    print()  # New line after each row
+```
+
+## Common Patterns
+
+### Sum and Average
+
+```python
+numbers = [10, 20, 30, 40, 50]
+total = sum(numbers)
+average = total / len(numbers)
+print(f""Sum: {total}, Average: {average}"")
+```
+
+### Find Min/Max
+
+```python
+numbers = [45, 23, 67, 12, 89]
+print(f""Min: {min(numbers)}"")  # 12
+print(f""Max: {max(numbers)}"")  # 89
+```
+
+### Remove Duplicates
+
+```python
+numbers = [1, 2, 2, 3, 4, 4, 5]
+unique = list(set(numbers))  # [1, 2, 3, 4, 5]
+
+# Preserve order
+unique = []
+for num in numbers:
+    if num not in unique:
+        unique.append(num)
+```
+
+### Sorting
+
+```python
+numbers = [3, 1, 4, 1, 5]
+
+# Sort ascending
+sorted_asc = sorted(numbers)  # Returns new list
+
+# Sort descending
+sorted_desc = sorted(numbers, reverse=True)
+
+# Sort by custom key
+words = [""apple"", ""pie"", ""zoo"", ""a""]
+by_length = sorted(words, key=len)  # ['a', 'pie', 'zoo', 'apple']
+```
+
+## Real-World Examples
+
+### Shopping Cart
+
+```python
+cart = []
+
+def add_item(item, price):
+    cart.append({""item"": item, ""price"": price})
+
+def remove_item(item):
+    for i, entry in enumerate(cart):
+        if entry[""item""] == item:
+            cart.pop(i)
+            break
+
+def calculate_total():
+    return sum(entry[""price""] for entry in cart)
+
+add_item(""Apple"", 1.50)
+add_item(""Banana"", 0.75)
+add_item(""Orange"", 2.00)
+print(f""Total: ${calculate_total():.2f}"")
+```
+
+### Student Grades
+
+```python
+students = [
+    {""name"": ""Alice"", ""grades"": [85, 92, 78]},
+    {""name"": ""Bob"", ""grades"": [90, 88, 95]},
+    {""name"": ""Charlie"", ""grades"": [78, 82, 80]}
+]
+
+for student in students:
+    avg = sum(student[""grades""]) / len(student[""grades""])
+    print(f""{student['name']}: {avg:.1f}"")
+```
+
+## Best Practices
+
+1. **Use list comprehensions for simple transformations**
+2. **Don't modify a list while iterating over it**
+3. **Use `enumerate()` when you need both index and value**
+4. **Use `in` for membership testing**
+5. **Consider using `collections.deque` for frequent insertions/deletions at both ends**
+
+```python
+# Good
+for i, item in enumerate(items):
+    print(f""{i}: {item}"")
+
+# Avoid
+for i in range(len(items)):
+    print(f""{i}: {items[i]}"")
+```
+
+Lists are fundamental to Python programming. Understanding how to create, manipulate, and iterate over lists will make you a more effective programmer!",125,35python_basics,Dictionaries: Key-Value Storage,theory,9,"# Dictionaries: Key-Value Storage
+
+Dictionaries are unordered collections of key-value pairs. They're perfect for storing related data and looking up values quickly by key.
+
+## Creating Dictionaries
+
+```python
+# Empty dictionary
+empty_dict = {}
+empty_dict = dict()
+
+# Dictionary with values
+person = {
+    ""name"": ""Alice"",
+    ""age"": 25,
+    ""city"": ""New York""
+}
+
+# Dict comprehension
+squares = {x: x**2 for x in range(1, 6)}
+# {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+```
+
+## Accessing Values
+
+```python
+person = {""name"": ""Alice"", ""age"": 25, ""city"": ""New York""}
+
+# Using square brackets
+print(person[""name""])  # Alice
+
+# Using get() method (safer)
+print(person.get(""age""))      # 25
+print(person.get(""country""))  # None (doesn't raise error)
+print(person.get(""country"", ""USA""))  # USA (default value)
+```
+
+## Modifying Dictionaries
+
+```python
+person = {""name"": ""Alice"", ""age"": 25}
+
+# Add new key-value pair
+person[""city""] = ""New York""
+
+# Update existing value
+person[""age""] = 26
+
+# Update multiple values
+person.update({""age"": 27, ""job"": ""Engineer""})
+
+# Remove items
+del person[""city""]        # Remove specific key
+age = person.pop(""age"")    # Remove and return value
+person.clear()             # Remove all items
+```
+
+## Dictionary Methods
+
+```python
+student = {""name"": ""Bob"", ""grade"": ""A"", ""score"": 95}
+
+# Get all keys
+keys = student.keys()    # dict_keys(['name', 'grade', 'score'])
+
+# Get all values
+values = student.values()  # dict_values(['Bob', 'A', 95])
+
+# Get all key-value pairs
+items = student.items()  # dict_items([('name', 'Bob'), ...])
+
+# Check if key exists
+if ""name"" in student:
+    print(""Name exists"")
+
+# Get and remove last item (Python 3.7+)
+item = student.popitem()
+```
+
+## Iterating Over Dictionaries
+
+```python
+person = {""name"": ""Alice"", ""age"": 25, ""city"": ""NYC""}
+
+# Iterate over keys
+for key in person:
+    print(key)
+
+# Iterate over values
+for value in person.values():
+    print(value)
+
+# Iterate over key-value pairs
+for key, value in person.items():
+    print(f""{key}: {value}"")
+```
+
+## Nested Dictionaries
+
+```python
+users = {
+    ""user1"": {""name"": ""Alice"", ""age"": 25},
+    ""user2"": {""name"": ""Bob"", ""age"": 30},
+    ""user3"": {""name"": ""Charlie"", ""age"": 35}
+}
+
+# Access nested values
+print(users[""user1""][""name""])  # Alice
+
+# Iterate nested dictionaries
+for user_id, user_data in users.items():
+    print(f""{user_id}: {user_data['name']}, {user_data['age']}"")
+```
+
+## Real-World Examples
+
+### Word Counter
+```python
+text = ""hello world hello python world""
+word_count = {}
+
+for word in text.split():
+    word_count[word] = word_count.get(word, 0) + 1
+
+print(word_count)  # {'hello': 2, 'world': 2, 'python': 1}
+```
+
+### Student Database
+```python
+students = {
+    ""S001"": {""name"": ""Alice"", ""grades"": [85, 92, 78]},
+    ""S002"": {""name"": ""Bob"", ""grades"": [90, 88, 95]}
+}
+
+def get_average(student_id):
+    grades = students[student_id][""grades""]
+    return sum(grades) / len(grades)
+
+for sid in students:
+    avg = get_average(sid)
+    print(f""{students[sid]['name']}: {avg:.1f}"")
+```
+
+Dictionaries are powerful tools for organizing and accessing data efficiently!",100,30
+python_basics,Tuples and Sets,theory,10,"# Tuples and Sets
+
+Tuples and sets are two more essential Python data structures, each with unique characteristics and use cases.
+
+## Tuples: Immutable Sequences
+
+Tuples are like lists, but **immutable** (cannot be changed after creation).
+
+### Creating Tuples
+
+```python
+# Empty tuple
+empty_tuple = ()
+
+# Tuple with values
+coordinates = (10, 20)
+rgb = (255, 128, 0)
+
+# Single element tuple (note the comma!)
+single = (42,)  # Correct
+not_tuple = (42)  # This is just an int
+
+# Without parentheses
+point = 3, 4  # Valid tuple
+```
+
+### Accessing Tuple Elements
+
+```python
+point = (10, 20, 30)
+
+print(point[0])   # 10
+print(point[-1])  # 30
+print(point[1:])  # (20, 30)
+
+# Tuple unpacking
+x, y, z = point
+print(x, y, z)  # 10 20 30
+```
+
+### Tuple Operations
+
+```python
+t1 = (1, 2, 3)
+t2 = (4, 5, 6)
+
+# Concatenation
+combined = t1 + t2  # (1, 2, 3, 4, 5, 6)
+
+# Repetition
+repeated = t1 * 2  # (1, 2, 3, 1, 2, 3)
+
+# Membership
+print(2 in t1)  # True
+
+# Count and index
+numbers = (1, 2, 3, 1, 1, 4)
+print(numbers.count(1))  # 3
+print(numbers.index(3))  # 2
+```
+
+### When to Use Tuples
+
+- **Immutable data**: Coordinates, RGB colors, dates
+- **Dictionary keys**: Tuples can be keys, lists cannot
+- **Function returns**: Return multiple values
+- **Performance**: Tuples are slightly faster than lists
+
+```python
+# Return multiple values
+def get_min_max(numbers):
+    return min(numbers), max(numbers)
+
+minimum, maximum = get_min_max([1, 2, 3, 4, 5])
+
+# Dictionary keys
+locations = {
+    (40.7128, -74.0060): ""New York"",
+    (51.5074, -0.1278): ""London""
+}
+```
+
+## Sets: Unique Collections
+
+Sets are unordered collections of **unique** elements.
+
+### Creating Sets
+
+```python
+# Empty set (must use set(), not {})
+empty_set = set()
+
+# Set with values
+numbers = {1, 2, 3, 4, 5}
+fruits = {""apple"", ""banana"", ""cherry""}
+
+# From list (removes duplicates)
+numbers = set([1, 2, 2, 3, 3, 3, 4])  # {1, 2, 3, 4}
+```
+
+### Set Operations
+
+```python
+fruits = {""apple"", ""banana"", ""cherry""}
+
+# Add element
+fruits.add(""date"")
+
+# Add multiple elements
+fruits.update([""elderberry"", ""fig""])
+
+# Remove element
+fruits.remove(""banana"")  # Raises error if not found
+fruits.discard(""banana"")  # No error if not found
+
+# Remove random element
+item = fruits.pop()
+
+# Clear all
+fruits.clear()
+```
+
+### Mathematical Set Operations
+
+```python
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+
+# Union (all elements)
+union = set1 | set2  # {1, 2, 3, 4, 5, 6, 7, 8}
+union = set1.union(set2)
+
+# Intersection (common elements)
+intersection = set1 & set2  # {4, 5}
+intersection = set1.intersection(set2)
+
+# Difference (in set1 but not set2)
+difference = set1 - set2  # {1, 2, 3}
+difference = set1.difference(set2)
+
+# Symmetric difference (in either but not both)
+sym_diff = set1 ^ set2  # {1, 2, 3, 6, 7, 8}
+sym_diff = set1.symmetric_difference(set2)
+
+# Subset check
+print({1, 2}.issubset({1, 2, 3}))  # True
+
+# Superset check
+print({1, 2, 3}.issuperset({1, 2}))  # True
+```
+
+## Real-World Examples
+
+### Remove Duplicates
+```python
+numbers = [1, 2, 2, 3, 4, 4, 5]
+unique = list(set(numbers))  # [1, 2, 3, 4, 5]
+```
+
+### Find Common Elements
+```python
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+common = set(list1) & set(list2)  # {4, 5}
+```
+
+### Track Unique Visitors
+```python
+visitors = set()
+
+def visit(user_id):
+    visitors.add(user_id)
+
+visit(""user1"")
+visit(""user2"")
+visit(""user1"")  # Duplicate, not added again
+print(f""Unique visitors: {len(visitors)}"")  # 2
+```
+
+Tuples provide immutability and performance, while sets excel at uniqueness and mathematical operations!",100,25
+python_basics,String Manipulation,theory,11,"# String Manipulation
+
+Strings are sequences of characters used to represent text. Python provides powerful tools for working with strings.
+
+## String Basics
+
+```python
+# Creating strings
+single = 'Hello'
+double = ""World""
+multi = """"""This is a
+multi-line
+string""""""
+
+# String concatenation
+greeting = ""Hello"" + "" "" + ""World""  # Hello World
+
+# String repetition
+repeated = ""Ha"" * 3  # HaHaHa
+
+# String length
+length = len(""Python"")  # 6
+```
+
+## String Indexing and Slicing
+
+```python
+text = ""Python""
+
+# Indexing
+print(text[0])   # P
+print(text[-1])  # n
+
+# Slicing
+print(text[0:3])   # Pyt
+print(text[:3])    # Pyt
+print(text[3:])    # hon
+print(text[::2])   # Pto (every 2nd char)
+print(text[::-1])  # nohtyP (reversed)
+```
+
+## String Methods
+
+### Case Conversion
+```python
+text = ""Hello World""
+
+print(text.upper())       # HELLO WORLD
+print(text.lower())       # hello world
+print(text.capitalize())  # Hello world
+print(text.title())       # Hello World
+print(text.swapcase())    # hELLO wORLD
+```
+
+### Searching and Checking
+```python
+text = ""Hello World""
+
+# Check contents
+print(text.startswith(""Hello""))  # True
+print(text.endswith(""World""))    # True
+print(""World"" in text)            # True
+
+# Find position
+print(text.find(""World""))   # 6
+print(text.index(""World""))  # 6
+print(text.count(""l""))      # 3
+
+# Check character types
+print(""123"".isdigit())     # True
+print(""abc"".isalpha())     # True
+print(""abc123"".isalnum())  # True
+print(""   "".isspace())     # True
+```
+
+### Trimming and Padding
+```python
+text = ""  Hello  ""
+
+# Remove whitespace
+print(text.strip())   # ""Hello""
+print(text.lstrip())  # ""Hello  ""
+print(text.rstrip())  # ""  Hello""
+
+# Padding
+print(""Hi"".center(10))      # ""    Hi    ""
+print(""Hi"".ljust(10, ""*""))  # ""Hi********""
+print(""Hi"".rjust(10, ""*""))  # ""********Hi""
+print(""7"".zfill(3))          # ""007""
+```
+
+### Splitting and Joining
+```python
+# Split string into list
+text = ""apple,banana,cherry""
+fruits = text.split("","")  # ['apple', 'banana', 'cherry']
+
+sentence = ""Hello World Python""
+words = sentence.split()  # ['Hello', 'World', 'Python']
+
+# Join list into string
+fruits = [""apple"", ""banana"", ""cherry""]
+result = "","".join(fruits)  # ""apple,banana,cherry""
+result = "" "".join(fruits)  # ""apple banana cherry""
+```
+
+### Replacing
+```python
+text = ""Hello World""
+
+# Replace substring
+new_text = text.replace(""World"", ""Python"")  # Hello Python
+
+# Replace multiple occurrences
+text = ""one one one""
+new_text = text.replace(""one"", ""two"", 2)  # ""two two one""
+```
+
+## String Formatting
+
+### f-strings (Python 3.6+)
+```python
+name = ""Alice""
+age = 25
+print(f""My name is {name} and I am {age} years old"")
+
+# Expressions in f-strings
+x = 10
+print(f""The square of {x} is {x**2}"")
+
+# Formatting numbers
+pi = 3.14159
+print(f""Pi is approximately {pi:.2f}"")  # 3.14
+
+price = 49.99
+print(f""Price: ${price:>10.2f}"")  # Right-aligned
+```
+
+### format() Method
+```python
+template = ""Hello, {}! You are {} years old.""
+result = template.format(""Alice"", 25)
+
+# Named placeholders
+template = ""Hello, {name}! You are {age} years old.""
+result = template.format(name=""Alice"", age=25)
+```
+
+### % Formatting (Old Style)
+```python
+name = ""Alice""
+age = 25
+result = ""Hello, %s! You are %d years old."" % (name, age)
+```
+
+## String Validation
+
+```python
+def is_valid_username(username):
+    """"""Username: 3-20 chars, alphanumeric and underscore""""""
+    if not 3 <= len(username) <= 20:
+        return False
+    if not username[0].isalpha():
+        return False
+    for char in username:
+        if not (char.isalnum() or char == ""_""):
+            return False
+    return True
+
+def is_valid_email(email):
+    """"""Basic email validation""""""
+    if ""@"" not in email:
+        return False
+    parts = email.split(""@"")
+    if len(parts) != 2:
+        return False
+    if ""."" not in parts[1]:
+        return False
+    return True
+```
+
+## Real-World Examples
+
+### Password Strength Checker
+```python
+def check_password_strength(password):
+    """"""Check if password is strong""""""
+    if len(password) < 8:
+        return ""Too short (min 8 characters)""
+
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    has_digit = any(c.isdigit() for c in password)
+    has_special = any(not c.isalnum() for c in password)
+
+    strength = sum([has_upper, has_lower, has_digit, has_special])
+
+    if strength == 4:
+        return ""Strong""
+    elif strength >= 2:
+        return ""Medium""
+    else:
+        return ""Weak""
+```
+
+### Text Processing
+```python
+def word_frequency(text):
+    """"""Count word frequencies""""""
+    text = text.lower()
+    words = text.split()
+    freq = {}
+    for word in words:
+        # Remove punctuation
+        word = word.strip("".,!?;:"")
+        freq[word] = freq.get(word, 0) + 1
+    return freq
+
+text = ""Hello world! Hello Python. Python is great.""
+print(word_frequency(text))
+```
+
+### Template Engine
+```python
+def simple_template(template, **kwargs):
+    """"""Simple template substitution""""""
+    for key, value in kwargs.items():
+        placeholder = f""{{{key}}}""
+        template = template.replace(placeholder, str(value))
+    return template
+
+email_template = """"""
+Dear {name},
+
+Your order #{order_id} has been shipped.
+Total: ${total}
+
+Thank you for shopping with us!
+""""""
+
+result = simple_template(
+    email_template,
+    name=""Alice"",
+    order_id=12345,
+    total=99.99
+)
+print(result)
+```
+
+String manipulation is essential for text processing, data cleaning, and user input validation!",100,30
+python_basics,File Input/Output,theory,12,"# File Input/Output
+
+Working with files allows your programs to read data from and write data to the file system, enabling data persistence and processing.
+
+## Reading Files
+
+### Read Entire File
+```python
+# Open, read, and close
+file = open(""data.txt"", ""r"")
+content = file.read()
+print(content)
+file.close()
+
+# Better: Use 'with' statement (auto-closes)
+with open(""data.txt"", ""r"") as file:
+    content = file.read()
+    print(content)
+# File is automatically closed
+```
+
+### Read Line by Line
+```python
+# Read as list of lines
+with open(""data.txt"", ""r"") as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line.strip())  # Remove newline
+
+# Better: Iterate directly
+with open(""data.txt"", ""r"") as file:
+    for line in file:
+        print(line.strip())
+
+# Read single line
+with open(""data.txt"", ""r"") as file:
+    first_line = file.readline()
+```
+
+## Writing Files
+
+### Write Mode (Overwrites)
+```python
+with open(""output.txt"", ""w"") as file:
+    file.write(""Hello, World!\n"")
+    file.write(""This is a new file.\n"")
+
+# Write multiple lines
+lines = [""Line 1\n"", ""Line 2\n"", ""Line 3\n""]
+with open(""output.txt"", ""w"") as file:
+    file.writelines(lines)
+```
+
+### Append Mode
+```python
+with open(""output.txt"", ""a"") as file:
+    file.write(""This is appended.\n"")
+```
+
+## File Modes
+
+- `""r""` - Read (default). Error if file doesn't exist.
+- `""w""` - Write. Creates new file or overwrites existing.
+- `""a""` - Append. Creates new file or appends to existing.
+- `""r+""` - Read and write.
+- `""b""` - Binary mode (e.g., `""rb""`, `""wb""`)
+- `""x""` - Exclusive creation. Fails if file exists.
+
+## Working with File Paths
+
+```python
+import os
+
+# Check if file exists
+if os.path.exists(""data.txt""):
+    print(""File exists"")
+
+# Get file size
+size = os.path.getsize(""data.txt"")
+print(f""File size: {size} bytes"")
+
+# Get absolute path
+abs_path = os.path.abspath(""data.txt"")
+
+# Join paths (platform-independent)
+path = os.path.join(""folder"", ""subfolder"", ""file.txt"")
+
+# Create directory
+os.makedirs(""data/output"", exist_ok=True)
+```
+
+## CSV Files
+
+```python
+import csv
+
+# Read CSV
+with open(""data.csv"", ""r"") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)  # row is a list
+
+# Read CSV with headers
+with open(""data.csv"", ""r"") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row[""name""], row[""age""])  # row is a dict
+
+# Write CSV
+data = [
+    [""Name"", ""Age"", ""City""],
+    [""Alice"", 25, ""NYC""],
+    [""Bob"", 30, ""LA""]
+]
+
+with open(""output.csv"", ""w"", newline="""") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+```
+
+## JSON Files
+
+```python
+import json
+
+# Read JSON
+with open(""data.json"", ""r"") as file:
+    data = json.load(file)
+    print(data)
+
+# Write JSON
+data = {
+    ""name"": ""Alice"",
+    ""age"": 25,
+    ""skills"": [""Python"", ""JavaScript""]
+}
+
+with open(""output.json"", ""w"") as file:
+    json.dump(data, file, indent=4)
+
+# Convert to/from JSON strings
+json_string = json.dumps(data)
+data = json.loads(json_string)
+```
+
+## Error Handling with Files
+
+```python
+try:
+    with open(""data.txt"", ""r"") as file:
+        content = file.read()
+except FileNotFoundError:
+    print(""File not found!"")
+except PermissionError:
+    print(""Permission denied!"")
+except Exception as e:
+    print(f""Error: {e}"")
+```
+
+## Real-World Examples
+
+### Log File Processor
+```python
+def analyze_log(filename):
+    """"""Count error entries in log file""""""
+    error_count = 0
+    with open(filename, ""r"") as file:
+        for line in file:
+            if ""ERROR"" in line:
+                error_count += 1
+    return error_count
+
+count = analyze_log(""app.log"")
+print(f""Found {count} errors"")
+```
+
+### Configuration File
+```python
+def read_config(filename):
+    """"""Read simple key=value config file""""""
+    config = {}
+    with open(filename, ""r"") as file:
+        for line in file:
+            line = line.strip()
+            if line and not line.startswith(""#""):
+                key, value = line.split(""="", 1)
+                config[key.strip()] = value.strip()
+    return config
+
+config = read_config(""app.conf"")
+print(config[""database_host""])
+```
+
+### Save/Load User Data
+```python
+import json
+
+def save_user_data(filename, users):
+    """"""Save user data to JSON file""""""
+    with open(filename, ""w"") as file:
+        json.dump(users, file, indent=4)
+
+def load_user_data(filename):
+    """"""Load user data from JSON file""""""
+    try:
+        with open(filename, ""r"") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+
+# Usage
+users = [
+    {""id"": 1, ""name"": ""Alice"", ""score"": 100},
+    {""id"": 2, ""name"": ""Bob"", ""score"": 85}
+]
+
+save_user_data(""users.json"", users)
+loaded_users = load_user_data(""users.json"")
+```
+
+File I/O is crucial for building real-world applications that persist and process data!",100,30
+python_basics,Error Handling and Exceptions,theory,13,"# Error Handling and Exceptions
+
+Errors are inevitable in programming. Python provides exception handling to manage errors gracefully and prevent crashes.
+
+## Types of Errors
+
+### Syntax Errors
+```python
+# These won't run - syntax is wrong
+# print(""Hello""  # Missing closing parenthesis
+# if True  # Missing colon
+```
+
+### Runtime Exceptions
+```python
+# These raise exceptions during execution
+print(10 / 0)  # ZeroDivisionError
+print(int(""abc""))  # ValueError
+print([1, 2, 3][5])  # IndexError
+print({""a"": 1}[""b""])  # KeyError
+```
+
+## Try-Except Block
+
+```python
+# Basic try-except
+try:
+    number = int(input(""Enter a number: ""))
+    result = 10 / number
+    print(f""Result: {result}"")
+except:
+    print(""An error occurred!"")
+```
+
+### Catching Specific Exceptions
+```python
+try:
+    number = int(input(""Enter a number: ""))
+    result = 10 / number
+    print(f""Result: {result}"")
+except ValueError:
+    print(""Invalid input! Please enter a number."")
+except ZeroDivisionError:
+    print(""Cannot divide by zero!"")
+```
+
+### Multiple Exceptions
+```python
+# Catch multiple exceptions
+try:
+    file = open(""data.txt"", ""r"")
+    content = file.read()
+    number = int(content)
+except (FileNotFoundError, ValueError) as e:
+    print(f""Error: {e}"")
+```
+
+## Else and Finally
+
+```python
+try:
+    number = int(input(""Enter a number: ""))
+    result = 10 / number
+except ValueError:
+    print(""Invalid input!"")
+except ZeroDivisionError:
+    print(""Cannot divide by zero!"")
+else:
+    # Runs if no exception occurred
+    print(f""Result: {result}"")
+finally:
+    # Always runs, exception or not
+    print(""Execution completed"")
+```
+
+### Finally for Cleanup
+```python
+file = None
+try:
+    file = open(""data.txt"", ""r"")
+    content = file.read()
+except FileNotFoundError:
+    print(""File not found"")
+finally:
+    if file:
+        file.close()
+        print(""File closed"")
+```
+
+## Raising Exceptions
+
+```python
+def divide(a, b):
+    if b == 0:
+        raise ValueError(""Cannot divide by zero"")
+    return a / b
+
+try:
+    result = divide(10, 0)
+except ValueError as e:
+    print(f""Error: {e}"")
+```
+
+### Custom Exceptions
+```python
+class InsufficientFundsError(Exception):
+    """"""Raised when account has insufficient funds""""""
+    pass
+
+class BankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise InsufficientFundsError(
+                f""Insufficient funds: {self.balance} < {amount}""
+            )
+        self.balance -= amount
+
+# Usage
+account = BankAccount(100)
+try:
+    account.withdraw(150)
+except InsufficientFundsError as e:
+    print(f""Error: {e}"")
+```
+
+## Common Exception Types
+
+- `Exception` - Base class for all exceptions
+- `ValueError` - Invalid value (e.g., `int(""abc"")`)
+- `TypeError` - Wrong type (e.g., `""2"" + 2`)
+- `ZeroDivisionError` - Division by zero
+- `IndexError` - Invalid index (e.g., `[1, 2][5]`)
+- `KeyError` - Invalid dictionary key
+- `FileNotFoundError` - File doesn't exist
+- `AttributeError` - Invalid attribute access
+- `ImportError` - Failed module import
+
+## Best Practices
+
+### 1. Be Specific
+```python
+# Good - specific exception
+try:
+    number = int(input(""Enter number: ""))
+except ValueError:
+    print(""Invalid number"")
+
+# Bad - too broad
+try:
+    number = int(input(""Enter number: ""))
+except:
+    print(""Something went wrong"")
+```
+
+### 2. Don't Silence Errors
+```python
+# Bad - silently ignores all errors
+try:
+    risky_operation()
+except:
+    pass
+
+# Good - log or handle appropriately
+try:
+    risky_operation()
+except Exception as e:
+    print(f""Operation failed: {e}"")
+    # Log the error, notify user, etc.
+```
+
+### 3. Use Finally for Cleanup
+```python
+# Good - ensures cleanup
+connection = None
+try:
+    connection = connect_to_database()
+    process_data(connection)
+finally:
+    if connection:
+        connection.close()
+```
+
+## Real-World Examples
+
+### Input Validation
+```python
+def get_positive_integer(prompt):
+    """"""Keep asking until valid positive integer""""""
+    while True:
+        try:
+            value = int(input(prompt))
+            if value <= 0:
+                raise ValueError(""Must be positive"")
+            return value
+        except ValueError as e:
+            print(f""Invalid input: {e}. Try again."")
+
+age = get_positive_integer(""Enter your age: "")
+```
+
+### Safe File Operations
+```python
+def safe_read_file(filename):
+    """"""Safely read file with error handling""""""
+    try:
+        with open(filename, ""r"") as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f""File '{filename}' not found"")
+        return None
+    except PermissionError:
+        print(f""Permission denied for '{filename}'"")
+        return None
+    except Exception as e:
+        print(f""Unexpected error: {e}"")
+        return None
+
+content = safe_read_file(""data.txt"")
+if content:
+    process(content)
+```
+
+### API Error Handling
+```python
+def fetch_user_data(user_id):
+    """"""Fetch user data with comprehensive error handling""""""
+    try:
+        # Validate input
+        if not isinstance(user_id, int):
+            raise TypeError(""user_id must be an integer"")
+        if user_id <= 0:
+            raise ValueError(""user_id must be positive"")
+
+        # Simulate API call
+        response = api.get_user(user_id)
+
+        if response.status_code == 404:
+            raise ValueError(f""User {user_id} not found"")
+        elif response.status_code != 200:
+            raise Exception(f""API error: {response.status_code}"")
+
+        return response.json()
+
+    except TypeError as e:
+        print(f""Type error: {e}"")
+    except ValueError as e:
+        print(f""Value error: {e}"")
+    except Exception as e:
+        print(f""Unexpected error: {e}"")
+    return None
+```
+
+Proper error handling makes your programs robust, user-friendly, and easier to debug!",100,30
+python_basics,Modules and Packages,theory,14,"# Modules and Packages
+
+Modules and packages help organize code into reusable components. They're essential for building larger applications and using external libraries.
+
+## What is a Module?
+
+A module is a Python file containing code (functions, classes, variables) that you can import and use in other files.
+
+### Creating a Module
+
+Create a file `math_utils.py`:
+```python
+# math_utils.py
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+PI = 3.14159
+```
+
+### Using a Module
+
+```python
+# main.py
+import math_utils
+
+result = math_utils.add(5, 3)
+print(result)  # 8
+print(math_utils.PI)  # 3.14159
+```
+
+## Import Variants
+
+### Import Entire Module
+```python
+import math_utils
+result = math_utils.add(5, 3)
+```
+
+### Import with Alias
+```python
+import math_utils as mu
+result = mu.add(5, 3)
+```
+
+### Import Specific Items
+```python
+from math_utils import add, PI
+result = add(5, 3)
+print(PI)
+```
+
+### Import All (Not Recommended)
+```python
+from math_utils import *
+result = add(5, 3)
+```
+
+## Standard Library Modules
+
+Python comes with a rich standard library of built-in modules.
+
+### math Module
+```python
+import math
+
+print(math.sqrt(16))      # 4.0
+print(math.ceil(4.3))     # 5
+print(math.floor(4.7))    # 4
+print(math.pi)            # 3.141592653589793
+print(math.sin(math.pi/2)) # 1.0
+```
+
+### random Module
+```python
+import random
+
+print(random.randint(1, 10))      # Random int 1-10
+print(random.choice([""a"", ""b"", ""c""]))  # Random choice
+print(random.random())            # Random float 0-1
+
+numbers = [1, 2, 3, 4, 5]
+random.shuffle(numbers)           # Shuffle in place
+print(numbers)
+```
+
+### datetime Module
+```python
+from datetime import datetime, timedelta
+
+# Current date and time
+now = datetime.now()
+print(now)
+
+# Create specific date
+date = datetime(2024, 12, 25, 10, 30)
+print(date)
+
+# Format date
+formatted = now.strftime(""%Y-%m-%d %H:%M:%S"")
+print(formatted)
+
+# Date arithmetic
+tomorrow = now + timedelta(days=1)
+next_week = now + timedelta(weeks=1)
+```
+
+### os Module
+```python
+import os
+
+# Get current directory
+print(os.getcwd())
+
+# List directory contents
+print(os.listdir("".""))
+
+# Create directory
+os.makedirs(""new_folder"", exist_ok=True)
+
+# Environment variables
+home = os.getenv(""HOME"")
+```
+
+### sys Module
+```python
+import sys
+
+# Python version
+print(sys.version)
+
+# Command-line arguments
+print(sys.argv)
+
+# Exit program
+# sys.exit(0)
+```
+
+## Creating Packages
+
+A package is a directory containing an `__init__.py` file and module files.
+
+```
+my_package/
+    __init__.py
+    module1.py
+    module2.py
+    subpackage/
+        __init__.py
+        module3.py
+```
+
+### my_package/__init__.py
+```python
+# Can be empty or contain initialization code
+from .module1 import function1
+from .module2 import function2
+
+__version__ = ""1.0.0""
+```
+
+### my_package/module1.py
+```python
+def function1():
+    return ""Hello from module1""
+```
+
+### Using the Package
+```python
+from my_package import function1
+from my_package.module2 import function2
+from my_package.subpackage.module3 import function3
+
+result = function1()
+```
+
+## Installing External Packages
+
+### Using pip
+```bash
+# Install a package
+pip install requests
+
+# Install specific version
+pip install requests==2.28.0
+
+# Uninstall
+pip uninstall requests
+
+# List installed packages
+pip list
+
+# Save dependencies
+pip freeze > requirements.txt
+
+# Install from requirements
+pip install -r requirements.txt
+```
+
+### Using External Packages
+```python
+import requests
+
+response = requests.get(""https://api.github.com"")
+print(response.status_code)
+print(response.json())
+```
+
+## Module Best Practices
+
+### 1. Use if __name__ == ""__main__""
+```python
+# module.py
+def greet(name):
+    return f""Hello, {name}!""
+
+# Only runs when file is executed directly
+if __name__ == ""__main__"":
+    print(greet(""World""))
+    # Test code here
+```
+
+### 2. Organize Related Code
+```python
+# Good structure
+# utils/
+#     string_utils.py
+#     math_utils.py
+#     file_utils.py
+```
+
+### 3. Document Your Modules
+```python
+""""""
+Math utilities module.
+
+This module provides common mathematical functions
+including addition, subtraction, and constants.
+""""""
+
+def add(a, b):
+    """"""Add two numbers.""""""
+    return a + b
+
+PI = 3.14159
+""""""float: Mathematical constant pi""""""
+```
+
+## Real-World Examples
+
+### Configuration Module
+```python
+# config.py
+DATABASE_HOST = ""localhost""
+DATABASE_PORT = 5432
+DATABASE_NAME = ""myapp""
+DEBUG = True
+
+# main.py
+import config
+
+if config.DEBUG:
+    print(f""Connecting to {config.DATABASE_HOST}:{config.DATABASE_PORT}"")
+```
+
+### Utility Functions
+```python
+# utils.py
+def validate_email(email):
+    return ""@"" in email and ""."" in email
+
+def format_currency(amount):
+    return f""${amount:,.2f}""
+
+def safe_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
+
+# main.py
+from utils import validate_email, format_currency
+
+if validate_email(""user@example.com""):
+    price = format_currency(1234.56)
+    print(price)  # $1,234.56
+```
+
+### Logger Module
+```python
+# logger.py
+from datetime import datetime
+
+class Logger:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def log(self, message, level=""INFO""):
+        timestamp = datetime.now().strftime(""%Y-%m-%d %H:%M:%S"")
+        with open(self.filename, ""a"") as f:
+            f.write(f""[{timestamp}] {level}: {message}\n"")
+
+# main.py
+from logger import Logger
+
+log = Logger(""app.log"")
+log.log(""Application started"")
+log.log(""Error occurred"", level=""ERROR"")
+```
+
+Modules and packages are fundamental to organizing Python code and leveraging the vast ecosystem of Python libraries!",125,35
+python_basics,Python Basics Capstone Project,theory,15,"# Python Basics Capstone Project
+
+Congratulations on completing the Python Basics lessons! Now it's time to apply everything you've learned in a comprehensive project.
+
+## Project: Task Manager CLI Application
+
+Build a command-line task management application that demonstrates your mastery of Python fundamentals.
+
+### Project Requirements
+
+Your Task Manager should:
+
+1. **Store tasks** with title, description, due date, priority, and status
+2. **Support CRUD operations**: Create, Read, Update, Delete tasks
+3. **Filter and search** tasks by various criteria
+4. **Persist data** to a JSON file
+5. **Handle errors** gracefully with try-except blocks
+6. **Use functions** to organize code
+7. **Display formatted output** using string manipulation
+
+### Suggested Features
+
+**Core Features:**
+- Add new tasks
+- View all tasks
+- Mark tasks as complete
+- Delete tasks
+- Save/load from file
+
+**Advanced Features:**
+- Priority levels (High, Medium, Low)
+- Due date tracking with date validation
+- Search tasks by keyword
+- Filter by status or priority
+- Sort tasks by due date or priority
+- Statistics (total tasks, completed, pending)
+
+### Concepts to Apply
+
+- **Variables and Data Types**: Store task properties
+- **Operators**: Compare dates, calculate statistics
+- **Control Flow**: if-elif-else for menu navigation
+- **Loops**: Display lists, process tasks
+- **Functions**: Organize code into reusable pieces
+- **Lists**: Store collection of tasks
+- **Dictionaries**: Represent individual tasks
+- **Strings**: Format output, validate input
+- **File I/O**: Save/load tasks from JSON
+- **Error Handling**: Validate input, handle file errors
+- **Modules**: Use datetime, json, os
+
+### Sample Code Structure
+
+```python
+import json
+import os
+from datetime import datetime
+
+TASKS_FILE = ""tasks.json""
+
+def load_tasks():
+    """"""Load tasks from JSON file""""""
+    if os.path.exists(TASKS_FILE):
+        with open(TASKS_FILE, ""r"") as f:
+            return json.load(f)
+    return []
+
+def save_tasks(tasks):
+    """"""Save tasks to JSON file""""""
+    with open(TASKS_FILE, ""w"") as f:
+        json.dump(tasks, f, indent=4)
+
+def add_task(tasks):
+    """"""Add a new task""""""
+    task = {
+        ""id"": len(tasks) + 1,
+        ""title"": input(""Task title: ""),
+        ""description"": input(""Description: ""),
+        ""priority"": input(""Priority (High/Medium/Low): ""),
+        ""due_date"": input(""Due date (YYYY-MM-DD): ""),
+        ""status"": ""Pending""
+    }
+    tasks.append(task)
+    print(""Task added successfully!"")
+
+def view_tasks(tasks):
+    """"""Display all tasks""""""
+    if not tasks:
+        print(""No tasks found!"")
+        return
+
+    for task in tasks:
+        status_icon = ""✓"" if task[""status""] == ""Complete"" else ""○""
+        print(f""{status_icon} [{task['id']}] {task['title']}"")
+        print(f""   Priority: {task['priority']} | Due: {task['due_date']}"")
+        print(f""   {task['description']}"")
+        print()
+
+def complete_task(tasks):
+    """"""Mark task as complete""""""
+    task_id = int(input(""Enter task ID to complete: ""))
+    for task in tasks:
+        if task[""id""] == task_id:
+            task[""status""] = ""Complete""
+            print(""Task marked as complete!"")
+            return
+    print(""Task not found!"")
+
+def delete_task(tasks):
+    """"""Delete a task""""""
+    task_id = int(input(""Enter task ID to delete: ""))
+    for i, task in enumerate(tasks):
+        if task[""id""] == task_id:
+            tasks.pop(i)
+            print(""Task deleted!"")
+            return
+    print(""Task not found!"")
+
+def show_menu():
+    """"""Display main menu""""""
+    print(""\n=== Task Manager ==="" )
+    print(""1. Add Task"")
+    print(""2. View Tasks"")
+    print(""3. Complete Task"")
+    print(""4. Delete Task"")
+    print(""5. Exit"")
+
+def main():
+    """"""Main application loop""""""
+    tasks = load_tasks()
+
+    while True:
+        show_menu()
+        choice = input(""\nSelect option: "")
+
+        if choice == ""1"":
+            add_task(tasks)
+            save_tasks(tasks)
+        elif choice == ""2"":
+            view_tasks(tasks)
+        elif choice == ""3"":
+            complete_task(tasks)
+            save_tasks(tasks)
+        elif choice == ""4"":
+            delete_task(tasks)
+            save_tasks(tasks)
+        elif choice == ""5"":
+            print(""Goodbye!"")
+            break
+        else:
+            print(""Invalid option!"")
+
+if __name__ == ""__main__"":
+    main()
+```
+
+### Enhancement Ideas
+
+1. **Add categories/tags** to tasks
+2. **Implement search** by keyword
+3. **Add filtering** by priority or status
+4. **Sort tasks** by different criteria
+5. **Calculate statistics**: completion rate, overdue tasks
+6. **Add color output** using ANSI codes
+7. **Implement recurring tasks**
+8. **Add task dependencies**
+9. **Export to different formats** (CSV, Markdown)
+10. **Add time tracking** for tasks
+
+### Testing Checklist
+
+- [ ] Can add tasks with all properties
+- [ ] Tasks are displayed correctly
+- [ ] Can mark tasks as complete
+- [ ] Can delete tasks
+- [ ] Data persists after program restart
+- [ ] Invalid input is handled gracefully
+- [ ] File errors are handled
+- [ ] Menu navigation works correctly
+
+### Learning Outcomes
+
+After completing this project, you will have:
+
+- Built a real-world application from scratch
+- Applied all Python basics concepts
+- Gained experience with CLI applications
+- Practiced code organization and structure
+- Implemented data persistence
+- Handled user input and errors
+- Written clean, maintainable code
+
+### Next Steps
+
+Once you complete the Task Manager:
+
+1. **Add more features** from the enhancement ideas
+2. **Refactor code** into multiple modules
+3. **Add unit tests** for your functions
+4. **Share your project** on GitHub
+5. **Move to the next learning path**: Data Structures, OOP, or Algorithms!
+
+## Congratulations!
+
+You've completed Python Basics! You now have a solid foundation in:
+- Variables, data types, and operators
+- Control flow and loops
+- Functions and code organization
+- Lists, dictionaries, tuples, and sets
+- String manipulation
+- File I/O operations
+- Error handling
+- Modules and packages
+
+Keep practicing, keep building, and keep learning. The Python journey has just begun!",150,45
